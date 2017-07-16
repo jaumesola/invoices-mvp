@@ -1,1 +1,1 @@
-# meteor-invoices-mvp
+# invoices-mvp
