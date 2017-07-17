@@ -13,6 +13,39 @@ $ meteor create --full .
 
 RUN
 
-meteor run
+$ meteor run
 
+MONGO SHELL
 
+$ meteor mongo
+
+https://docs.mongodb.com/manual/reference/mongo-shell/
+
+VERIFY GLOBAL VAR InvoicesList
+
+JavaScript console:
+
+> InvoicesList
+
+TEMPORARY INSECURE PACKAGES FOR PROTOTYPING
+
+meteor add autopublish
+meteor add insecure
+
+INSERT SAMPLE DATA 
+	
+> InvoicesList.insert({ number: 1, amount: 100 });
+> InvoicesList.insert({ number: 2, amount: 200 });
+> InvoicesList.insert({ number: 3, amount: 300 });
+
+VERIFY DATA LOADED IN BROWSER
+
+data shown in HTML plus in JS:
+> InvoicesList.find().fetch()
+
+VERIFY DATA ON MONGO
+
+> show dbs
+> use meteor
+> show collections
+> db.invoices.find()
