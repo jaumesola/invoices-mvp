@@ -6,3 +6,7 @@ $ curl https://install.meteor.com/ | sh
 - binary gets installed in /usr/local/bin/
 - rest of package in ~/.meteor
 
+INITIAL "FULL" SCAFFOLD
+
+$ cd /path/to/invoices-mvp
+$ meteor create --full .
