@@ -10,3 +10,9 @@ INITIAL "FULL" SCAFFOLD
 
 $ cd /path/to/invoices-mvp
 $ meteor create --full .
+
+RUN
+
+meteor run
+
+
