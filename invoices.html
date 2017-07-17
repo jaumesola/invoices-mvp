@@ -1,0 +1,16 @@
+<head>
+    <title>Invoices</title>
+</head>
+<body>
+    <h1>Invoices</h1>
+    {{> invoices}}
+</body>
+
+<template name="invoices">
+    Hello Invoicing World
+<ul>
+    {{#each invoice}}
+        <li>{{number}}: {{amount}}</li>
+    {{/each}}
+</ul> 
+</template>
