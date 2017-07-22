@@ -1,3 +1,8 @@
+This is a log of the steps followed by learning Meteor.
+
+Starting with tutorial at http://meteortips.com/first-meteor-tutorial/
+
+This MVP will manage at least a number of  invoices, so I start with just an uber simple invoices CRUD interface.
 
 INSTALL
 
@@ -49,3 +54,15 @@ VERIFY DATA ON MONGO
 > use meteor
 > show collections
 > db.invoices.find()
+
+EXAMPLE OF FINDING ONE RECORD
+
+> InvoicesList.find({ number: 2 }).fetch();
+
+COUNTING
+
+> InvoicesList.find().count();
+
+
+
+
