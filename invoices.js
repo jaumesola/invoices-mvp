@@ -5,12 +5,15 @@ if(Meteor.isClient){
 	console.log("Hello client");
     Template.invoices.helpers({
         'invoice': function(){
-            return InvoicesList.find();
+            return InvoicesList.find({}, { sort: {amount: -1, number: 1} });
         },        
         'selectedClass': function(){
             if(this._id == Session.get('selectedInvoice')){
                 return "selected"
             }
+        },
+        'selectedInvoice': function(){
+            return InvoicesList.findOne({ _id: Session.get('selectedInvoice') });
         }
     });
     
@@ -20,7 +23,18 @@ if(Meteor.isClient){
         		var selectedInvoice = Session.get('selectedInvoice');
             console.log("You clicked a .invoice element");
             console.log(selectedInvoice);
-        }
+        },
+        
+        'click .increment': function(){
+            var selectedInvoice = Session.get('selectedInvoice');   
+            InvoicesList.update({ _id: selectedInvoice }, { $inc: {amount: 5} } );
+        },
+        
+        'click .decrement': function(){
+            var selectedInvoice = Session.get('selectedInvoice');   
+            InvoicesList.update({ _id: selectedInvoice }, { $inc: {amount: -5} } );
+        }    
+        
     });
 }
 

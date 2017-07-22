@@ -12,5 +12,16 @@
     {{#each invoice}}
         <li class="invoice {{selectedClass}}">{{number}}: {{amount}}</li>
     {{/each}}
+     
+{{#if selectedInvoice}}
+	<div><p>
+    Selected Invoice: {{selectedInvoice.number}}<br>
+    <button class="increment">Increase amount</button>
+    <button class="decrement">Decrease amount</button>
+    </p></div>
+{{/if}}    
+    
+    <br><br>
+    
 </ul> 
 </template>
