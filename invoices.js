@@ -6,6 +6,11 @@ if(Meteor.isClient){
     Template.invoices.helpers({
         'invoice': function(){
             return InvoicesList.find();
+        },        
+        'selectedClass': function(){
+            if(this._id == Session.get('selectedInvoice')){
+                return "selected"
+            }
         }
     });
     
