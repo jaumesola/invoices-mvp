@@ -63,6 +63,9 @@ COUNTING
 
 > InvoicesList.find().count();
 
+EVENTS: CLICK ON INVOICE
+http://meteortips.com/first-meteor-tutorial/events/
+
 
 
 
