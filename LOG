@@ -66,6 +66,11 @@ COUNTING
 EVENTS: CLICK ON INVOICE
 http://meteortips.com/first-meteor-tutorial/events/
 
+SESSIONS
+http://meteortips.com/first-meteor-tutorial/sessions/
+
+$ meteor add session
+
 
 
 

@@ -11,7 +11,10 @@ if(Meteor.isClient){
     
     Template.invoices.events({
         'click .invoice': function(){
+        		Session.set('selectedInvoice', this._id);
+        		var selectedInvoice = Session.get('selectedInvoice');
             console.log("You clicked a .invoice element");
+            console.log(selectedInvoice);
         }
     });
 }
