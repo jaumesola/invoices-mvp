@@ -5,6 +5,8 @@ if(Meteor.isClient){
 	
 	console.log("Hello client");
 	
+	Meteor.subscribe('theInvoices');
+	
     Template.invoices.helpers({
         'invoice': function(){
             return InvoicesList.find({ userId: Meteor.userId() }, { sort: {amount: -1, number: 1} });
@@ -61,6 +63,11 @@ if(Meteor.isClient){
 if(Meteor.isServer){
 	// nothing so far
 	console.log("Hello server");
+	Meteor.publish('theInvoices', function(){
+	    var currentUserId = this.userId;
+	    return InvoicesList.find({ userId: currentUserId });
+	});
 }
 
 console.log("Bye client & server");
+

@@ -103,3 +103,9 @@ accounts-ui: Simple templates to add login widgets to an app
 suggested by meteor run:
 $ meteor npm install --save bcrypt
 
+PUBLISH & SUBSCRIBE
+https://meteortips.com/first-meteor-tutorial/publish-subscribe/
+
+$ meteor remove autopublish
+
+
