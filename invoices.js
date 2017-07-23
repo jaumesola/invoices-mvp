@@ -21,8 +21,6 @@ if(Meteor.isClient){
         'click .invoice': function(){
         		Session.set('selectedInvoice', this._id);
         		var selectedInvoice = Session.get('selectedInvoice');
-            console.log("You clicked a .invoice element");
-            console.log(selectedInvoice);
         },
         
         'click .increment': function(){
@@ -33,6 +31,11 @@ if(Meteor.isClient){
         'click .decrement': function(){
             var selectedInvoice = Session.get('selectedInvoice');   
             InvoicesList.update({ _id: selectedInvoice }, { $inc: {amount: -5} } );
+        },
+        
+        'click .remove': function(){
+            var selectedInvoice = Session.get('selectedInvoice')
+            InvoicesList.remove({ _id: selectedInvoice });
         }
 
     });
