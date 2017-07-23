@@ -40,8 +40,12 @@ if(Meteor.isClient){
     Template.addInvoiceForm.events({
         'submit form': function(event){
             event.preventDefault();
-            console.log("Form submitted");
-            console.log(event.type);
+            var invoiceNumberVar = Number(event.target.invoiceNumber.value);
+            var invoiceAmountVar = Number(event.target.invoiceAmount.value);
+            InvoicesList.insert({
+                number: invoiceNumberVar,
+                amount: invoiceAmountVar
+            });
         }    	
     });
 }
