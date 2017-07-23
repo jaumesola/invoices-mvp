@@ -33,8 +33,16 @@ if(Meteor.isClient){
         'click .decrement': function(){
             var selectedInvoice = Session.get('selectedInvoice');   
             InvoicesList.update({ _id: selectedInvoice }, { $inc: {amount: -5} } );
-        }    
-        
+        }
+
+    });
+    
+    Template.addInvoiceForm.events({
+        'submit form': function(event){
+            event.preventDefault();
+            console.log("Form submitted");
+            console.log(event.type);
+        }    	
     });
 }
 

@@ -3,8 +3,18 @@
 </head>
 <body>
     <h1>Invoices</h1>
+    {{> addInvoiceForm}}
+    <p></p>
     {{> invoices}}
 </body>
+
+<template name="addInvoiceForm">
+    <form>
+        Number <input type="number" name="InvoiceNumber">
+        -- Amount <input type="number" name="InvoiceAmount">
+        <input type="submit" value="Add Invoice">
+    </form>
+</template>
 
 <template name="invoices">
     Invoices List
