@@ -26,3 +26,5 @@ johanbrook:publication-collector  # Test a Meteor publication by collecting its 
 autopublish
 insecure
 session
+accounts-ui
+accounts-password
