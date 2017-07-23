@@ -4,10 +4,14 @@
 <body>
     <h1>Invoices</h1>
     {{> loginButtons}}
-    <p></p>
-    {{> addInvoiceForm}}
-    <p></p>
-    {{> invoices}}
+    	{{#if currentUser}}
+        <p></p>
+        {{> addInvoiceForm}}
+        <p></p>
+        {{> invoices}}
+    {{else}}
+        <p>You must be logged-in to see this content.</p>    
+    {{/if}}    
 </body>
 
 <template name="addInvoiceForm">
