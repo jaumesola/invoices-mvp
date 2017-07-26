@@ -108,4 +108,9 @@ https://meteortips.com/first-meteor-tutorial/publish-subscribe/
 
 $ meteor remove autopublish
 
+SECURITY & METHODS
+https://meteortips.com/first-meteor-tutorial/methods/
+
+$ meteor remove insecure
+$ meteor add check
 

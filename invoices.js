@@ -28,20 +28,17 @@ if(Meteor.isClient){
         		Session.set('selectedInvoice', this._id);
         		var selectedInvoice = Session.get('selectedInvoice');
         },
-        
         'click .increment': function(){
-            var selectedInvoice = Session.get('selectedInvoice');   
-            InvoicesList.update({ _id: selectedInvoice }, { $inc: {amount: 5} } );
+            var selectedInvoice = Session.get('selectedInvoice');
+            Meteor.call('updateInvoice', selectedInvoice, 5);
         },
-        
         'click .decrement': function(){
-            var selectedInvoice = Session.get('selectedInvoice');   
-            InvoicesList.update({ _id: selectedInvoice }, { $inc: {amount: -5} } );
+            var selectedInvoice = Session.get('selectedInvoice');
+            Meteor.call('updateInvoice', selectedInvoice, -5);
         },
-        
         'click .remove': function(){
             var selectedInvoice = Session.get('selectedInvoice')
-            InvoicesList.remove({ _id: selectedInvoice });
+            Meteor.call('removeInvoice', selectedInvoice);
         }
     });
     
@@ -51,11 +48,9 @@ if(Meteor.isClient){
             var currentUserId = Meteor.userId();
             var invoiceNumberVar = Number(event.target.invoiceNumber.value);
             var invoiceAmountVar = Number(event.target.invoiceAmount.value);
-            InvoicesList.insert({
-            	    userId: currentUserId,
-                number: invoiceNumberVar,
-                amount: invoiceAmountVar
-            });
+            Meteor.call('createInvoice', invoiceNumberVar, invoiceAmountVar);
+            event.target.invoiceNumber.value = "";
+            event.target.invoiceAmount.value = "";
         }    	
     });
 }
@@ -69,5 +64,34 @@ if(Meteor.isServer){
 	});
 }
 
-console.log("Bye client & server");
+Meteor.methods({
+    'createInvoice': function(invoiceNumberVar, invoiceAmountVar){
+        check(invoiceNumberVar, Number);
+        check(invoiceAmountVar, Number);        
+        var currentUserId = Meteor.userId();
+        if(currentUserId){
+            InvoicesList.insert({
+        	        userId: currentUserId,
+                number: invoiceNumberVar,
+                amount: invoiceAmountVar
+            });
+        }
+    },
+    'removeInvoice': function(invoiceId){
+        check(invoiceId, String);
+        var currentUserId = Meteor.userId();
+        if(currentUserId){
+            InvoicesList.remove({ _id: invoiceId, userId: currentUserId });
+        }
+    },
+    'updateInvoice': function(invoiceId, amountIncrease) {
+        check(invoiceId, String);
+        check(amountIncrease, Number);
+        var currentUserId = Meteor.userId();
+        if(currentUserId){
+            InvoicesList.update({ _id: invoiceId, userId: currentUserId }, {$inc: {amount: amountIncrease}});
+        }    	
+    }
+});
 
+console.log("Bye client & server");
