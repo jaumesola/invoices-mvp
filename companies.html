@@ -1,0 +1,44 @@
+<head>
+    <title>companies</title>
+</head>
+<body>
+    <h1>Companies</h1>
+    {{> loginButtons}}
+    	{{#if currentUser}}
+        <p></p>
+        {{> addCompanyForm}}
+        <p></p>
+        {{> companies}}
+    {{else}}
+        <p>You must be logged-in to see this content.</p>    
+    {{/if}}
+</body>
+
+<template name="addCompanyForm">
+    <form>
+        Tax Id <input type="string" name="companyTaxId"><br>
+        Name <input type="string" name="companyName">
+        <input type="submit" value="Add Company">
+    </form>
+</template>
+
+<template name="companies">
+    Companies List
+<ul>
+    {{#each company}}
+        <li class="company {{selectedClass}}">{{companyTaxId}}: {{companyName}}</li>
+    {{/each}}
+     
+{{#if selectedCompany}}
+	<div><p>
+    Selected Company: {{selectedCompany.companyName}}<br>
+    <button class="edit">Edit</button>
+    <button class="remove">Remove</button>
+    </p></div>
+    
+{{/if}}    
+    
+    <br><br>
+    
+</ul> 
+</template>

@@ -27,3 +27,5 @@ session
 accounts-ui
 accounts-password
 check
+autopublish
+insecure

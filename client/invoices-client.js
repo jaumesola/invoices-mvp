@@ -1,4 +1,4 @@
-console.log("Hello client");
+console.log("Hello invoices client");
 
 Meteor.subscribe('theInvoices');
 	
@@ -21,7 +21,6 @@ Template.invoices.helpers({
 Template.invoices.events({
     'click .invoice': function(){
     		Session.set('selectedInvoice', this._id);
-    		var selectedInvoice = Session.get('selectedInvoice');
     },
     'click .increment': function(){
         var selectedInvoice = Session.get('selectedInvoice');
@@ -49,4 +48,4 @@ Template.addInvoiceForm.events({
     }
 });
 
-console.log("Bye client");
+console.log("Bye invoices client");

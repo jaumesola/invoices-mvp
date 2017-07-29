@@ -114,3 +114,9 @@ https://meteortips.com/first-meteor-tutorial/methods/
 $ meteor remove insecure
 $ meteor add check
 
+
+COMPANIES
+
+CompaniesList.insert({ companyTaxId: "AAABBBCCCDDD", companyName: "Big Corp Inc" });
+
+
