@@ -1,11 +1,16 @@
 <template name="App_body">
 <!-- BEGIN App_body  -->
 <div id="container" >
-
-	<div class="btns-group">
-    {{> loginButtons}}
- 	</div>   
+	<section id="menu">
+		<div class="btns-group">
+    		{{> loginButtons}}
+ 		</div>   
     
+    		<div class="list-todos"> 
+			<a href="/invy" title="Invoices" class="list-todo">Invoices</a>
+			<a href="/compy" title="Companies" class="list-todo">Companies</a>
+    		</div>
+    </section>
 	<div id="content-container">
     	{{#if currentUser}}
 		{{> Template.dynamic template=main}}    	
