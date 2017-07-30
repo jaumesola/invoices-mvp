@@ -119,4 +119,7 @@ COMPANIES
 
 CompaniesList.insert({ companyTaxId: "AAABBBCCCDDD", companyName: "Big Corp Inc" });
 
+LAYOUT...
 
+$ meteor add kadira:blaze-layout
+$ meteor add kadira:flow-router

@@ -1,7 +1,4 @@
-<head>
-    <title>companies</title>
-</head>
-<body>
+<template name="companiesBody">
     <h1>Companies</h1>
     {{> loginButtons}}
     	{{#if currentUser}}
@@ -12,7 +9,7 @@
     {{else}}
         <p>You must be logged-in to see this content.</p>    
     {{/if}}
-</body>
+</template>
 
 <template name="addCompanyForm">
     <form>

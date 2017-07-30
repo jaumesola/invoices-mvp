@@ -1,8 +1,6 @@
-<head>
-    <title>Invoices</title>
-</head>
-<body>
-    <h1>Invoices</h1>
+
+<template name="invoicesBody">
+    <h1>Invoooices</h1>
     {{> loginButtons}}
     	{{#if currentUser}}
         <p></p>
@@ -11,8 +9,8 @@
         {{> invoices}}
     {{else}}
         <p>You must be logged-in to see this content.</p>    
-    {{/if}}    
-</body>
+    {{/if}}  
+</template>
 
 <template name="addInvoiceForm">
     <form>
