@@ -18,19 +18,19 @@
 </template>
 
 <template name="invoices">
-    Invoices List
+    <h2>Invoices List</h2>
 <ul>
     {{#each invoice}}
         <li class="invoice {{selectedClass}}">{{number}}: {{amount}}</li>
     {{/each}}
      
 {{#if selectedInvoice}}
-	<div><p>
-    Selected Invoice: {{selectedInvoice.number}}<br>
+	<div>
+     <br>
     <button class="increment">Increase amount</button>
     <button class="decrement">Decrease amount</button>
     <button class="remove">Remove Invoice</button>
-    </p></div>
+    </div>
     
 {{/if}}    
     

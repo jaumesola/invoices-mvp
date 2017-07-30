@@ -1,24 +1,28 @@
 <template name="App_body">
 <!-- BEGIN App_body  -->
-<div id="container" >
+
+ 		
+ <div id="container" >
+    {{#if currentUser}}
 	<section id="menu">
-		<div class="btns-group">
-    		{{> loginButtons}}
- 		</div>   
-    
-    		<div class="list-todos"> 
+    	<div class="list-todos"> 
 			<a href="/invy" title="Invoices" class="list-todo">Invoices</a>
 			<a href="/compy" title="Companies" class="list-todo">Companies</a>
     		</div>
     </section>
+    {{/if}}
 	<div id="content-container">
     	{{#if currentUser}}
 		{{> Template.dynamic template=content_container}}    	
     {{else}}
-        <p>You must be logged-in to see this content.</p>    
+    	<div class="wrapper-message">
+		<div class="title-message">You must be logged-in to see this content.</div>
+	</div>
     {{/if}}
 	</div>
-	
+<div class="login-widget">
+    		{{> loginButtons}}
+ </div>   	
 </div>
 <!-- END App_body  -->
 </template>

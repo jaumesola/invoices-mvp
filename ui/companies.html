@@ -17,18 +17,18 @@
 </template>
 
 <template name="companies">
-    Companies List
+    <h2>Companies List</h2>
 <ul>
     {{#each company}}
         <li class="company {{selectedClass}}">{{companyTaxId}}: {{companyName}}</li>
     {{/each}}
      
 {{#if selectedCompany}}
-	<div><p>
-    Selected Company: {{selectedCompany.companyName}}<br>
+	<div>
+    <br>
     <button class="edit">Edit</button>
     <button class="remove">Remove</button>
-    </p></div>
+    </div>
     
 {{/if}}    
     

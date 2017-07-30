@@ -1,7 +1,7 @@
 @import './utils.less';
 
-@menu-width: 270px;
-@column: 5.55555%;
+@menu-width: 200px;
+@column: 1%;
 
 body {
   .position(absolute, 0, 0, 0, 0);
@@ -38,6 +38,7 @@ body {
   transform: translate3d(0, 0, 0);
   background: @color-tertiary;
   opacity: 1;
+  padding: @column;
 
   .page {
     .position(absolute, 0, 0, 0, 0);
@@ -80,5 +81,11 @@ body {
   }
 
   // Hide overlay on desktop
-  @media screen and (min-width: 40em) { display: none; }
+  @media screen and (min-width: 4em) { display: none; }
+}
+
+
+.login-widget {
+  text-align: right;
+  margin-right: 200px;
 }
