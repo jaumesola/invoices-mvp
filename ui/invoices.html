@@ -1,14 +1,11 @@
 
 <template name="invoicesBody">
-    <h1>Invoooices</h1>
-    {{> loginButtons}}
+    <h1>Invoices</h1>
     	{{#if currentUser}}
         <p></p>
         {{> addInvoiceForm}}
         <p></p>
         {{> invoices}}
-    {{else}}
-        <p>You must be logged-in to see this content.</p>    
     {{/if}}  
 </template>
 

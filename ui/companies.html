@@ -1,13 +1,10 @@
 <template name="companiesBody">
     <h1>Companies</h1>
-    {{> loginButtons}}
     	{{#if currentUser}}
         <p></p>
         {{> addCompanyForm}}
         <p></p>
         {{> companies}}
-    {{else}}
-        <p>You must be logged-in to see this content.</p>    
     {{/if}}
 </template>
 

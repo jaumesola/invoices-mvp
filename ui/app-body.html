@@ -1,0 +1,19 @@
+<template name="App_body">
+<!-- BEGIN App_body  -->
+<div id="container" >
+
+	<div class="btns-group">
+    {{> loginButtons}}
+ 	</div>   
+    
+	<div id="content-container">
+    	{{#if currentUser}}
+		{{> Template.dynamic template=main}}    	
+    {{else}}
+        <p>You must be logged-in to see this content.</p>    
+    {{/if}}
+	</div>
+	
+</div>
+<!-- END App_body  -->
+</template>
