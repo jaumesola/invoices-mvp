@@ -8,39 +8,73 @@ Template.companies.helpers({
     },
     
     'selectedClass': function(){
-        if(this._id == Session.get('selectedCompany')){
+        if(this._id == Session.get('selectedCompanyId')){
             return "selected"
         }
     },
         
     'selectedCompany': function(){
-        return CompaniesList.findOne({ _id: Session.get('selectedCompany') });
+        return CompaniesList.findOne({ _id: Session.get('selectedCompanyId') });
         }
 });
 
+Template.companies.onRendered(function () {
+	cform = document.getElementById("companyForm");
+});
+
+function companyObjectFromForm() {
+    var company = new Object();
+    company.Id    = Session.get('selectedCompanyId');
+    company.TaxId = String(cform.companyTaxId.value);
+    company.Name  = String(cform.companyName.value);
+    return company;
+}
+
+function cleanCompanyForm() {
+    cform.companyTaxId.value = "";
+    cform.companyName.value = "";
+}
+
+function showForm() {
+    $( cform ).show();
+}
+
+function hideForm() {
+    $( cform ).hide();	
+}
+
 Template.companies.events({
     'click .company': function(){
-    		Session.set('selectedCompany', this._id);
+    		Session.set('selectedCompanyId', this._id);
+    		hideForm();
     },
+    'click .create': function(){
+        cleanCompanyForm();
+        showForm();
+    		Session.set('selectedCompanyId', null);
+    },    
     'click .edit': function(){
-		var selectedCompany = Session.get('selectedCompany');
-        Meteor.call('updateCompany', selectedCompany); // FIXME get & update company fields 
+		showForm();
+		var c = Template.companies.__helpers.get("selectedCompany").call();
+		document.getElementById("companyTaxId").value = c.companyTaxId;
+		document.getElementById("companyName").value  = c.companyName;
     },
     'click .remove': function(){
-		var selectedCompany = Session.get('selectedCompany');
-        Meteor.call('removeCompany', selectedCompany);
+		var selectedCompanyId = Session.get('selectedCompanyId');
+        Meteor.call('removeCompany', selectedCompanyId);
+		hideForm();
     }
 });
 
-Template.addCompanyForm.events({
+Template.editCompanyForm.events({
     'submit form': function(event){
         event.preventDefault();
-        var companyTaxIdVar = String(event.target.companyTaxId.value);
-        var companyNameVar = String(event.target.companyName.value);
-        Meteor.call('createCompany', companyTaxIdVar, companyNameVar);
-        event.target.companyTaxId.value = "";
-        event.target.companyName.value = "";
+        Meteor.call('createUpdateCompany', companyObjectFromForm());
+		hideForm();
+        cleanCompanyForm();
     }
 });
+
+
 
 console.log("Bye companies client");

@@ -2,17 +2,17 @@
     <h1>Companies</h1>
     	{{#if currentUser}}
         <p></p>
-        {{> addCompanyForm}}
-        <p></p>
         {{> companies}}
+        <p></p>
+        {{> editCompanyForm}}        
     {{/if}}
 </template>
 
-<template name="addCompanyForm">
-    <form>
-        Tax Id <input type="string" name="companyTaxId"><br>
-        Name <input type="string" name="companyName">
-        <input type="submit" value="Add Company">
+<template name="editCompanyForm">
+    <form id="companyForm" style="display: none;">
+        <br>Tax Id <input type="string" size="20" name="companyTaxId" id="companyTaxId">
+        <br>Name <input type="string" size="60" name="companyName" id="companyName">
+        <br><br><input type="submit" value="Save">
     </form>
 </template>
 
@@ -22,17 +22,13 @@
     {{#each company}}
         <li class="company {{selectedClass}}">{{companyTaxId}}: {{companyName}}</li>
     {{/each}}
-     
-{{#if selectedCompany}}
+<br>
 	<div>
-    <br>
-    <button class="edit">Edit</button>
-    <button class="remove">Remove</button>
-    </div>
-    
-{{/if}}    
-    
-    <br><br>
-    
+    <button class="create">Create</button>   
+	{{#if selectedCompany}}
+    		<button class="edit">Edit</button>
+    		<button class="remove">Remove</button>
+	{{/if}}
+	</div>
 </ul> 
 </template>
