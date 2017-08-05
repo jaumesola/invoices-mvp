@@ -1,5 +1,5 @@
 <template name="companiesBody">
-    <h1>Companies</h1>
+    <h2>Companies</h2>
     	{{#if currentUser}}
         <p></p>
         {{> companies}}
@@ -17,11 +17,13 @@
 </template>
 
 <template name="companies">
-    <h2>Companies List</h2>
-<ul>
-    {{#each company}}
-        <li class="company {{selectedClass}}">{{companyTaxId}}: {{companyName}}</li>
+	{{#each company}}
+    <div class="w3-row-padding {{selectedClass}} company">
+        <div class="w3-col m6">{{companyName}}</div>
+        <div class="w3-col m2">{{companyTaxId}}</div>
+	</div>
     {{/each}}
+
 <br>
 	<div>
     <button class="create">Create</button>   
@@ -30,5 +32,5 @@
     		<button class="remove">Remove</button>
 	{{/if}}
 	</div>
-</ul> 
+
 </template>
