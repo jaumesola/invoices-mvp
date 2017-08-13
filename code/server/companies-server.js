@@ -1,4 +1,3 @@
-
 console.log("Hello companies server");
 
 Meteor.publish('theCompanies', function(){

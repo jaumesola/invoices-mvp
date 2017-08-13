@@ -1,5 +1,4 @@
-
-console.log("Hello companies client & server");
+console.log("Hello companies both");
 
 CompaniesList = new Mongo.Collection('companies');
 
@@ -35,4 +34,4 @@ Meteor.methods({
 
 });
 
-console.log("Bye companies client & server");
+console.log("Bye companies both");

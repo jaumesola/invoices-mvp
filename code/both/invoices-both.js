@@ -1,6 +1,4 @@
 
-console.log("Hello client & server");
-
 InvoicesList = new Mongo.Collection('invoices');
 
 Meteor.methods({
@@ -32,5 +30,3 @@ Meteor.methods({
         }    	
     }
 });
-
-console.log("Bye client & server");

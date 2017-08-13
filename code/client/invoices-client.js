@@ -1,5 +1,3 @@
-console.log("Hello invoices client");
-
 Meteor.subscribe('theInvoices');
 	
 Template.invoices.helpers({
@@ -47,5 +45,3 @@ Template.addInvoiceForm.events({
         event.target.invoiceAmount.value = "";
     }
 });
-
-console.log("Bye invoices client");

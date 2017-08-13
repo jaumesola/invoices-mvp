@@ -75,6 +75,4 @@ Template.editCompanyForm.events({
     }
 });
 
-
-
 console.log("Bye companies client");
