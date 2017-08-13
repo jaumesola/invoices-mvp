@@ -6,6 +6,8 @@ import { $ } from 'meteor/jquery';
 import { withRenderedTemplate } from './test-helpers.js';
 //import '/client/companies-client.js';
 
+import '/ui/companies.html';
+
 describe('Companies', function () {
 
 /*	
@@ -21,16 +23,12 @@ describe('Companies', function () {
 	  it('is true', function () { chai.assert.isTrue(true); });
 	  //it('is true - wrong', function () { chai.assert.isTrue(false); });
 	  
-	  
-/*
 	  it('renders H2 title', function () {
 		  //const doc = Factory.build('doc');
 		  withRenderedTemplate('companies', {}, (el) => {
-			  chai.assert.isTrue(true);
-			  //chai.assert.equal($(el).find('h2').val(), "Companies List");
+			  chai.assert.equal($(el).find('h2').text(), "Companies List");
 		  });
 	  });
-*/
 
 /*
   it('renders correctly with simple data', function () {
