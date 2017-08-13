@@ -1,0 +1,8 @@
+
+https://guide.meteor.com/testing.html
+
+$ meteor add practicalmeteor:mocha
+$ meteor add dburles:factory
+
+A simple Blaze unit test
+
