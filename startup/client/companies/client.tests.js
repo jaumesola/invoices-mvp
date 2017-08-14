@@ -4,7 +4,7 @@ import { Template } from 'meteor/templating';
 import { $ } from 'meteor/jquery';
 
 import { withRenderedTemplate } from '/imports/client/test-helpers.js';
-import '/ui/companies.html';
+import './templates.html';
 
 describe('Companies', function () {
 
