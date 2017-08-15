@@ -6,3 +6,4 @@ $ meteor add dburles:factory
 
 A simple Blaze unit test
 
+$ meteor npm install faker

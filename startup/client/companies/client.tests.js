@@ -2,72 +2,56 @@ import { Factory } from 'meteor/dburles:factory';
 import { chai } from 'meteor/practicalmeteor:chai';
 import { Template } from 'meteor/templating';
 import { $ } from 'meteor/jquery';
+import faker from 'faker';
 
-import { withRenderedTemplate } from '/imports/client/test-helpers.js';
+import * as th from '/imports/client/test-helpers.js';
+import '/startup/both/companies.js';
 import './templates.html';
+import './code.js';
 
 describe('Companies', function () {
 
-/*	
-  beforeEach(function () {
-    Template.registerHelper('_', key => key);
-  });
-
-  afterEach(function () {
-    Template.deregisterHelper('_');
-  });
-
-*/
-	  it('is true', function () { chai.assert.isTrue(true); });
-	  //it('is true - wrong', function () { chai.assert.isTrue(false); });
+    it('true is true', function () { chai.assert.isTrue(true); });
 	  
-	  it('renders H2 title', function () {
-		  //const doc = Factory.build('doc');
-		  withRenderedTemplate('companies', {}, (el) => {
-			  chai.assert.equal($(el).find('h2').text(), "Companies List");
-		  });
-	  });
-
-/*
-  it('renders correctly with simple data', function () {
-    const todo = Factory.build('todo', { checked: false });
-    const data = {
-      todo: Todos._transform(todo),
-      onEditingChange: () => 0,
-    };
-
-    withRenderedTemplate('Todos_item', data, (el) => {
-      chai.assert.equal($(el).find('input[type=text]').val(), todo.text);
-      chai.assert.equal($(el).find('.list-item.checked').length, 0);
-      chai.assert.equal($(el).find('.list-item.editing').length, 0);
+    it('has an H2 with specific text', function () {	  
+        th.withRenderedTemplate('companies', {}, (el) => {
+            chai.assert.equal($(el).find('h2').text(), "Companies List");
+        });
     });
-  });
-
-  it('renders correctly when checked', function () {
-    const todo = Factory.build('todo', { checked: true });
-    const data = {
-      todo: Todos._transform(todo),
-      onEditingChange: () => 0,
-    };
-
-    withRenderedTemplate('Todos_item', data, (el) => {
-      chai.assert.equal($(el).find('input[type=text]').val(), todo.text);
-      chai.assert.equal($(el).find('.list-item.checked').length, 1);
+    
+    var collectionName = 'companies';
+    
+    Factory.define('company', CompaniesList, {
+        companyTaxId: 0,
+        companyName: ''
     });
-  });
-
-  it('renders correctly when editing', function () {
-    const todo = Factory.build('todo');
-    const data = {
-      todo: Todos._transform(todo),
-      editing: true,
-      onEditingChange: () => 0,
+    
+    var fabricateDocument = () => {
+        return Factory.create('company', {    
+            companyTaxId: _.random(1000000, 9999999),
+            companyName: faker.lorem.sentence()
+        });
     };
+    
+    var count = _.random(1,9);
 
-    withRenderedTemplate('Todos_item', data, (el) => {
-      chai.assert.equal($(el).find('input[type=text]').val(), todo.text);
-      chai.assert.equal($(el).find('.list-item.editing').length, 1);
+    var extractDataFromHtml = html => {
+        var data =[];
+        $(html).find('li').each( function () {
+            data.push({
+                companyTaxId: $(this).find('span').first().text(),
+                companyName: $(this).find('span').next().text()
+            });
+       });
+       return data;
+    }
+    
+    it('renders ' + count + ' ' + collectionName, function () {
+        th.withCollectionList({
+            collectionName, fabricateDocument, count,
+            propsInHtml: ['companyTaxId', 'companyName'],
+            extractDataFromHtml
+        });
     });
-  });
-  */
+
 });
