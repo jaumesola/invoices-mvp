@@ -1,0 +1,36 @@
+<template name="companiesBody">
+    <h2>Companies</h2>
+    	{{#if currentUser}}
+        <p></p>
+        {{> companies}}
+        <p></p>
+        {{> editCompanyForm}}        
+    {{/if}}
+</template>
+
+<template name="editCompanyForm">
+    <form id="companyForm" style="display: none;">
+        <br>Tax Id <input type="string" size="20" name="companyTaxId" id="companyTaxId">
+        <br>Name <input type="string" size="60" name="companyName" id="companyName">
+        <br><br><input type="submit" value="Save">
+    </form>
+</template>
+
+<template name="companies">
+	{{#each company}}
+    <div class="w3-row-padding {{selectedClass}} company">
+        <div class="w3-col m6">{{companyName}}</div>
+        <div class="w3-col m2">{{companyTaxId}}</div>
+	</div>
+    {{/each}}
+
+<br>
+	<div>
+    <button class="create">Create</button>   
+	{{#if selectedCompany}}
+    		<button class="edit">Edit</button>
+    		<button class="remove">Remove</button>
+	{{/if}}
+	</div>
+
+</template>
