@@ -22,14 +22,16 @@ describe('Companies', function () {
     var collectionName = 'companies';
     
     Factory.define('company', CompaniesList, {
-        companyTaxId: 0,
-        companyName: ''
+        TaxId: 0,
+        Name: '',
+        Rating: 0
     });
     
     var fabricateDocument = () => {
         return Factory.create('company', {    
-            companyTaxId: _.random(1000000, 9999999),
-            companyName: faker.lorem.sentence()
+            TaxId: _.random(1000000, 9999999),
+            Name: faker.lorem.sentence(),
+            Rating: _.random(0, 10),
         });
     };
     
@@ -39,8 +41,9 @@ describe('Companies', function () {
         var data =[];
         $(html).find('.company').each( function () {
             data.push({
-                companyName:  $(this).find('div').first().text(),
-                companyTaxId: $(this).find('div').next().text()
+                Name:   $(this).find('div').first().text(),
+                TaxId:  $(this).find('div').first().next().text(),
+                Rating: $(this).find('div').first().next().next().text(),              
             });
        });
        return data;
@@ -49,7 +52,7 @@ describe('Companies', function () {
     it('renders ' + count + ' ' + collectionName, function () {
         th.withCollectionList({
             collectionName, fabricateDocument, count,
-            propsInHtml: ['companyTaxId', 'companyName'],
+            propsInHtml: ['Name', 'TaxId', 'Rating'],
             extractDataFromHtml
         });
     });

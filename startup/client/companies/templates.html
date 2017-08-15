@@ -9,8 +9,9 @@
 
 <template name="editCompanyForm">
     <form id="companyForm" style="display: none;">
-        <br>Tax Id <input type="string" size="20" name="companyTaxId" id="companyTaxId">
-        <br>Name <input type="string" size="60" name="companyName" id="companyName">
+        <br>Tax Id <input type="string" size="20" name="TaxId" id="TaxId">
+        <br>Name   <input type="string" size="60" name="Name"   id="Name">
+        <br>Rating <input type="string" size="5"  name="Rating" id="Rating">
         <br><br><input type="submit" value="Save">
     </form>
 </template>
@@ -19,8 +20,9 @@
     <h2>Companies List</h2>
     {{#each company}}
     <div class="w3-row-padding {{selectedClass}} company">
-        <div class="w3-col m6">{{companyName}}</div>
-        <div class="w3-col m2">{{companyTaxId}}</div>
+        <div class="w3-col m6">{{Name}}</div>
+        <div class="w3-col m2">{{TaxId}}</div>
+        <div class="w3-col m2">{{Rating}}</div>
 	</div>
     {{/each}}
 <br>

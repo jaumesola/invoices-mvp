@@ -22,15 +22,17 @@ Template.companies.onRendered(function () {
 
 function companyObjectFromForm() {
     var company = new Object();
-    company.Id    = Session.get('selectedCompanyId');
-    company.TaxId = String(cform.companyTaxId.value);
-    company.Name  = String(cform.companyName.value);
+    company.Id     = Session.get('selectedCompanyId');
+    company.TaxId  = String(cform.TaxId.value);
+    company.Name   = String(cform.Name.value);
+    company.Rating = Number(cform.Rating.value);
     return company;
 }
 
 function cleanCompanyForm() {
-    cform.companyTaxId.value = "";
-    cform.companyName.value = "";
+    cform.TaxId.value  = "";
+    cform.Name.value   = "";
+    cform.Rating.value = 0;
 }
 
 function showForm() {
@@ -54,8 +56,9 @@ Template.companies.events({
     'click .edit': function(){
 		showForm();
 		var c = Template.companies.__helpers.get("selectedCompany").call();
-		document.getElementById("companyTaxId").value = c.companyTaxId;
-		document.getElementById("companyName").value  = c.companyName;
+		document.getElementById("TaxId").value  = c.TaxId;
+		document.getElementById("Name").value   = c.Name;
+		document.getElementById("Rating").value = c.Rating;
     },
     'click .remove': function(){
 		var selectedCompanyId = Session.get('selectedCompanyId');

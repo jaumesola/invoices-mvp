@@ -6,22 +6,24 @@ Meteor.methods({
         	    return;
         }
        	
-        check(company.TaxId, String); // TODO specific validator
-        check(company.Name, String);  // TODO specific validator   
+		// TODO specific validators
+        check(company.TaxId,  String);
+        check(company.Name,   String);
+        check(company.Rating, Number);
             
+        var doc = {
+          ["TaxId"]:  company["TaxId"],
+        	    Name:   company.Name,
+        	    Rating: company.Rating
+        }
+        
         if ( company.Id == null) {       	
-            	CompaniesList.insert({	
-                companyTaxId: company.TaxId,
-            	    companyName: company.Name
-            });   
+            	CompaniesList.insert(doc);   
         } else {
-            CompaniesList.update(
-            	    { _id: company.Id },
-            	    { companyTaxId: company.TaxId,
-                	  companyName: company.Name }
-            	);
+            CompaniesList.update({ _id: company.Id }, doc);
         }
     },
+    
     'removeCompany': function(companyId){
         if ( !Meteor.userId() ) {
     	        return;
