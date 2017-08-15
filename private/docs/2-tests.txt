@@ -7,3 +7,7 @@ $ meteor add dburles:factory
 A simple Blaze unit test
 
 $ meteor npm install faker
+
+Test command
+
+$ meteor test --driver-package practicalmeteor:mocha --port 3030
