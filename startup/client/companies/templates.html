@@ -17,11 +17,11 @@
 
 <template name="companies">
     <h2>Companies List</h2>
-<ul>
     {{#each company}}
-        <li class="company {{selectedClass}}">
-        <span>{{companyTaxId}}</span>:<span>{{companyName}}</span>
-        </li>
+    <div class="w3-row-padding {{selectedClass}} company">
+        <div class="w3-col m6">{{companyName}}</div>
+        <div class="w3-col m2">{{companyTaxId}}</div>
+	</div>
     {{/each}}
 <br>
 	<div>
@@ -31,5 +31,4 @@
     		<button class="remove">Remove</button>
 	{{/if}}
 	</div>
-</ul> 
 </template>

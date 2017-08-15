@@ -37,10 +37,10 @@ describe('Companies', function () {
 
     var extractDataFromHtml = html => {
         var data =[];
-        $(html).find('li').each( function () {
+        $(html).find('.company').each( function () {
             data.push({
-                companyTaxId: $(this).find('span').first().text(),
-                companyName: $(this).find('span').next().text()
+                companyName:  $(this).find('div').first().text(),
+                companyTaxId: $(this).find('div').next().text()
             });
        });
        return data;
