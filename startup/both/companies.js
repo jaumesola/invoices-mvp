@@ -1,5 +1,3 @@
-console.log("Hello companies both");
-
 CompaniesList = new Mongo.Collection('companies');
 
 Meteor.methods({
@@ -33,5 +31,3 @@ Meteor.methods({
     }
 
 });
-
-console.log("Bye companies both");

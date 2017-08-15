@@ -1,7 +1,5 @@
-console.log("Hello companies client");
-
 Meteor.subscribe('theCompanies');
-	
+
 Template.companies.helpers({
     'company': function(){
         return CompaniesList.find();
@@ -74,5 +72,3 @@ Template.editCompanyForm.events({
         cleanCompanyForm();
     }
 });
-
-console.log("Bye companies client");
