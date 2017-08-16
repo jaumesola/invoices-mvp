@@ -48,11 +48,11 @@ export const withCollectionList = function withCollectionList(p) {
     //fabricatedData[0][p.propsInHtml[0]] = 'DIFFERS'; // TEST-BREAK: different data
     
     return withRenderedTemplate(p.collectionName, fabricatedData, html => {
-        alert($(html)[0].outerHTML);
+        //alert($(html)[0].outerHTML);
         var htmlData = p.extractDataFromHtml(html);
         fabricatedData = reduceArray(fabricatedData, p.propsInHtml);
         //htmlData.pop(); // TEST-BREAK: missing doc
-        alert(JSON.stringify(fabricatedData) + '\n\n--- vs ---\n\n' + JSON.stringify(htmlData));        
+        //alert(JSON.stringify(fabricatedData) + '\n\n--- vs ---\n\n' + JSON.stringify(htmlData));        
         chai.assert.deepEqual(fabricatedData, htmlData);
     });
 };

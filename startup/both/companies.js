@@ -1,3 +1,5 @@
+import * as dh from '/imports/both/docs-helpers.js';
+
 CompaniesList = new Mongo.Collection('companies');
 
 Meteor.methods({
@@ -11,14 +13,10 @@ Meteor.methods({
         check(company.Name,   String);
         check(company.Rating, Number);
             
-        var doc = {
-          ["TaxId"]:  company["TaxId"],
-        	    Name:   company.Name,
-        	    Rating: company.Rating
-        }
+        var doc = dh.docFromObject(company, ['TaxId','Name','Rating']);
         
         if ( company.Id == null) {       	
-            	CompaniesList.insert(doc);   
+            	CompaniesList.insert(company);   
         } else {
             CompaniesList.update({ _id: company.Id }, doc);
         }
