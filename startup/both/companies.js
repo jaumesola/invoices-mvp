@@ -1,33 +1,38 @@
-import * as dh from '/imports/both/docs-helpers.js';
 
-CompaniesList = new Mongo.Collection('companies');
+import * as dh from '/imports/both/docs-helpers.js';
+import { Class as Model } from 'meteor/jagi:astronomy';
+
+Companies = new Mongo.Collection('companies');
+
+Company = Model.create({
+  name: 'Company',
+  collection: Companies,
+  fields: {
+    TaxId: String,
+    Name: String,
+    Rating: Number
+  }
+});
 
 Meteor.methods({
-    'createUpdateCompany': function(company){
+    'saveCompany': function(company){
         if ( !Meteor.userId() ) {
         	    return;
         }
        	
-		// TODO specific validators
-        check(company.TaxId,  String);
-        check(company.Name,   String);
-        check(company.Rating, Number);
-            
-        var doc = dh.docFromObject(company, ['TaxId','Name','Rating']);
-        
-        if ( company.Id == null) {       	
-            	CompaniesList.insert(company);   
-        } else {
-            CompaniesList.update({ _id: company.Id }, doc);
-        }
+		// TODO implement specific validators in Astronomy
+        //check(company.TaxId,  String);
+        //check(company.Name,   String);
+        //check(company.Rating, Number);
+
+        company.save();
     },
     
-    'removeCompany': function(companyId){
+    'removeCompany': function(company){
         if ( !Meteor.userId() ) {
     	        return;
         }
-        check(companyId, String);    	
-        CompaniesList.remove({ _id: companyId });
+        company.remove();        
     }
 
 });

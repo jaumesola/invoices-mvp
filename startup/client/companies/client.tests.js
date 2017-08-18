@@ -21,7 +21,7 @@ describe('Companies', function () {
     
     var collectionName = 'companies';
     
-    Factory.define('company', CompaniesList, {
+    Factory.define('company', Companies, {
         TaxId: 0,
         Name: '',
         Rating: 0

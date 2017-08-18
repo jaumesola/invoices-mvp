@@ -1,0 +1,6 @@
+MODEL LAYER: ASTRONOMY
+
+http://jagi.github.io/meteor-astronomy/
+
+$ meteor add jagi:astronomy
+

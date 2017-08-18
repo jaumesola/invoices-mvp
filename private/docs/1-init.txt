@@ -117,7 +117,7 @@ $ meteor add check
 
 COMPANIES
 
-CompaniesList.insert({ companyTaxId: "AAABBBCCCDDD", companyName: "Big Corp Inc" });
+Companies.insert({ companyTaxId: "AAABBBCCCDDD", companyName: "Big Corp Inc" });
 
 LAYOUT...
 

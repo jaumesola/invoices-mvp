@@ -1,3 +1,3 @@
 Meteor.publish('theCompanies', function(){
-	return CompaniesList.find();
+	return Companies.find();
 });
