@@ -34,6 +34,15 @@ function hideForm() {
     $( cform ).hide();	
 }
 
+// return currently selected company object or if none a newly created one
+function getCompany() {
+    if (Session.get('selectedCompanyId') == null) { 
+    		return new Company();
+    } else {
+        return Company.findOne({_id: Session.get('selectedCompanyId')});
+    }
+}
+
 Template.companies.events({
     'click .company': function(){
     		Session.set('selectedCompanyId', this._id);
@@ -52,8 +61,7 @@ Template.companies.events({
 		document.getElementById("Rating").value = c.Rating;
     },
     'click .remove': function(){
-        var company = Company.findOne({_id: Session.get('selectedCompanyId')});
-        Meteor.call('removeCompany', company);
+        Meteor.call('removeCompany', getCompany());
 		hideForm();
     }
 });
@@ -61,7 +69,7 @@ Template.companies.events({
 Template.editCompanyForm.events({
     'submit form': function(event){
         event.preventDefault();
-        var company = new Company();
+        var company = getCompany();
         // TODO: make generic
         company.TaxId  = cform.TaxId.value;
         company.Name   = cform.Name.value;
