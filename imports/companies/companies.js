@@ -1,5 +1,5 @@
-import * as dh from '/imports/both/docs-helpers.js';
 import { Class as Model } from 'meteor/jagi:astronomy';
+import * as Errors from '/imports/_common/errors.js';
 
 Companies = new Mongo.Collection('companies');
 
@@ -33,13 +33,12 @@ Meteor.methods({
         if ( !Meteor.userId() ) {
         	    return;
         }
-       	
-		// TODO implement specific validators in Astronomy
-        //check(company.TaxId,  String);
-        //check(company.Name,   String);
-        //check(company.Rating, Number);
 
-        company.save();
+        try {
+        		company.save();
+        } catch (e) {
+        		Errors.handle(e);
+        }
     },
     
     'removeCompany': function(company){
