@@ -1,3 +1,6 @@
+import '/imports/companies/companies.js';
+import '/imports/companies/client/companies.html';
+
 Meteor.subscribe('theCompanies');
 
 Template.companies.helpers({

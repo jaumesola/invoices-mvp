@@ -1,3 +1,6 @@
+import '/imports/invoices/invoices.js';
+import '/imports/invoices/client/invoices.html';
+
 Meteor.subscribe('theInvoices');
 	
 Template.invoices.helpers({

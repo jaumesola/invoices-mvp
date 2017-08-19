@@ -4,3 +4,18 @@ http://jagi.github.io/meteor-astronomy/
 
 $ meteor add jagi:astronomy
 
+SWITCH ROUTER
+switched to this one as it looks better:
+https://github.com/VeliovGroup/flow-router
+
+$ meteor remove kadira:flow-router
+$ meteor add ostrio:flow-router-extra
+
+dynamic import can also be done with default kadira:flow-router, e.g.
+...
+    action() {
+ 		import('/imports/companies/client/companies-client.js').then( () => {
+ 			BlazeLayout.render('App_body', { content_container: 'companiesBody' });
+ 		});
+    }
+ ...   

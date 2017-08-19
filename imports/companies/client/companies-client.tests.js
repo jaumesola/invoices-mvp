@@ -5,9 +5,7 @@ import { $ } from 'meteor/jquery';
 import faker from 'faker';
 
 import * as th from '/imports/client/test-helpers.js';
-import '/startup/both/companies.js';
-import './templates.html';
-import './code.js';
+import '/imports/companies/client/companies-client.js';
 
 describe('Companies', function () {
 

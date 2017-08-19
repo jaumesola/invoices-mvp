@@ -1,4 +1,3 @@
-
 import * as dh from '/imports/both/docs-helpers.js';
 import { Class as Model } from 'meteor/jagi:astronomy';
 
