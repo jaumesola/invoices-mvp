@@ -8,8 +8,6 @@ import * as th from '/imports/client/test-helpers.js';
 import '/imports/companies/client/companies-client.js';
 
 describe('Companies', function () {
-
-    it('true is true', function () { chai.assert.isTrue(true); });
 	  
     it('has an H2 with specific text', function () {	  
         th.withRenderedTemplate('companies', {}, (el) => {

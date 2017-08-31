@@ -7,7 +7,7 @@ FlowRouter.route('/', {
     },
 });
 
-FlowRouter.route('/invy', {
+FlowRouter.route('/invoices', {
     name: 'App.home',
     waitOn() {
         return import('/imports/invoices/client/invoices-client.js');
@@ -17,7 +17,8 @@ FlowRouter.route('/invy', {
     },
 });
 
-FlowRouter.route('/compy', {
+FlowRouter.route('/companies', {
+	name: 'companies_url',
     waitOn() {
         return import('/imports/companies/client/companies-client.js');
  	},
