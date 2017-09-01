@@ -28,8 +28,9 @@ FlowRouter.route('/companies', {
 
 });
 
-FlowRouter.notFound = {
+FlowRouter.route('*', {
+    name: 'Not Found',
     action() {
         BlazeLayout.render('App_body', { content_container: 'App_notFound' });
     },
-};
+});
