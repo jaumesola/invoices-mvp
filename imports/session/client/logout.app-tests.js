@@ -14,18 +14,17 @@ import faker from 'faker';
 
 import * as th from '/imports/client/app-test-helpers.js';
 
-describe('Not Found', function () {
-    
-    const slug = '/' + faker.lorem.slug();
+const slug = '/' + faker.lorem.slug();
+
+describe(slug, function () {
     
     before(function(done) {
        console.log('before not found');
        FlowRouter.go(slug);
-       //Tracker.flush();
        setTimeout(done, 100);
     });
     
-    it('random SLUG ' + slug + ' shows not found message', function () {
+    it('random SLUG shows not found message', function () {
         console.log('not found -- Oops...');
         chai.assert($('.title-message').text().startsWith("Oops where did you click"));
     });
