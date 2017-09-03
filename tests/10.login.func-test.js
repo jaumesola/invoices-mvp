@@ -6,14 +6,6 @@ console.log('login.func-tests');
 // These are Chimp globals
 /* globals browser assert server */
 
-/*
-function countLists() {
-  browser.waitForExist('.list-todo');
-  const elements = browser.elements('.list-todo');
-  return elements.value.length;
-};
-*/
-
 import faker from 'faker';
 
 import * as th from '../imports/_common/func-test-helpers.js';

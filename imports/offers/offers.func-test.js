@@ -3,6 +3,8 @@ console.log('offers.func-tests');
 //import { _ } from 'meteor/underscore';
 import * as th from '../_common/func-test-helpers.js';
 
+var divClass = '.offer';
+
 describe('/offers @watch', function () {
     
   before(function () {
@@ -16,19 +18,14 @@ describe('/offers @watch', function () {
       chai.assert.equal( browser.getTagName('#Maturity'), 'input');
   });
   
-  it('enter an offer', function () {
-
-      browser.setValue('#Amount', 1111 ); // _.random(0, 100000));
-      
-      var d = new Date();
-      d.setDate(d.getDate() + 30);
-      browser.setValue('#Maturity', d.toDateString() );
-      
-      browser.click('#SaveOffer');
-      
-      // VERIFY HERE LAST ELEMENT ON SCREEN
-      
-      chai.assert(true);
+  it('add an offer', function () {
+      th.createDoc(divClass, function () {
+          browser.setValue('#Amount', 2222 ); // _.random(0, 100000));
+          
+          var d = new Date();
+          d.setDate(d.getDate() + 30);
+          browser.setValue('#Maturity', d.toDateString());
+      });
   });
   
 });
