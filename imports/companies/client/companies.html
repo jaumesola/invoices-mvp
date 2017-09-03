@@ -26,11 +26,5 @@
 	</div>
     {{/each}}
 <br>
-	<div>
-    <button class="create">Create</button>   
-	{{#if selectedDoc}}
-    		<button class="edit">Edit</button>
-    		<button class="remove">Remove</button>
-	{{/if}}
-	</div>
+    {{> crudButtons}}
 </template>

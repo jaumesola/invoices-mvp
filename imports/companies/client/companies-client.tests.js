@@ -15,25 +15,23 @@ describe('Companies', function () {
         });
     });
     
-    var collectionName = 'companies';
-    
     Factory.define('company', Companies, {
         TaxId: 0,
         Name: '',
         Rating: 0
     });
     
-    var fabricateDocument = () => {
+    CompaniesConfig['fabricateDocument'] = function () {
         return Factory.create('company', {    
             TaxId: _.random(1000000, 9999999),
             Name: faker.lorem.sentence(),
             Rating: _.random(0, 10),
         });
     };
-    
-    var count = _.random(1,9);
 
-    var extractDataFromHtml = html => {
+    CompaniesConfig['propsInHtml'] = ['Name', 'TaxId', 'Rating'];
+    
+    CompaniesConfig['extractDataFromHtml'] = function (html) {
         var data =[];
         $(html).find('.company').each( function () {
             data.push({
@@ -45,12 +43,8 @@ describe('Companies', function () {
        return data;
     }
     
-    it('renders ' + count + ' ' + collectionName, function () {
-        th.withCollectionList({
-            collectionName, fabricateDocument, count,
-            propsInHtml: ['Name', 'TaxId', 'Rating'],
-            extractDataFromHtml
-        });
+    it(th.sayRendersSomeDocs(CompaniesConfig), function () {
+        th.withCollectionList(CompaniesConfig);
     });
 
 });

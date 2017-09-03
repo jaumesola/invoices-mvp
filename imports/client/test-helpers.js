@@ -42,17 +42,22 @@ function reduceArray(a, propsInHtml) {
     });
 }
 
-export const withCollectionList = function withCollectionList(p) {
+export const withCollectionList = function withCollectionList(config) {
 
-    var fabricatedData = dataArray(p.count, p.fabricateDocument);
+    var fabricatedData = dataArray(config.count, config.fabricateDocument);
     //fabricatedData[0][p.propsInHtml[0]] = 'DIFFERS'; // TEST-BREAK: different data
     
-    return withRenderedTemplate(p.collectionName, fabricatedData, html => {
+    return withRenderedTemplate(config.collectionName, fabricatedData, html => {
         //alert($(html)[0].outerHTML);
-        var htmlData = p.extractDataFromHtml(html);
-        fabricatedData = reduceArray(fabricatedData, p.propsInHtml);
+        var htmlData = config.extractDataFromHtml(html);
+        fabricatedData = reduceArray(fabricatedData, config.propsInHtml);
         //htmlData.pop(); // TEST-BREAK: missing doc
         //alert(JSON.stringify(fabricatedData) + '\n\n--- vs ---\n\n' + JSON.stringify(htmlData));        
         chai.assert.deepEqual(fabricatedData, htmlData);
     });
 };
+
+export const sayRendersSomeDocs = function sayRendersSomeDocs(config) {
+    config['count'] = _.random(1,9);
+    return 'renders ' + config.count + ' ' + config.collectionName;
+}

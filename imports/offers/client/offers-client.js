@@ -1,5 +1,6 @@
 import '/imports/offers/offers.js';
 import * as cc from '/imports/client/common.js';
+import '/imports/client/common.html';
 import '/imports/offers/client/offers.html';
 
 Meteor.subscribe('theOffers');

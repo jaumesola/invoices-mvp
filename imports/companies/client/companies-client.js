@@ -1,5 +1,6 @@
 import '/imports/companies/companies.js';
 import * as cc from '/imports/client/common.js';
+import '/imports/client/common.html';
 import '/imports/companies/client/companies.html';
 
 Meteor.subscribe('theCompanies');
