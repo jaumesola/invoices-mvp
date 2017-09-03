@@ -2,8 +2,15 @@ import { Class as Model } from 'meteor/jagi:astronomy';
 import * as Errors from '/imports/_common/errors.js';
 
 
-const CompaniesConfig = {
-    collectionName: 'companies'
+CompaniesConfig = {
+    collectionName: 'companies',
+    newDocument: function () {
+        return new Company();
+    },
+    findOneDocument: function (condition) {
+        return Company.findOne(condition);
+    }
+    
 }
 
 Companies = new Mongo.Collection(CompaniesConfig.collectionName);
