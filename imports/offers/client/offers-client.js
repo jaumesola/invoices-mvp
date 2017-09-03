@@ -4,7 +4,7 @@ import '/imports/offers/client/offers.html';
 Meteor.subscribe('theOffers');
 
 Template.offers.helpers({
-    'offers': function(){
+    'offer': function(){
         return Offers.find();
     },
     
@@ -72,8 +72,8 @@ Template.editOfferForm.events({
         event.preventDefault();
         var offer = getOffer();
         // TODO: make generic
-        offer.Amount   = cform.Amount.value;
-        offer.Maturity = cform.Maturity.value;
+        offer.Amount   = Number(cform.Amount.value);
+        offer.Maturity = new Date(cform.Maturity.value);
         Meteor.call('saveOffer', offer);
 		hideForm();
         cleanOfferForm();

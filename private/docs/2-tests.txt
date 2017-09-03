@@ -8,6 +8,11 @@ A simple Blaze unit test
 
 $ meteor npm install faker
 
-Test command
+Integration tests
 
-$ meteor test --driver-package practicalmeteor:mocha --port 3030
+Acceptance/end-to-end tests
+
+$ sudo npm install --global chimp
+
+--- not clear yet what this is needed for
+$ meteor add tmeasday:acceptance-test-driver

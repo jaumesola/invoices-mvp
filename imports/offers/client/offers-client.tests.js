@@ -5,41 +5,38 @@ import { $ } from 'meteor/jquery';
 import faker from 'faker';
 
 import * as th from '/imports/client/test-helpers.js';
-import '/imports/companies/client/companies-client.js';
+import '/imports/offers/client/offers-client.js';
 
-describe('Companies', function () {
+describe('Offers', function () {
 	  
     it('has an H2 with specific text', function () {	  
-        th.withRenderedTemplate('companies', {}, (el) => {
-            chai.assert.equal($(el).find('h2').text(), "Companies List");
+        th.withRenderedTemplate('offers', {}, (el) => {
+            chai.assert.equal($(el).find('h2').text(), "Offers List");
         });
     });
     
-    var collectionName = 'companies';
+    var collectionName = 'offers';
     
-    Factory.define('company', Companies, {
-        TaxId: 0,
-        Name: '',
-        Rating: 0
+    Factory.define('offer', Offers, {
+        Amount: 0,
+        Maturity: Date()
     });
     
     var fabricateDocument = () => {
-        return Factory.create('company', {    
-            TaxId: _.random(1000000, 9999999),
-            Name: faker.lorem.sentence(),
-            Rating: _.random(0, 10),
+        return Factory.create('offer', {    
+            Amount: _.random(0, 100000),
+            Maturity: Date()
         });
     };
     
-    var count = _.random(1,9);
+    var count = 1; // _.random(1,9);
 
     var extractDataFromHtml = html => {
         var data =[];
-        $(html).find('.company').each( function () {
+        $(html).find('.offer').each( function () {
             data.push({
-                Name:   $(this).find('div').first().text(),
-                TaxId:  $(this).find('div').first().next().text(),
-                Rating: $(this).find('div').first().next().next().text(),              
+                Amount:   $(this).find('div').first().text(),
+                Maturity: $(this).find('div').first().next().text()
             });
        });
        return data;
@@ -48,7 +45,7 @@ describe('Companies', function () {
     it('renders ' + count + ' ' + collectionName, function () {
         th.withCollectionList({
             collectionName, fabricateDocument, count,
-            propsInHtml: ['Name', 'TaxId', 'Rating'],
+            propsInHtml: ['Amount', 'Maturity'],
             extractDataFromHtml
         });
     });
