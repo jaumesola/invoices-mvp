@@ -1,7 +1,12 @@
 import { Class as Model } from 'meteor/jagi:astronomy';
 import * as Errors from '/imports/_common/errors.js';
 
-Companies = new Mongo.Collection('companies');
+
+const CompaniesConfig = {
+    collectionName: 'companies'
+}
+
+Companies = new Mongo.Collection(CompaniesConfig.collectionName);
 
 Company = Model.create({
     name: 'Company',

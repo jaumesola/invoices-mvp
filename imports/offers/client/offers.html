@@ -8,7 +8,7 @@
 </template>
 
 <template name="editOfferForm">
-    <form id="offerForm" style="display: none;">
+    <form id="docForm" style="display: none;">
         <br>Amount <input type="number" size="10" name="Amount" id="Amount">
         <br>Maturity <input type="text" name="Maturity" id="Maturity">
         <br><br><input type="submit" value="Save" id="SaveForm">
@@ -26,7 +26,7 @@
 <br>
 	<div>
     <button class="create">Create</button>   
-	{{#if selectedOffer}}
+	{{#if selectedDoc}}
     		<button class="edit">Edit</button>
     		<button class="remove">Remove</button>
 	{{/if}}

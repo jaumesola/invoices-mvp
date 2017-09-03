@@ -1,4 +1,5 @@
 import '/imports/companies/companies.js';
+import * as cc from '/imports/client/common.js';
 import '/imports/companies/client/companies.html';
 
 Meteor.subscribe('theCompanies');
@@ -9,19 +10,17 @@ Template.companies.helpers({
     },
     
     'selectedClass': function(){
-        if(this._id == Session.get('selectedCompanyId')){
+        if(this._id == Session.get('selectedDocId')){
             return "selected"
         }
     },
         
-    'selectedCompany': function(){
-        return Companies.findOne({ _id: Session.get('selectedCompanyId') });
+    'selectedDoc': function(){
+        return Companies.findOne({ _id: Session.get('selectedDocId') });
         }
 });
 
-Template.companies.onRendered(function () {
-	cform = document.getElementById("companyForm");
-});
+Template.companies.onRendered(cc.templateOnRendered);
 
 function cleanCompanyForm() {
     cform.TaxId.value  = "";
@@ -29,43 +28,35 @@ function cleanCompanyForm() {
     cform.Rating.value = 0;
 }
 
-function showForm() {
-    $( cform ).show();
-}
-
-function hideForm() {
-    $( cform ).hide();	
-}
-
 // return currently selected company object or if none a newly created one
 function getCompany() {
-    if (Session.get('selectedCompanyId') == null) { 
+    if (Session.get('selectedDocId') == null) { 
     		return new Company();
     } else {
-        return Company.findOne({_id: Session.get('selectedCompanyId')});
+        return Company.findOne({_id: Session.get('selectedDocId')});
     }
 }
 
 Template.companies.events({
     'click .company': function(){
-    		Session.set('selectedCompanyId', this._id);
-    		hideForm();
+    		Session.set('selectedDocId', this._id);
+    		cc.hideForm();
     },
     'click .create': function(){
         cleanCompanyForm();
-        showForm();
-    		Session.set('selectedCompanyId', null);
+        cc.showForm();
+    		Session.set('selectedDocId', null);
     },    
     'click .edit': function(){
-		showForm();
-		var c = Template.companies.__helpers.get("selectedCompany").call();
+		cc.showForm();
+		var c = Template.companies.__helpers.get("selectedDoc").call();
 		document.getElementById("TaxId").value  = c.TaxId;
 		document.getElementById("Name").value   = c.Name;
 		document.getElementById("Rating").value = c.Rating;
     },
     'click .remove': function(){
         Meteor.call('removeCompany', getCompany());
-		hideForm();
+		cc.hideForm();
     }
 });
 
@@ -78,7 +69,7 @@ Template.editCompanyForm.events({
         company.Name   = cform.Name.value;
         company.Rating = Number(cform.Rating.value);
         Meteor.call('saveCompany', company);
-		hideForm();
+		cc.hideForm();
         cleanCompanyForm();
     }
 });

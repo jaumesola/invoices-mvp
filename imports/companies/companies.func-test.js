@@ -15,7 +15,7 @@ describe('/companies @watch', function () {
       th.waitAndClick('.create');
       chai.assert.equal( browser.getTagName('#TaxId'), 'input');
       chai.assert.equal( browser.getTagName('#Name'), 'input');
-      chai.assert.equal( browser.getTagName('#Rating'), 'input');      
+      chai.assert.equal( browser.getTagName('#Rating'), 'input');
   });
   
   it('add a company', function () {

@@ -27,6 +27,8 @@ export const selectDoc = function selectDoc(divClass, enterData) {
     //console.log('count ' + count);
     waitAndClick(divClass);
     browser.waitForExist('.selected');
+    browser.waitForExist('.edit');
+    browser.waitForExist('.remove');
     assert(true);
 };
 
