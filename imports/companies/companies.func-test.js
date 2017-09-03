@@ -25,5 +25,10 @@ describe('/companies @watch', function () {
           browser.setValue('#Rating', 3);          
       });
   });
-
+  
+  it ('select a company', function() {
+      th.selectDoc(divClass, function () {
+      });
+  });
+  
 });
