@@ -15,14 +15,14 @@
     	{{#if currentUser}}
 		{{> Template.dynamic template=content_container}}    	
     {{else}}
-    	<div class="wrapper-message">
-		<div class="title-message">You must be logged-in to see this content.</div>
-	</div>
+    		<div class="wrapper-message">
+			<div class="title-message">You must be logged-in to see this content.</div>
+		</div>
     {{/if}}
 	</div>
-<div class="login-widget">
+    <div class="login-widget">
     		{{> loginButtons}}
- </div>   	
+    </div>   	
 </div>
 <!-- END App_body  -->
 </template>

@@ -27,7 +27,6 @@ describe('/offers @watch', function() {
       });
   });
   
-  
   it ('select an offer', function() {
       th.selectDoc(divClass, function () {
       });

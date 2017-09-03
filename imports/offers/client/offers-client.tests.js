@@ -15,23 +15,21 @@ describe('Offers', function () {
         });
     });
     
-    var collectionName = 'offers';
-    
     Factory.define('offer', Offers, {
         Amount: 0,
         Maturity: Date()
     });
-    
-    var fabricateDocument = () => {
+
+    OffersConfig['fabricateDocument'] = function () {
         return Factory.create('offer', {    
             Amount: _.random(0, 100000),
             Maturity: Date()
         });
     };
     
-    var count = 1; // _.random(1,9);
+    OffersConfig['propsInHtml'] = ['Amount', 'Maturity'];
 
-    var extractDataFromHtml = html => {
+    OffersConfig['extractDataFromHtml'] = function (html) {
         var data =[];
         $(html).find('.offer').each( function () {
             data.push({
@@ -42,12 +40,8 @@ describe('Offers', function () {
        return data;
     }
     
-    it('renders ' + count + ' ' + collectionName, function () {
-        th.withCollectionList({
-            collectionName, fabricateDocument, count,
-            propsInHtml: ['Amount', 'Maturity'],
-            extractDataFromHtml
-        });
+    it(th.sayRendersSomeDocs(OffersConfig), function () {
+        th.withCollectionList(OffersConfig);
     });
 
 });

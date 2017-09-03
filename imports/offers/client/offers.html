@@ -8,7 +8,7 @@
 </template>
 
 <template name="editOfferForm">
-    <form id="offerForm" style="display: none;">
+    <form id="docForm" style="display: none;">
         <br>Amount <input type="number" size="10" name="Amount" id="Amount">
         <br>Maturity <input type="text" name="Maturity" id="Maturity">
         <br><br><input type="submit" value="Save" id="SaveForm">
@@ -20,15 +20,9 @@
     {{#each offer}}
     <div class="w3-row-padding {{selectedClass}} offer">
         <div class="w3-col m3">{{Amount}}</div>
-        <div class="w3-col m3">{{Maturity}}</div>
+        <div class="w3-col m9">{{Maturity}}</div>
 	</div>
     {{/each}}
 <br>
-	<div>
-    <button class="create">Create</button>   
-	{{#if selectedOffer}}
-    		<button class="edit">Edit</button>
-    		<button class="remove">Remove</button>
-	{{/if}}
-	</div>
+    {{> crudButtons}}
 </template>

@@ -1,6 +1,16 @@
 import { Class as Model } from 'meteor/jagi:astronomy';
 import * as Errors from '/imports/_common/errors.js';
 
+OffersConfig = {
+    collectionName: 'offers',
+    newDocument: function () {
+        return new Offer();
+    },
+    findOneDocument: function (condition) {
+        return Offer.findOne(condition);
+     }   
+}
+
 Offers = new Mongo.Collection('offers');
 
 var maturityRange = [{
