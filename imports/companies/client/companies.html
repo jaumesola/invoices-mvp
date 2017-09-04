@@ -18,8 +18,8 @@
 
 <template name="companies">
     <h2>Companies List</h2>
-    {{#each company}}
-    <div class="w3-row-padding {{selectedClass}} company">
+    {{#each datarow}}
+    <div class="w3-row-padding {{selected}} datarow">
         <div class="w3-col m6">{{Name}}</div>
         <div class="w3-col m2">{{TaxId}}</div>
         <div class="w3-col m2">{{Rating}}</div>

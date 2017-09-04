@@ -17,8 +17,8 @@
 
 <template name="offers">
     <h2>Offers List</h2>
-    {{#each offer}}
-    <div class="w3-row-padding {{selectedClass}} offer">
+    {{#each datarow}}
+    <div class="w3-row-padding {{selected}} datarow">
         <div class="w3-col m3">{{Amount}}</div>
         <div class="w3-col m9">{{Maturity}}</div>
 	</div>

@@ -1,16 +1,15 @@
 import { Class as Model } from 'meteor/jagi:astronomy';
 import * as Errors from '/imports/_common/errors.js';
 
-
 CompaniesConfig = {
     collectionName: 'companies',
+    subscription: 'theCompanies',
     newDocument: function () {
         return new Company();
     },
     findOneDocument: function (condition) {
         return Company.findOne(condition);
     }
-    
 }
 
 Companies = new Mongo.Collection(CompaniesConfig.collectionName);
@@ -39,6 +38,9 @@ Company = Model.create({
         ]}
     }
 });
+
+CompaniesConfig['collection'] = Companies;
+CompaniesConfig['model'] = Company;
 
 Meteor.methods({
     'saveCompany': function(company){

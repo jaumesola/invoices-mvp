@@ -3,45 +3,27 @@ import * as cc from '/imports/client/common.js';
 import '/imports/client/common.html';
 import '/imports/companies/client/companies.html';
 
-Meteor.subscribe('theCompanies');
-
-Template.companies.helpers({
-    'company': function(){
-        return Companies.find();
-    },
-    
-    'selectedClass': function(){
-        if(this._id == Session.get('selectedDocId')){
-            return "selected"
-        }
-    },
-        
-    'selectedDoc': function(){
-        return Companies.findOne({ _id: Session.get('selectedDocId') });
-        }
-});
-
-Template.companies.onRendered(cc.templateOnRendered);
-
-function cleanCompanyForm() {
+CompaniesConfig['template'] = Template.companies;
+CompaniesConfig['cleanForm'] = function () {
     cform.TaxId.value  = "";
     cform.Name.value   = "";
     cform.Rating.value = 0;
 }
 
-Template.companies.events({
-    'click .company': function(){
-    		Session.set('selectedDocId', this._id);
-    		cc.hideForm();
-    },
-    'click .create': function(){
-        cleanCompanyForm();
-        cc.showForm();
-    		Session.set('selectedDocId', null);
-    },    
+Meteor.subscribe(CompaniesConfig.subscription);
+
+Template.companies.onCreated( function () {
+    cc.templateOnCreated(CompaniesConfig);
+});
+
+Template.companies.onRendered( function () {
+    cc.templateOnRendered(CompaniesConfig);
+});
+
+Template.companies.events({  
     'click .edit': function(){
 		cc.showForm();
-		var c = Template.companies.__helpers.get("selectedDoc").call();
+		var c = Template.crudButtons.__helpers.get("selectedDoc").call();
 		document.getElementById("TaxId").value  = c.TaxId;
 		document.getElementById("Name").value   = c.Name;
 		document.getElementById("Rating").value = c.Rating;
@@ -49,6 +31,7 @@ Template.companies.events({
     'click .remove': function(){
         Meteor.call('removeCompany', cc.getDoc(CompaniesConfig));
 		cc.hideForm();
+		cc.hideEditRemoveButtons();
     }
 });
 
@@ -62,6 +45,6 @@ Template.editCompanyForm.events({
         company.Rating = Number(cform.Rating.value);
         Meteor.call('saveCompany', company);
 		cc.hideForm();
-        cleanCompanyForm();
+		CompaniesConfig.cleanForm();
     }
 });

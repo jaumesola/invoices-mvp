@@ -1,5 +1,5 @@
 import '/imports/companies/companies.js';
 
-Meteor.publish('theCompanies', function(){
+Meteor.publish(CompaniesConfig.subscription, function () {
 	return Companies.find();
 });

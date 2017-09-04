@@ -3,6 +3,7 @@ import * as Errors from '/imports/_common/errors.js';
 
 OffersConfig = {
     collectionName: 'offers',
+    subscription: 'theOffers',
     newDocument: function () {
         return new Offer();
     },
@@ -11,7 +12,7 @@ OffersConfig = {
      }   
 }
 
-Offers = new Mongo.Collection('offers');
+Offers = new Mongo.Collection(OffersConfig.collectionName);
 
 var maturityRange = [{
     type: 'gte',
@@ -46,6 +47,9 @@ Offer = Model.create({
         }
     }
 });
+
+OffersConfig['collection'] = Offers;
+OffersConfig['model'] = Offer;
 
 Meteor.methods({
     'saveOffer': function(offer){
