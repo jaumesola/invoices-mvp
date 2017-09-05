@@ -5,18 +5,20 @@ export const waitAndClick = function waitAndClick(element) {
     browser.click(element);
 }
 
-export const countDataRows = function countDataRows(divClass, wait=false) {
-    if (wait) {
-        browser.waitForExist(divClass);
-    }
-    return browser.elements(divClass).value.length;
+export const countDataRows = function countDataRows() {
+    return browser.elements('.datarow').value.length;
+};
+
+export const waitCountDataRows = function waitCountDataRows() {
+    browser.waitForExist('.datarow');
+    return countDataRows();
 };
 
 export const createDoc = function createDoc(enterData) {
-    var countBefore = countDataRows('.datarow');
+    var countBefore = countDataRows();
     enterData();
     browser.click('#SaveForm');
-    var countAfter = countDataRows('.datarow', true); // TODO refactor to avoid side effects (wait) 
+    var countAfter = waitCountDataRows();
     //console.log('counts ' + countBefore + ' - ' + countAfter);
     chai.assert(countAfter = countBefore + 1);
     // TODO: verify also data shown is data entered
@@ -30,6 +32,12 @@ export const selectDoc = function selectDoc() {
     assert(true);
 };
 
+export const removeDoc = function removeDoc() {
+    var countBefore = countDataRows();
+    browser.click('.remove'); // requires doc to be already selected
+    var countAfter = waitCountDataRows();
+    chai.assert(countAfter = countBefore - 1);
+}
 
 /*
 extract data from some row

@@ -26,4 +26,6 @@ describe('/companies @watch', function () {
   
   it ('select a company', function() { th.selectDoc(); });
   
+  it ('remove a company', function() { th.removeDoc(); })
+  
 });

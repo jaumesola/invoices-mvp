@@ -26,5 +26,5 @@ describe('/offers @watch', function() {
   });
   
   it ('select an offer', function() { th.selectDoc(); });
-  
+  it ('remove an offer', function() { th.removeDoc(); });  
 });
