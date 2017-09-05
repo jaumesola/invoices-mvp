@@ -12,10 +12,6 @@ CompaniesConfig['cleanForm'] = function () {
 
 cc.crudInit(CompaniesConfig);
 
-Template.companies.onCreated( function () {
-    cc.templateOnCreated(CompaniesConfig);
-});
-
 Template.companies.onRendered( function () {
     cc.templateOnRendered(CompaniesConfig);
 });

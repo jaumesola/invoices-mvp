@@ -10,10 +10,6 @@ OffersConfig['cleanForm'] = function () {
 }
 cc.crudInit(OffersConfig);
 
-Template.offers.onCreated( function () {
-    cc.templateOnCreated(OffersConfig);
-});
-
 Template.offers.onRendered( function () {
     cc.templateOnRendered(OffersConfig);
 });

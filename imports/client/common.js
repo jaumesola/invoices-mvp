@@ -1,5 +1,22 @@
 
 export const crudInit = function crudInit(config) {
+    
+    Template.crudButtons.helpers({
+        'selectedDoc': function () {
+            return config.findOneDocument({_id: Session.get('selectedDocId')});
+        }
+    });
+    
+    config.template.helpers({
+        'datarow': function() {
+             return config.collection.find();
+         },
+        'selected': function () {
+             if(this._id == Session.get('selectedDocId')){
+                 return "selected";
+             }
+         }
+     });
     config.template.events({
         'click .datarow': function(){
             Session.set('selectedDocId', this._id);
@@ -43,24 +60,6 @@ export const hideEditRemoveButtons = function showEditRemoveButtons() {
 export const templateOnRendered = function templateOnRendered(config) {  
     Session.set('selectedDocId', null);
     cform = document.getElementById("docForm");
-}
-
-export const templateOnCreated = function templateOnCreated(config) {
-    config.template.helpers({
-        'datarow': function() {
-             return config.collection.find();
-         },
-        'selected': function () {
-             if(this._id == Session.get('selectedDocId')){
-                 return "selected";
-             }
-         }
-     });
-    Template.crudButtons.helpers({
-        'selectedDoc': function () {
-            return config.findOneDocument({_id: Session.get('selectedDocId')});
-        }
-    });
 }
 
 //return currently selected document object or if none a newly created one
