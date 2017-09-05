@@ -1,6 +1,13 @@
 console.log('companies.func-tests');
 
 import * as th from '../_common/func-test-helpers.js';
+import faker from 'faker';
+
+const fillForm = function fillForm() {
+    browser.setValue('#TaxId', faker.phone.phoneNumberFormat() );
+    browser.setValue('#Name', faker.company.companyName() + ' ' + faker.company.companySuffix());
+    browser.setValue('#Rating', faker.random.number(10)); 
+}
 
 describe('/companies @watch', function () {
     
@@ -10,22 +17,15 @@ describe('/companies @watch', function () {
   });
   
   it('click on create button', function () {
-      th.waitAndClick('.create');
+      th.waitAndClickFirst('.create');
       chai.assert.equal( browser.getTagName('#TaxId'), 'input');
       chai.assert.equal( browser.getTagName('#Name'), 'input');
       chai.assert.equal( browser.getTagName('#Rating'), 'input');
   });
   
-  it('add a company', function () {
-      th.createDoc(function () {
-          browser.setValue('#TaxId', 'AAA-BBB-CCC' );
-          browser.setValue('#Name', 'Acme Inc');
-          browser.setValue('#Rating', 3);          
-      });
-  });
-  
-  it ('select a company', function() { th.selectDoc(); });
-  
-  it ('remove a company', function() { th.removeDoc(); })
+  it('add a company', function () { th.createDoc(fillForm); });
+  it('select a company', th.selectDoc);
+  it('edit a company', function () { th.editDoc(fillForm); });
+  it('remove a company', th.removeDoc);
   
 });

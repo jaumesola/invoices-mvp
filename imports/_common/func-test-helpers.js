@@ -1,8 +1,15 @@
 console.log('func-tests-helpers');
 
-export const waitAndClick = function waitAndClick(element) {
+export const waitAndClickFirst = function waitAndClickFirst(element) {
     browser.waitForExist(element);
-    browser.click(element);
+    browser.click(element)
+}
+
+export const waitAndClickLast = function waitAndClickLast(element) {
+    browser.waitForExist(element);
+    var els = browser.elements(element);
+    var i = els.value.length - 1;
+    browser.elementIdClick(els.value[i].ELEMENT);
 }
 
 export const countDataRows = function countDataRows() {
@@ -25,16 +32,25 @@ export const createDoc = function createDoc(enterData) {
 };
 
 export const selectDoc = function selectDoc() {
-    waitAndClick('.datarow');
+    waitAndClickLast('.datarow');
     browser.waitForExist('.selected');
     browser.waitForExist('.edit');
     browser.waitForExist('.remove');
     assert(true);
 };
 
+export const editDoc = function editDoc(enterData) {
+    browser.click('.edit'); // requires doc to be already selected
+    enterData();
+    browser.click('#SaveForm');
+    assert(true);
+}
+
 export const removeDoc = function removeDoc() {
+    //assert(true); return;
     var countBefore = countDataRows();
-    browser.click('.remove'); // requires doc to be already selected
+    waitAndClickFirst('.datarow');
+    waitAndClickFirst('.remove');
     var countAfter = waitCountDataRows();
     chai.assert(countAfter = countBefore - 1);
 }
