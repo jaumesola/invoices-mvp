@@ -3,6 +3,7 @@ import * as Errors from '/imports/_common/errors.js';
 
 CompaniesConfig = {
     collectionName: 'companies',
+    modelName: 'Company',
     subscription: 'theCompanies',
     newDocument: function () {
         return new Company();
@@ -15,7 +16,7 @@ CompaniesConfig = {
 Companies = new Mongo.Collection(CompaniesConfig.collectionName);
 
 Company = Model.create({
-    name: 'Company',
+    name: CompaniesConfig.modelName,
     collection: Companies,
     fields: {
         TaxId: {

@@ -1,4 +1,27 @@
 
+export const crudInit = function crudInit(config) {
+    config.template.events({
+        'click .datarow': function(){
+            Session.set('selectedDocId', this._id);
+            hideForm();
+            showEditRemoveButtons();
+        },
+        'click .create': function(){
+            config.cleanForm();
+            showForm();
+            hideEditRemoveButtons();
+            Session.set('selectedDocId', null);    
+        },
+        'click .remove': function(){
+            Meteor.call('remove' + config.modelName, getDoc(config));
+            hideForm();
+            hideEditRemoveButtons();
+        }
+    });
+    
+    Meteor.subscribe(config.subscription);
+}
+
 export const showForm = function showForm() {
     $(cform).show();
 }
@@ -37,20 +60,6 @@ export const templateOnCreated = function templateOnCreated(config) {
         'selectedDoc': function () {
             return config.findOneDocument({_id: Session.get('selectedDocId')});
         }
-    });
-    
-    config.template.events({
-        'click .datarow': function(){
-                Session.set('selectedDocId', this._id);
-                hideForm();
-            showEditRemoveButtons();
-        },
-        'click .create': function(){
-            config.cleanForm();
-            showForm();
-            hideEditRemoveButtons();
-            Session.set('selectedDocId', null);
-    }  
     });
 }
 

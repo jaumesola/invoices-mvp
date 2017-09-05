@@ -3,6 +3,7 @@ import * as Errors from '/imports/_common/errors.js';
 
 OffersConfig = {
     collectionName: 'offers',
+    modelName: 'Offer',
     subscription: 'theOffers',
     newDocument: function () {
         return new Offer();

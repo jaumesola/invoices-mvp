@@ -8,8 +8,7 @@ OffersConfig['cleanForm'] = function () {
     cform.Amount.value    = null;
     cform.Maturity.value  = null;   
 }
-
-Meteor.subscribe(OffersConfig.subscription);
+cc.crudInit(OffersConfig);
 
 Template.offers.onCreated( function () {
     cc.templateOnCreated(OffersConfig);
@@ -26,11 +25,6 @@ Template.offers.events({
 		var c = Template.crudButtons.__helpers.get("selectedDoc").call();
 		document.getElementById("Amount").value  = c.Amount;
 		document.getElementById("Maturity").value   = c.Maturity;
-    },
-    'click .remove': function(){
-        Meteor.call('removeOffer', cc.getDoc(OffersConfig));
-		cc.hideForm();
-        cc.hideEditRemoveButtons();
     }
 });
 

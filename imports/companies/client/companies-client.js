@@ -10,7 +10,7 @@ CompaniesConfig['cleanForm'] = function () {
     cform.Rating.value = 0;
 }
 
-Meteor.subscribe(CompaniesConfig.subscription);
+cc.crudInit(CompaniesConfig);
 
 Template.companies.onCreated( function () {
     cc.templateOnCreated(CompaniesConfig);
@@ -27,11 +27,6 @@ Template.companies.events({
 		document.getElementById("TaxId").value  = c.TaxId;
 		document.getElementById("Name").value   = c.Name;
 		document.getElementById("Rating").value = c.Rating;
-    },
-    'click .remove': function(){
-        Meteor.call('removeCompany', cc.getDoc(CompaniesConfig));
-		cc.hideForm();
-		cc.hideEditRemoveButtons();
     }
 });
 
