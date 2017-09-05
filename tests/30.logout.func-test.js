@@ -5,6 +5,8 @@ import * as th from '../imports/_common/func-test-helpers.js';
 
 describe('logout @watch', function () {
     
+    //return;
+    
     it('logs out', function () {
         th.waitAndClick('#login-name-link');
         th.waitAndClick('#login-buttons-logout');
