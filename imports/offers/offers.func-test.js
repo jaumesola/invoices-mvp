@@ -3,8 +3,6 @@ console.log('offers.func-tests');
 //import { _ } from 'meteor/underscore';
 import * as th from '../_common/func-test-helpers.js';
 
-var divClass = '.offer';
-
 describe('/offers @watch', function() {
     
   before(function () {
@@ -19,7 +17,7 @@ describe('/offers @watch', function() {
   });
   
   it('add an offer', function () {
-      th.createDoc(divClass, function () {
+      th.createDoc(function () {
           browser.setValue('#Amount', 2222 ); // _.random(0, 100000));  
           var d = new Date();
           d.setDate(d.getDate() + 30);
@@ -27,9 +25,6 @@ describe('/offers @watch', function() {
       });
   });
   
-  it ('select an offer', function() {
-      th.selectDoc(divClass, function () {
-      });
-  });
+  it ('select an offer', function() { th.selectDoc(); });
   
 });

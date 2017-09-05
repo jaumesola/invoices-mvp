@@ -12,20 +12,18 @@ export const countDataRows = function countDataRows(divClass, wait=false) {
     return browser.elements(divClass).value.length;
 };
 
-export const createDoc = function createDoc(divClass, enterData) {
-    var countBefore = countDataRows(divClass);
+export const createDoc = function createDoc(enterData) {
+    var countBefore = countDataRows('.datarow');
     enterData();
     browser.click('#SaveForm');
-    var countAfter = countDataRows(divClass, true); // TODO refactor to avoid side effects (wait) 
+    var countAfter = countDataRows('.datarow', true); // TODO refactor to avoid side effects (wait) 
     //console.log('counts ' + countBefore + ' - ' + countAfter);
     chai.assert(countAfter = countBefore + 1);
     // TODO: verify also data shown is data entered
 };
 
-export const selectDoc = function selectDoc(divClass, enterData) {
-    //var count = countDataRows(divClass);
-    //console.log('count ' + count);
-    waitAndClick(divClass);
+export const selectDoc = function selectDoc() {
+    waitAndClick('.datarow');
     browser.waitForExist('.selected');
     browser.waitForExist('.edit');
     browser.waitForExist('.remove');

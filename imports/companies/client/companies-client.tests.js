@@ -33,7 +33,7 @@ describe('Companies', function () {
     
     CompaniesConfig['extractDataFromHtml'] = function (html) {
         var data =[];
-        $(html).find('.company').each( function () {
+        $(html).find('.datarow').each( function () {
             data.push({
                 Name:   $(this).find('div').first().text(),
                 TaxId:  $(this).find('div').first().next().text(),

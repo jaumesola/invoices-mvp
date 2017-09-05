@@ -31,7 +31,7 @@ describe('Offers', function () {
 
     OffersConfig['extractDataFromHtml'] = function (html) {
         var data =[];
-        $(html).find('.offer').each( function () {
+        $(html).find('.datarow').each( function () {
             data.push({
                 Amount:   $(this).find('div').first().text(),
                 Maturity: $(this).find('div').first().next().text()
