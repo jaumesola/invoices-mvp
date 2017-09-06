@@ -1,4 +1,4 @@
-import '/imports/companies/companies.js';
+import '../companies.js';
 
 Meteor.publish(CompaniesConfig.subscription, function () {
 	return Companies.find();

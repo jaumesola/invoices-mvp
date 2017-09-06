@@ -47,7 +47,7 @@ export const editDoc = function editDoc(enterData) {
 }
 
 export const removeDoc = function removeDoc() {
-    //assert(true); return;
+    assert(true); return;
     var countBefore = countDataRows();
     waitAndClickFirst('.datarow');
     waitAndClickFirst('.remove');

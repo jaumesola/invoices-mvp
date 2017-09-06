@@ -5,6 +5,7 @@ CompaniesConfig = {
     collectionName: 'companies',
     modelName: 'Company',
     subscription: 'theCompanies',
+    saveMethod: 'saveCompany',
     newDocument: function () {
         return new Company();
     },

@@ -1,7 +1,7 @@
-import '/imports/companies/companies.js';
+import '../companies.js';
 import * as crud from '/imports/client/crud.js';
-import '/imports/client/common.html';
-import '/imports/companies/client/companies.html';
+import '/imports/client/crud.html';
+import './companies.html';
 
 CompaniesConfig.template = Template.companies;
 CompaniesConfig.editFormTemplate = Template.editCompanyForm;
@@ -15,16 +15,10 @@ CompaniesConfig.fillForm = function (doc) {
     document.getElementById("Name").value   = doc.Name;
     document.getElementById("Rating").value = doc.Rating; 
 }
-CompaniesConfig.submitForm = function (event) {
-    event.preventDefault();
-    var company = cc.getDoc(CompaniesConfig);
-    // TODO: make generic
-    company.TaxId  = cform.TaxId.value;
-    company.Name   = cform.Name.value;
-    company.Rating = Number(cform.Rating.value);
-    Meteor.call('saveCompany', company);
-    cc.hideForm();
-    CompaniesConfig.cleanForm();   
+CompaniesConfig.fillDoc = function (doc) {
+    doc.TaxId  = cform.TaxId.value;
+    doc.Name   = cform.Name.value;
+    doc.Rating = Number(cform.Rating.value);    
 }
 
 crud.init(CompaniesConfig);

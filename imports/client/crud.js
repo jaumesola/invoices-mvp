@@ -1,4 +1,3 @@
-
 export function init(config) {
     
     Template.crudButtons.helpers({
@@ -49,7 +48,13 @@ export function init(config) {
     
     config.editFormTemplate.events({
         'submit form': function (event) {
-            config.submitForm(event);
+            //config.submitForm(event);
+            event.preventDefault();
+            var doc = getDoc(config);
+            config.fillDoc(doc)
+            Meteor.call(config.saveMethod, doc);
+            hideForm();
+            config.cleanForm();
         }
     });
     
