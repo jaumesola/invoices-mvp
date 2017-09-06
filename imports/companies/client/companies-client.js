@@ -9,21 +9,16 @@ CompaniesConfig['cleanForm'] = function () {
     cform.Name.value   = "";
     cform.Rating.value = 0;
 }
+CompaniesConfig['fillForm'] = function (doc) {
+    document.getElementById("TaxId").value  = doc.TaxId;
+    document.getElementById("Name").value   = doc.Name;
+    document.getElementById("Rating").value = doc.Rating; 
+}
 
 cc.crudInit(CompaniesConfig);
 
 Template.companies.onRendered( function () {
     cc.templateOnRendered(CompaniesConfig);
-});
-
-Template.companies.events({  
-    'click .edit': function(){
-		cc.showForm();
-		var c = Template.crudButtons.__helpers.get("selectedDoc").call();
-		document.getElementById("TaxId").value  = c.TaxId;
-		document.getElementById("Name").value   = c.Name;
-		document.getElementById("Rating").value = c.Rating;
-    }
 });
 
 Template.editCompanyForm.events({

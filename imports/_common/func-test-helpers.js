@@ -31,6 +31,7 @@ export const createDoc = function createDoc(enterData) {
     // TODO: verify also data shown is data entered
 };
 
+
 export const selectDoc = function selectDoc() {
     waitAndClickLast('.datarow');
     browser.waitForExist('.selected');
@@ -40,7 +41,7 @@ export const selectDoc = function selectDoc() {
 };
 
 export const editDoc = function editDoc(enterData) {
-    browser.click('.edit'); // requires doc to be already selected
+    waitAndClickFirst('.edit'); // requires doc to be already selected
     enterData();
     browser.click('#SaveForm');
     assert(true);

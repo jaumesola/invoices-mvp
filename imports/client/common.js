@@ -8,7 +8,7 @@ export const crudInit = function crudInit(config) {
     });
     
     config.template.helpers({
-        'datarow': function() {
+        'datarow': function () {
              return config.collection.find();
          },
         'selected': function () {
@@ -18,16 +18,22 @@ export const crudInit = function crudInit(config) {
          }
      });
     config.template.events({
-        'click .datarow': function(){
+        'click .datarow': function () {
             Session.set('selectedDocId', this._id);
             hideForm();
             showEditRemoveButtons();
         },
-        'click .create': function(){
+        'click .create': function () {
             config.cleanForm();
             showForm();
             hideEditRemoveButtons();
             Session.set('selectedDocId', null);    
+        },
+        'click .edit': function (fillForm) {
+            console.log('clicked edit');
+            showForm();
+            var doc = config.findOneDocument({_id: Session.get('selectedDocId')});;
+            config.fillForm(doc);
         },
         'click .remove': function(){
             Meteor.call('remove' + config.modelName, getDoc(config));
@@ -61,6 +67,7 @@ export const templateOnRendered = function templateOnRendered(config) {
     Session.set('selectedDocId', null);
     cform = document.getElementById("docForm");
 }
+
 
 //return currently selected document object or if none a newly created one
 export const getDoc = function getDoc(config) {
