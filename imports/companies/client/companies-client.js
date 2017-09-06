@@ -6,9 +6,9 @@ import './companies.html';
 CompaniesConfig.template = Template.companies;
 CompaniesConfig.editFormTemplate = Template.editCompanyForm;
 CompaniesConfig.cleanForm = function () {
-    cform.TaxId.value  = "";
-    cform.Name.value   = "";
-    cform.Rating.value = 0;
+    dataForm.TaxId.value  = "";
+    dataForm.Name.value   = "";
+    dataForm.Rating.value = 0;
 }
 CompaniesConfig.fillForm = function (doc) {
     document.getElementById("TaxId").value  = doc.TaxId;
@@ -16,9 +16,9 @@ CompaniesConfig.fillForm = function (doc) {
     document.getElementById("Rating").value = doc.Rating; 
 }
 CompaniesConfig.fillDoc = function (doc) {
-    doc.TaxId  = cform.TaxId.value;
-    doc.Name   = cform.Name.value;
-    doc.Rating = Number(cform.Rating.value);    
+    doc.TaxId  = dataForm.TaxId.value;
+    doc.Name   = dataForm.Name.value;
+    doc.Rating = Number(dataForm.Rating.value);    
 }
 
 crud.init(CompaniesConfig);

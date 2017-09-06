@@ -60,11 +60,11 @@ export function init(config) {
 }
 
 export const showForm = function showForm() {
-    $(cform).show();
+    $(dataForm).show();
 }
 
 export const hideForm = function hideForm() {
-    $(cform).hide();
+    $(dataForm).hide();
 }
 
 export const showEditRemoveButtons = function showEditRemoveButtons() {
@@ -79,7 +79,7 @@ export const hideEditRemoveButtons = function showEditRemoveButtons() {
 
 export const templateOnRendered = function templateOnRendered(config) {  
     Session.set('selectedDocId', null);
-    cform = document.getElementById("docForm");
+    dataForm = document.getElementById("dataForm");
 }
 
 //return currently selected document object or if none a newly created one
