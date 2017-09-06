@@ -31,7 +31,6 @@ export const createDoc = function createDoc(enterData) {
     // TODO: verify also data shown is data entered
 };
 
-
 export const selectDoc = function selectDoc() {
     waitAndClickLast('.datarow');
     browser.waitForExist('.selected');

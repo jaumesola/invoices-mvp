@@ -1,5 +1,5 @@
 
-export const crudInit = function crudInit(config) {
+export function init(config) {
     
     Template.crudButtons.helpers({
         'selectedDoc': function () {
@@ -17,6 +17,7 @@ export const crudInit = function crudInit(config) {
              }
          }
      });
+    
     config.template.events({
         'click .datarow': function () {
             Session.set('selectedDocId', this._id);
@@ -39,6 +40,16 @@ export const crudInit = function crudInit(config) {
             Meteor.call('remove' + config.modelName, getDoc(config));
             hideForm();
             hideEditRemoveButtons();
+        }
+    });
+    
+    config.template.onRendered( function () {
+        templateOnRendered(config);
+    });
+    
+    config.editFormTemplate.events({
+        'submit form': function (event) {
+            config.submitForm(event);
         }
     });
     
@@ -67,7 +78,6 @@ export const templateOnRendered = function templateOnRendered(config) {
     Session.set('selectedDocId', null);
     cform = document.getElementById("docForm");
 }
-
 
 //return currently selected document object or if none a newly created one
 export const getDoc = function getDoc(config) {
