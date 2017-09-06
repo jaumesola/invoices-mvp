@@ -1,14 +1,12 @@
-import * as Errors from '/imports/_common/errors.js';
+import * as Errors from './errors.js';
 
 export function init(config) {
-    
     config.saveMethod = 'save' + config.modelName;
     config.removeMethod = 'remove' + config.modelName;
     
     var methods = {};
     methods[config.saveMethod] = saveDoc;
     methods[config.removeMethod] = removeDoc;
-    
     Meteor.methods(methods);
 }
 

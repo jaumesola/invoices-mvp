@@ -3,13 +3,7 @@ export function init(config) {
     config.findSelectedDoc = function () {
         return config.model.findOne({_id: Session.get('selectedDocId')});
     }
-    
-    Template.crudButtons.helpers({
-        'selectedDoc': function () {
-            return config.findSelectedDoc();
-        }
-    });
-    
+
     config.template.helpers({
         'datarow': function () {
              return config.collection.find();
