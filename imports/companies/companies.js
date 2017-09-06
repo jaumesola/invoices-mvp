@@ -1,24 +1,17 @@
 import { Class as Model } from 'meteor/jagi:astronomy';
-import * as Errors from '/imports/_common/errors.js';
+import * as mm from '/imports/_common/meteor-methods.js';
 
 CompaniesConfig = {
     collectionName: 'companies',
     modelName: 'Company',
     subscription: 'theCompanies',
-    saveMethod: 'saveCompany',
-    newDocument: function () {
-        return new Company();
-    },
-    findOneDocument: function (condition) {
-        return Company.findOne(condition);
-    }
 }
 
-Companies = new Mongo.Collection(CompaniesConfig.collectionName);
+CompaniesConfig.collection = new Mongo.Collection(CompaniesConfig.collectionName);
 
-Company = Model.create({
+CompaniesConfig.model = Model.create({
     name: CompaniesConfig.modelName,
-    collection: Companies,
+    collection: CompaniesConfig.collection,
     fields: {
         TaxId: {
             type: String,
@@ -41,27 +34,4 @@ Company = Model.create({
     }
 });
 
-CompaniesConfig['collection'] = Companies;
-CompaniesConfig['model'] = Company;
-
-Meteor.methods({
-    'saveCompany': function(company){
-        if ( !Meteor.userId() ) {
-        	    return;
-        }
-
-        try {
-        		company.save();
-        } catch (e) {
-        		Errors.handle(e);
-        }
-    },
-    
-    'removeCompany': function(company){
-        if ( !Meteor.userId() ) {
-    	        return;
-        }
-        company.remove();        
-    }
-
-});
+mm.init(CompaniesConfig);

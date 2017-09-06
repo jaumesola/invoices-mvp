@@ -1,5 +1,5 @@
 import '../offers.js';
 
-Meteor.publish(OffersConfig.subscription, function(){
-	return Offers.find();
+Meteor.publish(OffersConfig.subscription, function () {
+	return OffersConfig.collection.find();
 });

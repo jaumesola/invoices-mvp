@@ -47,13 +47,14 @@ export const editDoc = function editDoc(enterData) {
 }
 
 export const removeDoc = function removeDoc() {
-    assert(true); return;
+    //assert(true); return;
     var countBefore = countDataRows();
     waitAndClickFirst('.datarow');
     waitAndClickFirst('.remove');
     var countAfter = waitCountDataRows();
     chai.assert(countAfter = countBefore - 1);
 }
+
 
 /*
 extract data from some row

@@ -1,19 +1,13 @@
 import { Class as Model } from 'meteor/jagi:astronomy';
-import * as Errors from '/imports/_common/errors.js';
+import * as mm from '/imports/_common/meteor-methods.js';
 
 OffersConfig = {
     collectionName: 'offers',
     modelName: 'Offer',
     subscription: 'theOffers',
-    newDocument: function () {
-        return new Offer();
-    },
-    findOneDocument: function (condition) {
-        return Offer.findOne(condition);
-     }   
 }
 
-Offers = new Mongo.Collection(OffersConfig.collectionName);
+OffersConfig.collection = new Mongo.Collection(OffersConfig.collectionName);
 
 var maturityRange = [{
     type: 'gte',
@@ -31,9 +25,9 @@ var maturityRange = [{
     }
   }];
 
-Offer = Model.create({
-    name: 'Offer',
-    collection: Offers,
+OffersConfig.model = Model.create({
+    name: OffersConfig.modelName,
+    collection: OffersConfig.collection,
     fields: {
         Amount: {
             type: Number,
@@ -49,27 +43,4 @@ Offer = Model.create({
     }
 });
 
-OffersConfig['collection'] = Offers;
-OffersConfig['model'] = Offer;
-
-Meteor.methods({
-    'saveOffer': function(offer){
-        if ( !Meteor.userId() ) {
-        	    return;
-        }
-
-        try {
-        		offer.save();
-        } catch (e) {
-        		Errors.handle(e);
-        }
-    },
-    
-    'removeOffer': function(offer){
-        if ( !Meteor.userId() ) {
-    	        return;
-        }
-        offer.remove();
-    }
-
-});
+mm.init(OffersConfig);

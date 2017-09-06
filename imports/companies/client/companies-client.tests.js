@@ -15,7 +15,7 @@ describe('Companies', function () {
         });
     });
     
-    Factory.define('company', Companies, {
+    Factory.define('company', CompaniesConfig.collection, {
         TaxId: 0,
         Name: '',
         Rating: 0

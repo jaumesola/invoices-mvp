@@ -1,8 +1,12 @@
 export function init(config) {
+   
+    config.findSelectedDoc = function () {
+        return config.model.findOne({_id: Session.get('selectedDocId')});
+    }
     
     Template.crudButtons.helpers({
         'selectedDoc': function () {
-            return config.findOneDocument({_id: Session.get('selectedDocId')});
+            return config.findSelectedDoc();
         }
     });
     
@@ -32,7 +36,7 @@ export function init(config) {
         'click .edit': function (fillForm) {
             console.log('clicked edit');
             showForm();
-            var doc = config.findOneDocument({_id: Session.get('selectedDocId')});;
+            var doc = config.findSelectedDoc();
             config.fillForm(doc);
         },
         'click .remove': function(){
@@ -87,8 +91,8 @@ export const templateOnRendered = function templateOnRendered(config) {
 //return currently selected document object or if none a newly created one
 export const getDoc = function getDoc(config) {
     if (Session.get('selectedDocId') == null) { 
-        return config.newDocument();
+        return new config.model();
     } else {
-        return config.findOneDocument({_id: Session.get('selectedDocId')});
+        return config.findSelectedDoc();
     }
 }
