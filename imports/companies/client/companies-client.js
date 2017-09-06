@@ -1,14 +1,14 @@
-import '../companies.js';
-import * as crud from '/imports/client/crud.js';
 import '/imports/client/crud.html';
 import './companies.html';
+import '../companies.js';
+import * as crud from '/imports/client/crud.js';
 
 CompaniesConfig.template = Template.companies;
 CompaniesConfig.editFormTemplate = Template.editCompanyForm;
 CompaniesConfig.cleanForm = function () {
-    cform.TaxId.value  = "";
-    cform.Name.value   = "";
-    cform.Rating.value = 0;
+    this.dataForm.TaxId.value  = "";
+    this.dataForm.Name.value   = "";
+    this.dataForm.Rating.value = 0;
 }
 CompaniesConfig.fillForm = function (doc) {
     document.getElementById("TaxId").value  = doc.TaxId;
@@ -16,9 +16,9 @@ CompaniesConfig.fillForm = function (doc) {
     document.getElementById("Rating").value = doc.Rating; 
 }
 CompaniesConfig.fillDoc = function (doc) {
-    doc.TaxId  = cform.TaxId.value;
-    doc.Name   = cform.Name.value;
-    doc.Rating = Number(cform.Rating.value);    
+    doc.TaxId  = this.dataForm.TaxId.value;
+    doc.Name   = this.dataForm.Name.value;
+    doc.Rating = Number(this.dataForm.Rating.value);    
 }
 
 crud.init(CompaniesConfig);

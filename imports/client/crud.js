@@ -1,5 +1,5 @@
 export function init(config) {
-   
+    
     config.findSelectedDoc = function () {
         return config.model.findOne({_id: Session.get('selectedDocId')});
     }
@@ -28,7 +28,6 @@ export function init(config) {
             Session.set('selectedDocId', null);    
         },
         'click .edit': function (fillForm) {
-            console.log('clicked edit');
             showForm();
             var doc = config.findSelectedDoc();
             config.fillForm(doc);
@@ -59,12 +58,17 @@ export function init(config) {
     Meteor.subscribe(config.subscription);
 }
 
+export const templateOnRendered = function templateOnRendered(config) { 
+    Session.set('selectedDocId', null);
+    config.dataForm = document.getElementById("dataForm");
+}
+
 export const showForm = function showForm() {
-    $(cform).show();
+    $('#dataForm').show();
 }
 
 export const hideForm = function hideForm() {
-    $(cform).hide();
+    $('#dataForm').hide();
 }
 
 export const showEditRemoveButtons = function showEditRemoveButtons() {
@@ -75,11 +79,6 @@ export const showEditRemoveButtons = function showEditRemoveButtons() {
 export const hideEditRemoveButtons = function showEditRemoveButtons() {
     $('.edit').hide();
     $('.remove').hide();
-}
-
-export const templateOnRendered = function templateOnRendered(config) {  
-    Session.set('selectedDocId', null);
-    cform = document.getElementById("docForm");
 }
 
 //return currently selected document object or if none a newly created one
