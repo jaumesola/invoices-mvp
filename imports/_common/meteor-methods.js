@@ -1,6 +1,15 @@
+import { Class as Model } from 'meteor/jagi:astronomy';
 import * as Errors from './errors.js';
 
 export function init(config) {
+
+    config.collection = new Mongo.Collection(config.collectionName);
+    config.model = Model.create({
+        name: config.modelName,
+        collection: config.collection,
+        fields: config.modelFields,
+    });
+    
     config.saveMethod = 'save' + config.modelName;
     config.removeMethod = 'remove' + config.modelName;
     
@@ -25,5 +34,5 @@ export function removeDoc (doc) {
     if ( !Meteor.userId() ) {
             return;
     }
-    doc.remove();        
+    //doc.remove();        
 }
