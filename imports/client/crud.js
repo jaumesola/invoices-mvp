@@ -55,6 +55,19 @@ export function init(config) {
         }
     });
     
+    config.iterateFormFields = function (callback) {
+        for (var i = 0; i < config.formFields.length; i++) {
+            var field = config.formFields[i];
+            callback(field);
+        }
+    }
+    
+    config.cleanForm = function () {
+        config.iterateFormFields( function (field) {
+            config.dataForm.elements[field].value = null;
+        });
+    }
+    
     config.fillDocFromForm = function (doc) {
         for (var i = 0; i < config.formFields.length; i++) {
             var field = config.formFields[i];
