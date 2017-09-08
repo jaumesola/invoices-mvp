@@ -12,9 +12,5 @@ AdvancesConfig.cleanForm = function () {
     this.dataForm.DebtorId.value       = null;
     this.dataForm.InvoiceNumber.value  = null;
 }
-AdvancesConfig.fillForm = function (doc) {
-    // TODO loop for all fields 
-    document.getElementById("OfferId").value = doc.OfferId;
-}
 
 crud.init(AdvancesConfig);

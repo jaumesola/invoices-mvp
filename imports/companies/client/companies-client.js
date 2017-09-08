@@ -10,10 +10,5 @@ CompaniesConfig.cleanForm = function () {
     this.dataForm.Name.value   = "";
     this.dataForm.Rating.value = 0;
 }
-CompaniesConfig.fillForm = function (doc) {
-    document.getElementById("TaxId").value  = doc.TaxId;
-    document.getElementById("Name").value   = doc.Name;
-    document.getElementById("Rating").value = doc.Rating; 
-}
 
 crud.init(CompaniesConfig);

@@ -30,7 +30,7 @@ export function init(config) {
         'click .edit': function (fillForm) {
             showForm();
             var doc = config.findSelectedDoc();
-            config.fillForm(doc);
+            config.fillFormFromDoc(doc);
         },
         'click .remove': function(){
             Meteor.call('remove' + config.modelName, getDoc(config));
@@ -57,10 +57,17 @@ export function init(config) {
     
     config.fillDocFromForm = function (doc) {
         for (var i = 0; i < config.formFields.length; i++) {
-            field = config.formFields[i];
-            doc.set( field, config.dataForm.elements[field].value, {
+            var field = config.formFields[i];
+            doc.set(field, config.dataForm.elements[field].value, {
                 cast: true // Astronomy will properly transform values from form
-              }); 
+            }); 
+        }
+    }
+    
+    config.fillFormFromDoc = function (doc) {
+        for (var i = 0; i < AdvancesConfig.formFields.length; i++) {
+            var field = config.formFields[i];
+            document.getElementById(field).value = doc[field];
         }
     }
     

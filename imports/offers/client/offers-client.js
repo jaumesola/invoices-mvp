@@ -9,9 +9,5 @@ OffersConfig.cleanForm = function () {
     this.dataForm.Amount.value    = null;
     this.dataForm.Maturity.value  = null;   
 }
-OffersConfig.fillForm = function (doc) {
-    document.getElementById("Amount").value = doc.Amount;
-    document.getElementById("Maturity").value = doc.Maturity;
-}
 
 crud.init(OffersConfig);
