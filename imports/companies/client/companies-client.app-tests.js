@@ -2,8 +2,6 @@ console.log('companies.app-tests');
 
 import { chai } from 'meteor/practicalmeteor:chai';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
-import { $ } from 'meteor/jquery';
-
 import * as th from '/imports/client/app-test-helpers.js';
 
 describe('/companies', function () {
