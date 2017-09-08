@@ -13,7 +13,6 @@ describe('/advances @watch', function() {
         browser.setValue('#CreditorId', faker.random.number(100000));
         browser.setValue('#DebtorId', faker.random.number(100000));
         browser.setValue('#InvoiceNumber', faker.random.number(100000));
-        //altert('filled');
     };
   
     before(function () {
