@@ -90,11 +90,6 @@ export const hideEditRemoveButtons = function showEditRemoveButtons() {
     $('.remove').hide();
 }
 
-export const templateOnRendered = function templateOnRendered(config) {  
-    Session.set('selectedDocId', null);
-    dataForm = document.getElementById("dataForm");
-}
-
 //return currently selected document object or if none a newly created one
 export const getDoc = function getDoc(config) {
     if (Session.get('selectedDocId') == null) { 
