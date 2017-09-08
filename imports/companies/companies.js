@@ -1,18 +1,10 @@
-import { Class as Model } from 'meteor/jagi:astronomy';
 import * as mm from '/imports/_common/meteor-methods.js';
 
 CompaniesConfig = {
     collectionName: 'companies',
-    modelName: 'Company',
     subscription: 'theCompanies',
-}
-
-CompaniesConfig.collection = new Mongo.Collection(CompaniesConfig.collectionName);
-
-CompaniesConfig.model = Model.create({
-    name: CompaniesConfig.modelName,
-    collection: CompaniesConfig.collection,
-    fields: {
+    modelName: 'Company',
+    modelFields: {
         TaxId: {
             type: String,
             validators: [
@@ -32,6 +24,6 @@ CompaniesConfig.model = Model.create({
                 { type: 'lte', param: 10 }
         ]}
     }
-});
+}
 
 mm.init(CompaniesConfig);

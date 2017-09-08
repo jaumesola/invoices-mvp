@@ -1,13 +1,23 @@
-import { Class as Model } from 'meteor/jagi:astronomy';
 import * as mm from '/imports/_common/meteor-methods.js';
 
 OffersConfig = {
     collectionName: 'offers',
+    subscription: 'theOffers', 
     modelName: 'Offer',
-    subscription: 'theOffers',
+    modelFields: {
+        Amount: {
+            type: Number,
+            validators: [
+                { type: 'gte', param: 0 },
+                { type: 'lte', param: 100000 }
+            ]
+        },
+        Maturity: {
+            type: Date,
+            validators: maturityRange
+        }
+    }
 }
-
-OffersConfig.collection = new Mongo.Collection(OffersConfig.collectionName);
 
 var maturityRange = [{
     type: 'gte',
@@ -24,23 +34,5 @@ var maturityRange = [{
         return d;
     }
   }];
-
-OffersConfig.model = Model.create({
-    name: OffersConfig.modelName,
-    collection: OffersConfig.collection,
-    fields: {
-        Amount: {
-            type: Number,
-            validators: [
-                { type: 'gte', param: 0 },
-                { type: 'lte', param: 100000 }
-            ]
-        },
-        Maturity: {
-            type: Date,
-            validators: maturityRange
-        }
-    }
-});
 
 mm.init(OffersConfig);
