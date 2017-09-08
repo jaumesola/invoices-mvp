@@ -55,6 +55,17 @@ export const removeDoc = function removeDoc() {
     chai.assert(countAfter = countBefore - 1);
 }
 
+export function sayClickCreate() {
+    return 'click on create button';
+}
+
+export function clickCreate(config)  {
+    waitAndClickFirst('.create');        
+    for (var i = 0; i < config.formFields.length; i++) {
+        var field = config.formFields[i];
+        chai.assert.equal(browser.getTagName('#'+field), 'input');
+    }
+}
 
 /*
 extract data from some row

@@ -1,11 +1,10 @@
 import '/imports/client/crud.html';
 import './advances.html';
-import '../advances.js';
+import '../advances-meteor.js';
 import * as crud from '/imports/client/crud.js';
 
 AdvancesConfig.template = Template.advances;
 AdvancesConfig.editFormTemplate = Template.editAdvanceForm;
-AdvancesConfig.formFields = ['OfferId','CreditorId','DebtorId','InvoiceNumber'];
 AdvancesConfig.cleanForm = function () {
     // TODO loop for all fields
     this.dataForm.OfferId.value        = null;

@@ -34,5 +34,5 @@ export function removeDoc (doc) {
     if ( !Meteor.userId() ) {
             return;
     }
-    //doc.remove();        
+    doc.remove();        
 }

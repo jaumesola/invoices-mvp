@@ -5,7 +5,7 @@ import { $ } from 'meteor/jquery';
 import faker from 'faker';
 
 import * as th from '/imports/client/test-helpers.js';
-import '/imports/advances/client/advances-client.js';
+import './advances-client.js';
 
 describe('Advances', function () {
 	  

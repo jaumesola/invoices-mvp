@@ -1,6 +1,4 @@
-import * as mm from '/imports/_common/meteor-methods.js';
-
-CompaniesConfig = {
+export const config = {
     collectionName: 'companies',
     subscription: 'theCompanies',
     modelName: 'Company',
@@ -23,7 +21,6 @@ CompaniesConfig = {
                 { type: 'gte', param: 0 },
                 { type: 'lte', param: 10 }
         ]}
-    }
+    },
+    formFields: ['TaxId','Name','Rating']
 }
-
-mm.init(CompaniesConfig);

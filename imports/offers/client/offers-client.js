@@ -1,11 +1,10 @@
 import '/imports/client/crud.html';
 import './offers.html';
-import '../offers.js';
+import '../offers-meteor.js';
 import * as crud from '/imports/client/crud.js';
 
 OffersConfig.template = Template.offers;
 OffersConfig.editFormTemplate = Template.editOfferForm;
-OffersConfig.formFields = ['Amount', 'Maturity'];
 OffersConfig.cleanForm = function () {
     this.dataForm.Amount.value    = null;
     this.dataForm.Maturity.value  = null;   

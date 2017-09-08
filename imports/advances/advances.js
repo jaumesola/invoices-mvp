@@ -1,6 +1,4 @@
-import * as mm from '/imports/_common/meteor-methods.js';
-
-AdvancesConfig = {
+export const config = {
     collectionName: 'advances',
     subscription: 'theAdvances', 
     modelName: 'Advance',
@@ -28,7 +26,7 @@ AdvancesConfig = {
             type: Object, // TODO specific object type?
         },
         */ 
-    }
-}
-
-mm.init(AdvancesConfig);
+    },
+    // part of client side, but convenient to have here for functional tests
+    formFields: ['OfferId','CreditorId','DebtorId','InvoiceNumber']
+};

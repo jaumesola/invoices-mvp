@@ -67,7 +67,7 @@ export const sayHasH2Text = function sayHasH2Text(config) {
     return 'has an H2 with specific text';
 }
 
-export const checksH2Text = function checksH2Text(config, text) {      
+export const checksH2Text = function checksH2Text(config) {      
     withRenderedTemplate(config.template, {}, (el) => {
         var text = config.collectionName;
         text = text.charAt(0).toUpperCase() + text.slice(1) + ' Management';

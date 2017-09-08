@@ -1,6 +1,4 @@
-import * as mm from '/imports/_common/meteor-methods.js';
-
-OffersConfig = {
+export const config = {
     collectionName: 'offers',
     subscription: 'theOffers', 
     modelName: 'Offer',
@@ -14,25 +12,22 @@ OffersConfig = {
         },
         Maturity: {
             type: Date,
-            validators: maturityRange
+            validators: [{
+                type: 'gte',
+                resolveParam: function() {
+                    var d = new Date();
+                    d.setDate(d.getDate() + 7); // minimum 1 week
+                    return d;
+                }
+              }, {
+                type: 'lte',
+                resolveParam: function() {
+                    var d = new Date();
+                    d.setDate(d.getDate() + 365); // maximum 1 year
+                    return d;
+                }
+              }]
         }
-    }
+    },
+    formFields: ['Amount', 'Maturity']
 }
-
-var maturityRange = [{
-    type: 'gte',
-    resolveParam: function() {
-        var d = new Date();
-        d.setDate(d.getDate() + 7); // minimum 1 week
-        return d;
-    }
-  }, {
-    type: 'lte',
-    resolveParam: function() {
-        var d = new Date();
-        d.setDate(d.getDate() + 365); // maximum 1 year
-        return d;
-    }
-  }];
-
-mm.init(OffersConfig);
