@@ -6,11 +6,11 @@ import faker from 'faker';
 
 describe('/advances @watch', function() {
     
-    var AdvancesConfig = Advances.config;
+    var config = Advances.config;
     
     var fillFake = function () {
-        for (var i = 0; i < AdvancesConfig.formFields.length; i++) {
-            var field = AdvancesConfig.formFields[i];
+        for (var i = 0; i < config.formFields.length; i++) {
+            var field = config.formFields[i];
             browser.setValue('#'+field, faker.random.number(100000));
         }
         /* TODO use consistent values
@@ -26,9 +26,9 @@ describe('/advances @watch', function() {
         //server.call('generateFixtures');
     });
   
-  it(th.sayClickCreate(), function() { th.clickCreate(AdvancesConfig); });
-  it('add an advance', function () { th.createDoc(fillFake); });
-  it('select an advance', th.selectDoc);
-  it('edit an advance', function () { th.editDoc(fillFake); });
-  it('remove an advance', th.removeDoc);
+    it(th.sayClickCreate(), function() { th.clickCreate(config); });
+    it(th.sayAdd(config), function () { th.createDoc(fillFake); });
+    it(th.saySelect(config), th.selectDoc);
+    it(th.sayEdit(config), function () { th.editDoc(fillFake); });
+    it(th.sayRemove(config), th.removeDoc);
 });

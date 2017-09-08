@@ -67,6 +67,21 @@ export function clickCreate(config)  {
     }
 }
 
+export function saySelect(config) {
+    return 'Select a ' + config.modelName;
+}
+
+export function sayAdd(config) {
+    return 'Add a ' + config.modelName;
+}
+
+export function sayEdit(config) {
+    return 'Edit a ' + config.modelName;
+}
+
+export function sayRemove(config) {
+    return 'Remove a ' + config.modelName;
+}
 /*
 extract data from some row
 

@@ -1,8 +1,4 @@
 export function init(config) {
-    
-    config.findSelectedDoc = function () {
-        return config.model.findOne({_id: Session.get('selectedDocId')});
-    }
 
     config.template.helpers({
         'datarow': function () {
@@ -32,14 +28,14 @@ export function init(config) {
             var doc = config.findSelectedDoc();
             config.fillFormFromDoc(doc);
         },
-        'click .remove': function(){
-            Meteor.call('remove' + config.modelName, getDoc(config));
+        'click .remove': function () {
+            Meteor.call(config.removeMethod, config.getDoc());
             hideForm();
             hideEditRemoveButtons();
         }
     });
     
-    config.template.onRendered( function () {
+    config.template.onRendered(function () {
         templateOnRendered(config);
     });
     
@@ -47,14 +43,28 @@ export function init(config) {
         'submit form': function (event) {
             //config.submitForm(event);
             event.preventDefault();
-            var doc = getDoc(config);
-            config.fillDocFromForm(doc)
+            var doc = config.getDoc();
+            console.log(doc);
+            config.fillDocFromForm(doc);
             Meteor.call(config.saveMethod, doc);
             hideForm();
             config.cleanForm();
         }
     });
     
+    config.findSelectedDoc = function () {
+        return config.model.findOne({_id: Session.get('selectedDocId')});
+    }
+    
+    //return currently selected document object or if none a newly created one
+    config.getDoc = function () {
+        if (Session.get('selectedDocId') == null) { 
+            return new config.model();
+        } else {
+            return config.findSelectedDoc();
+        }
+    }
+
     config.iterateFormFields = function (callback) {
         for (var i = 0; i < config.formFields.length; i++) {
             var field = config.formFields[i];
@@ -108,13 +118,4 @@ export const showEditRemoveButtons = function showEditRemoveButtons() {
 export const hideEditRemoveButtons = function showEditRemoveButtons() {
     $('.edit').hide();
     $('.remove').hide();
-}
-
-//return currently selected document object or if none a newly created one
-export const getDoc = function getDoc(config) {
-    if (Session.get('selectedDocId') == null) { 
-        return new config.model();
-    } else {
-        return config.findSelectedDoc();
-    }
 }

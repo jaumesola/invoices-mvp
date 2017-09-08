@@ -1,12 +1,13 @@
 console.log('companies.func-tests');
 
+
 import * as Companies from './companies.js';
 import * as th from '../_common/func-test-helpers.js';
 import faker from 'faker';
 
 describe('/companies @watch', function () {
     
-    var CompaniesConfig = Companies.config;
+    var config = Companies.config;
     
     var fillFake = function () {
         browser.setValue('#TaxId', faker.phone.phoneNumberFormat() );
@@ -19,9 +20,9 @@ describe('/companies @watch', function () {
         //server.call('generateFixtures');
     });
     
-    it(th.sayClickCreate(), function() { th.clickCreate(CompaniesConfig); });
-    it('add a company', function () { th.createDoc(fillFake); });
-    it('select a company', th.selectDoc);
-    it('edit a company', function () { th.editDoc(fillFake); });
-    it('remove a company', th.removeDoc);
+    it(th.sayClickCreate(), function() { th.clickCreate(config); });
+    it(th.sayAdd(config), function () { th.createDoc(fillFake); });
+    it(th.saySelect(config), th.selectDoc);
+    it(th.sayEdit(config), function () { th.editDoc(fillFake); });
+    it(th.sayRemove(config), th.removeDoc);
 });

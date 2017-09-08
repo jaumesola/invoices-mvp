@@ -6,7 +6,7 @@ import faker from 'faker';
 
 describe('/offers @watch', function() {
     
-    var OffersConfig = Offers.config;
+    var config = Offers.config;
     
     var fillFake = function () {
         browser.setValue('#Amount', faker.random.number(100000)); // _.random(0, 100000));  
@@ -20,9 +20,9 @@ describe('/offers @watch', function() {
         //server.call('generateFixtures');
     });
   
-    it(th.sayClickCreate(), function() { th.clickCreate(OffersConfig); });
-    it('add an offer', function () { th.createDoc(fillFake); });
-    it('select an offer', th.selectDoc);
-    it('edit an offer', function () { th.editDoc(fillFake); });
-    it('remove an offer', th.removeDoc);
+    it(th.sayClickCreate(), function() { th.clickCreate(config); });
+    it(th.sayAdd(config), function () { th.createDoc(fillFake); });
+    it(th.saySelect(config), th.selectDoc);
+    it(th.sayEdit(config), function () { th.editDoc(fillFake); });
+    it(th.sayRemove(config), th.removeDoc);
 });
