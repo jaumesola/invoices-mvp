@@ -1,0 +1,32 @@
+<template name="advancesBody">
+    {{#if currentUser}}
+    <p></p>
+        {{> advances}}
+    <p></p>
+        {{> editAdvanceForm}}
+    {{/if}}
+</template>
+
+<template name="editAdvanceForm">
+    <form id="dataForm" style="display: none;">
+        <br>OfferId <input type="text" size="30" name="OfferId" id="OfferId">
+        <br>CreditorId <input type="text" size="30" name="CreditorId" id="CreditorId">
+        <br>DebtorId <input type="text" size="30" name="DebtorId" id="DebtorId">
+        <br>InvoiceNumber <input type="text" size="30" name="InvoiceNumber" id="InvoiceNumber">                
+        <br><br><input type="submit" value="Save" id="SaveForm">
+    </form>
+</template>
+
+<template name="advances">
+    <h2>Advances List</h2>
+    {{#each datarow}}
+    <div class="w3-row-padding {{selected}} datarow">
+        <div class="w3-col m3">{{OfferId}}</div>
+        <div class="w3-col m9">{{CreditorId}}</div>
+        <div class="w3-col m9">{{DebtorId}}</div>
+        <div class="w3-col m9">{{InvoiceNumber}}</div>
+    </div>
+    {{/each}}
+<br>
+    {{> crudButtons}}
+</template>

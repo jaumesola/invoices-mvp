@@ -28,13 +28,13 @@ FlowRouter.route('/offers', {
     },
 });
 
-FlowRouter.route('/invoices', {
+FlowRouter.route('/advances', {
     name: 'App.home',
     waitOn() {
-        return import('/imports/invoices/client/invoices-client.js');
+        return import('/imports/advances/client/advances-client.js');
     },
     action() {
-        BlazeLayout.render('App_body', { content_container: 'invoicesBody' });
+        BlazeLayout.render('App_body', { content_container: 'advancesBody' });
     },
 });
 
