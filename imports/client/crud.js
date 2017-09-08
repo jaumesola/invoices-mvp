@@ -1,5 +1,5 @@
 export function init(config) {
-   
+    
     config.findSelectedDoc = function () {
         return config.model.findOne({_id: Session.get('selectedDocId')});
     }
@@ -28,7 +28,6 @@ export function init(config) {
             Session.set('selectedDocId', null);    
         },
         'click .edit': function (fillForm) {
-            console.log('clicked edit');
             showForm();
             var doc = config.findSelectedDoc();
             config.fillForm(doc);
@@ -49,22 +48,36 @@ export function init(config) {
             //config.submitForm(event);
             event.preventDefault();
             var doc = getDoc(config);
-            config.fillDoc(doc)
+            config.fillDocFromForm(doc)
             Meteor.call(config.saveMethod, doc);
             hideForm();
             config.cleanForm();
         }
     });
     
+    config.fillDocFromForm = function (doc) {
+        for (var i = 0; i < config.formFields.length; i++) {
+            field = config.formFields[i];
+            doc.set( field, config.dataForm.elements[field].value, {
+                cast: true // Astronomy will properly transform values from form
+              }); 
+        }
+    }
+    
     Meteor.subscribe(config.subscription);
 }
 
+export const templateOnRendered = function templateOnRendered(config) { 
+    Session.set('selectedDocId', null);
+    config.dataForm = document.getElementById("dataForm");
+}
+
 export const showForm = function showForm() {
-    $(dataForm).show();
+    $('#dataForm').show();
 }
 
 export const hideForm = function hideForm() {
-    $(dataForm).hide();
+    $('#dataForm').hide();
 }
 
 export const showEditRemoveButtons = function showEditRemoveButtons() {

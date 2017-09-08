@@ -5,6 +5,7 @@ import * as crud from '/imports/client/crud.js';
 
 AdvancesConfig.template = Template.advances;
 AdvancesConfig.editFormTemplate = Template.editAdvanceForm;
+AdvancesConfig.formFields = ['OfferId','CreditorId','DebtorId','InvoiceNumber'];
 AdvancesConfig.cleanForm = function () {
     // TODO loop for all fields
     this.dataForm.OfferId.value        = null;
@@ -15,11 +16,6 @@ AdvancesConfig.cleanForm = function () {
 AdvancesConfig.fillForm = function (doc) {
     // TODO loop for all fields 
     document.getElementById("OfferId").value = doc.OfferId;
-}
-AdvancesConfig.fillDoc = function (doc) {
-    // TODO loop for all fields 
-    // TODO transformations -- how does Astronomy do them?
-    doc.OfferId = this.dataForm.OfferId.value;
 }
 
 crud.init(AdvancesConfig);
