@@ -5,6 +5,7 @@ import * as crud from '/imports/client/crud.js';
 
 CompaniesConfig.template = Template.companies;
 CompaniesConfig.editFormTemplate = Template.editCompanyForm;
+CompaniesConfig.formFields = ['TaxId','Name','Rating'];
 CompaniesConfig.cleanForm = function () {
     this.dataForm.TaxId.value  = "";
     this.dataForm.Name.value   = "";
@@ -14,11 +15,6 @@ CompaniesConfig.fillForm = function (doc) {
     document.getElementById("TaxId").value  = doc.TaxId;
     document.getElementById("Name").value   = doc.Name;
     document.getElementById("Rating").value = doc.Rating; 
-}
-CompaniesConfig.fillDoc = function (doc) {
-    doc.TaxId  = this.dataForm.TaxId.value;
-    doc.Name   = this.dataForm.Name.value;
-    doc.Rating = Number(this.dataForm.Rating.value);    
 }
 
 crud.init(CompaniesConfig);

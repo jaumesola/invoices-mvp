@@ -48,12 +48,21 @@ export function init(config) {
             //config.submitForm(event);
             event.preventDefault();
             var doc = getDoc(config);
-            config.fillDoc(doc)
+            config.fillDocFromForm(doc)
             Meteor.call(config.saveMethod, doc);
             hideForm();
             config.cleanForm();
         }
     });
+    
+    config.fillDocFromForm = function (doc) {
+        for (var i = 0; i < config.formFields.length; i++) {
+            field = config.formFields[i];
+            doc.set( field, config.dataForm.elements[field].value, {
+                cast: true // Astronomy will properly transform values from form
+              }); 
+        }
+    }
     
     Meteor.subscribe(config.subscription);
 }
