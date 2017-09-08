@@ -9,25 +9,19 @@ import '/imports/offers/client/offers-client.js';
 
 describe('Offers', function () {
 	  
-    it('has an H2 with specific text', function () {	  
-        th.withRenderedTemplate('offers', {}, (el) => {
-            chai.assert.equal($(el).find('h2').text(), "Offers List");
-        });
-    });
+    it(th.sayHasH2Text(), function () { th.checksH2Text(OffersConfig); });
     
-    Factory.define('offer', Offers, {
+    th.factoryDefine(OffersConfig, {
         Amount: 0,
         Maturity: Date()
     });
 
     OffersConfig['fabricateDocument'] = function () {
-        return Factory.create('offer', {    
+        return th.factoryCreate(OffersConfig, {    
             Amount: _.random(0, 100000),
             Maturity: Date()
         });
     };
-    
-    OffersConfig['propsInHtml'] = ['Amount', 'Maturity'];
 
     OffersConfig['extractDataFromHtml'] = function (html) {
         var data =[];

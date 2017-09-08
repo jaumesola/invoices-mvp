@@ -9,27 +9,21 @@ import '/imports/companies/client/companies-client.js';
 
 describe('Companies', function () {
 	  
-    it('has an H2 with specific text', function () {	  
-        th.withRenderedTemplate('companies', {}, (el) => {
-            chai.assert.equal($(el).find('h2').text(), "Companies List");
-        });
-    });
+    it(th.sayHasH2Text(), function () { th.checksH2Text(CompaniesConfig); });
     
-    Factory.define('company', CompaniesConfig.collection, {
+    th.factoryDefine(CompaniesConfig, {
         TaxId: 0,
         Name: '',
         Rating: 0
     });
     
     CompaniesConfig['fabricateDocument'] = function () {
-        return Factory.create('company', {    
+        return th.factoryCreate(CompaniesConfig, {    
             TaxId: _.random(1000000, 9999999),
             Name: faker.lorem.sentence(),
             Rating: _.random(0, 10),
         });
     };
-
-    CompaniesConfig['propsInHtml'] = ['Name', 'TaxId', 'Rating'];
     
     CompaniesConfig['extractDataFromHtml'] = function (html) {
         var data =[];

@@ -3,6 +3,7 @@ import { Template } from 'meteor/templating';
 import { Blaze } from 'meteor/blaze';
 import { Tracker } from 'meteor/tracker';
 import { chai } from 'meteor/practicalmeteor:chai';
+import { Factory } from 'meteor/dburles:factory';
 
 const withDiv = function withDiv(callback) {
   const el = document.createElement('div');
@@ -50,14 +51,34 @@ export const withCollectionList = function withCollectionList(config) {
     return withRenderedTemplate(config.collectionName, fabricatedData, html => {
         //alert($(html)[0].outerHTML);
         var htmlData = config.extractDataFromHtml(html);
-        fabricatedData = reduceArray(fabricatedData, config.propsInHtml);
+        fabricatedData = reduceArray(fabricatedData, config.formFields);
         //htmlData.pop(); // TEST-BREAK: missing doc
         //alert(JSON.stringify(fabricatedData) + '\n\n--- vs ---\n\n' + JSON.stringify(htmlData));        
         chai.assert.deepEqual(fabricatedData, htmlData);
     });
-};
+}
 
 export const sayRendersSomeDocs = function sayRendersSomeDocs(config) {
     config['count'] = _.random(1,9);
     return 'renders ' + config.count + ' ' + config.collectionName;
+}
+
+export const sayHasH2Text = function sayHasH2Text(config) {
+    return 'has an H2 with specific text';
+}
+
+export const checksH2Text = function checksH2Text(config, text) {      
+    withRenderedTemplate(config.template, {}, (el) => {
+        var text = config.collectionName;
+        text = text.charAt(0).toUpperCase() + text.slice(1) + ' Management';
+        chai.assert.equal($(el).find('h2').text(), text);
+    });
+}
+
+export const factoryDefine = function factoryDefine(config, data) {
+    Factory.define(config.collectionName, config.collection, data);
+}
+
+export const factoryCreate = function factoryCreate(config, data) {
+    return Factory.create(config.collectionName, data);
 }
