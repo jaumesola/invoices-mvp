@@ -24,7 +24,7 @@ export function init(config) {
             hideEditRemoveButtons();
             Session.set('selectedDocId', null);    
         },
-        'click .edit': function (fillForm) {
+        'click .edit': function () {
             showForm();
             var doc = config.findSelectedDoc();
             config.fillFormFromDoc(doc);
