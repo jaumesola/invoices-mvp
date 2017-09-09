@@ -11,9 +11,7 @@ th.factoryDefine(CompaniesConfig, {
     Rating: 0
 });
 
-CompaniesConfig.fakeDoc = function () {
-    return th.factoryCreate(CompaniesConfig, cth.fakeData());
-};
+CompaniesConfig.fakeData = cth.fakeData;
 
 CompaniesConfig.extractDataFromHtml = function (html) {
     var data =[];

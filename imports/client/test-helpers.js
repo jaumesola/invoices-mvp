@@ -25,10 +25,10 @@ export const withRenderedTemplate = function withRenderedTemplate(template, data
 };
 
 // return data array with n fake documents
-function dataArray(n, fakeDoc) {
+function fakeDataSet(config) {
     const data = [];
-    for(i=0; i<n; i++) {
-        data.push(fakeDoc());
+    for(i=0; i<config.randomCount; i++) {
+        data.push( Factory.create(config.collectionName, config.fakeData()) );
     }
     return data;
 }
@@ -44,23 +44,23 @@ function reduceArray(a, propsInHtml) {
 }
 
 export const withCollectionList = function withCollectionList(config) {
-
-    var fabricatedData = dataArray(config.count, config.fakeDoc);
-    //fabricatedData[0][p.propsInHtml[0]] = 'DIFFERS'; // TEST-BREAK: different data
     
-    return withRenderedTemplate(config.collectionName, fabricatedData, html => {
+    var fakeData = fakeDataSet(config);
+    //fakeData[0][p.propsInHtml[0]] = 'DIFFERS'; // TEST-BREAK: different data
+    
+    return withRenderedTemplate(config.collectionName, fakeData, html => {
         //alert($(html)[0].outerHTML);
         var htmlData = config.extractDataFromHtml(html);
-        fabricatedData = reduceArray(fabricatedData, config.formFields);
+        fakeData = reduceArray(fakeData, config.formFields);
         //htmlData.pop(); // TEST-BREAK: missing doc
         //alert(JSON.stringify(fabricatedData) + '\n\n--- vs ---\n\n' + JSON.stringify(htmlData));        
-        chai.assert.deepEqual(fabricatedData, htmlData);
+        chai.assert.deepEqual(fakeData, htmlData);
     });
 }
 
 export const sayRendersSomeDocs = function sayRendersSomeDocs(config) {
-    config['count'] = _.random(1,9);
-    return 'renders ' + config.count + ' ' + config.collectionName;
+    config.randomCount = _.random(1,9);
+    return 'renders ' + config.randomCount + ' ' + config.collectionName;
 }
 
 export const sayHasH2Text = function sayHasH2Text(config) {
@@ -77,8 +77,4 @@ export const checksH2Text = function checksH2Text(config) {
 
 export const factoryDefine = function factoryDefine(config, data) {
     Factory.define(config.collectionName, config.collection, data);
-}
-
-export const factoryCreate = function factoryCreate(config, data) {
-    return Factory.create(config.collectionName, data);
 }

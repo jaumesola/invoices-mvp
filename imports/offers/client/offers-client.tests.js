@@ -9,9 +9,7 @@ th.factoryDefine(OffersConfig, {
     Maturity: Date()
 });
 
-OffersConfig.fakeDoc = function () {
-    return th.factoryCreate(OffersConfig, oth.fakeData());
-}
+OffersConfig.fakeData = oth.fakeData;
 
 OffersConfig.extractDataFromHtml = function (html) {
     var data =[];

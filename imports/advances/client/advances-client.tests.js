@@ -1,6 +1,5 @@
 import { Factory } from 'meteor/dburles:factory';
 import { $ } from 'meteor/jquery';
-import faker from 'faker';
 import * as th from '/imports/client/test-helpers.js';
 import './advances-client.js';
 import * as ath from './advances-test-helpers.js';
@@ -12,9 +11,7 @@ th.factoryDefine(AdvancesConfig, {
     InvoiceNumber: 0,
 });
 
-AdvancesConfig.fakeDoc= function () {
-    return th.factoryCreate(AdvancesConfig, ath.fakeData());
-};
+AdvancesConfig.fakeData = ath.fakeData;
 
 AdvancesConfig.extractDataFromHtml = function (html) {
     var data =[];
