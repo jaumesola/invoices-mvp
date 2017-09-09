@@ -30,7 +30,6 @@ AdvancesConfig.extractDataFromHtml = function (html) {
             InvoiceNumber: $(this).find('div').first().next().next().next().text(),
         });
    });
-   console.log(data);
    return data;
 }
 
