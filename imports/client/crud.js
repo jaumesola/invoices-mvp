@@ -8,7 +8,8 @@ export function init(config) {
              if(this._id == Session.get('selectedDocId')){
                  return "selected";
              }
-         }
+         },
+         'h2': config.collectionName,
      });
     
     config.template.events({

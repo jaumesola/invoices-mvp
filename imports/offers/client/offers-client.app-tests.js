@@ -12,8 +12,7 @@ describe('/offers', function () {
         setTimeout(done, 300);
     });
 
-    var h2Text = "Offers Management";
-    it('shows in H2: ' + h2Text, function () {th.h2Text(h2Text)});
+    it('shows in H2: ' + h2Text, function () {th.h2Text('offers')});
     it('shows create button', th.createButton);
     //it('shows form on create button click', th.showsFomOnCreateClick); 
 });

@@ -12,7 +12,6 @@ describe('/advances', function () {
         setTimeout(done, 300);
     });
     
-    var h2Text = "Advances Management";
-    it('shows in H2: ' + h2Text, function () {th.h2Text(h2Text)});
+    it('shows in H2: ' + h2Text, function () {th.h2Text('advances')});
     it('shows create button', th.createButton);
 });
