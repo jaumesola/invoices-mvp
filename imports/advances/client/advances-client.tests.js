@@ -3,6 +3,7 @@ import { $ } from 'meteor/jquery';
 import faker from 'faker';
 import * as th from '/imports/client/test-helpers.js';
 import './advances-client.js';
+import * as ath from './advances-test-helpers.js';
 
 th.factoryDefine(AdvancesConfig, {
     OfferId: 0,
@@ -12,12 +13,7 @@ th.factoryDefine(AdvancesConfig, {
 });
 
 AdvancesConfig.fakeDoc= function () {
-    return th.factoryCreate(AdvancesConfig, {    
-        OfferId: faker.random.number(100000),
-        CreditorId: faker.random.number(100000),
-        DebtorId: faker.random.number(100000),
-        InvoiceNumber: faker.random.number(100000),
-    });
+    return th.factoryCreate(AdvancesConfig, ath.fakeData());
 };
 
 AdvancesConfig.extractDataFromHtml = function (html) {

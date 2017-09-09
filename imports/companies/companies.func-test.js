@@ -1,28 +1,22 @@
 console.log('companies.func-tests');
 
-
 import * as Companies from './companies.js';
-import * as th from '../_common/func-test-helpers.js';
-import faker from 'faker';
+import * as fth from '../_common/func-test-helpers.js';
+import * as cth from './client/companies-test-helpers.js';
 
 describe('/companies @watch', function () {
     
     var config = Companies.config;
-    
-    var fillFake = function () {
-        browser.setValue('#TaxId', faker.phone.phoneNumberFormat() );
-        browser.setValue('#Name', faker.company.companyName() + ' ' + faker.company.companySuffix());
-        browser.setValue('#Rating', faker.random.number(10)); 
-    }
+    config.fakeData = cth.fakeData();
     
     before(function () {
         browser.url('http://localhost:3000/companies');
         //server.call('generateFixtures');
     });
     
-    it(th.sayClickCreate(), function() { th.clickCreate(config); });
-    it(th.sayAdd(config), function () { th.createDoc(fillFake); });
-    it(th.saySelect(config), th.selectDoc);
-    it(th.sayEdit(config), function () { th.editDoc(fillFake); });
-    it(th.sayRemove(config), th.removeDoc);
+    it(fth.sayClickCreate(), function() { fth.clickCreate(config); });
+    it(fth.sayAdd(config), function () { fth.createDoc(config); });
+    it(fth.saySelect(config), fth.selectDoc);
+    it(fth.sayEdit(config), function () { fth.editDoc(config); });
+    it(fth.sayRemove(config), fth.removeDoc);
 });

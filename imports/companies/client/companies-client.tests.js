@@ -3,6 +3,7 @@ import { $ } from 'meteor/jquery';
 import faker from 'faker';
 import * as th from '/imports/client/test-helpers.js';
 import '/imports/companies/client/companies-client.js';
+import * as cth from './companies-test-helpers.js';
 
 th.factoryDefine(CompaniesConfig, {
     TaxId: 0,
@@ -11,11 +12,7 @@ th.factoryDefine(CompaniesConfig, {
 });
 
 CompaniesConfig.fakeDoc = function () {
-    return th.factoryCreate(CompaniesConfig, {    
-        TaxId: faker.company.companyName() + ' ' + faker.company.companySuffix(),
-        Name: faker.lorem.sentence(),
-        Rating: faker.random.number(10),
-    });
+    return th.factoryCreate(CompaniesConfig, cth.fakeData());
 };
 
 CompaniesConfig.extractDataFromHtml = function (html) {

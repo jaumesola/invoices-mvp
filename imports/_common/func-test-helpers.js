@@ -21,9 +21,16 @@ export const waitCountDataRows = function waitCountDataRows() {
     return countDataRows();
 };
 
-export const createDoc = function createDoc(enterData) {
+function fillBrowserForm(config) {
+    for (var i = 0; i < config.formFields.length; i++) {
+        var field = config.formFields[i];
+        browser.setValue('#'+field, config.fakeData[field]);
+    }
+}
+
+export const createDoc = function createDoc(config) {
     var countBefore = countDataRows();
-    enterData();
+    fillBrowserForm(config);
     browser.click('#SaveForm');
     var countAfter = waitCountDataRows();
     //console.log('counts ' + countBefore + ' - ' + countAfter);
@@ -39,9 +46,9 @@ export const selectDoc = function selectDoc() {
     assert(true);
 };
 
-export const editDoc = function editDoc(enterData) {
+export const editDoc = function editDoc(config) {
     waitAndClickFirst('.edit'); // requires doc to be already selected
-    enterData();
+    fillBrowserForm(config);
     browser.click('#SaveForm');
     assert(true);
 }
@@ -82,6 +89,7 @@ export function sayEdit(config) {
 export function sayRemove(config) {
     return 'Remove a ' + config.modelName;
 }
+
 /*
 extract data from some row
 

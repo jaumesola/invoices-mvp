@@ -1,8 +1,8 @@
 import { Factory } from 'meteor/dburles:factory';
 import { $ } from 'meteor/jquery';
-import faker from 'faker';
 import * as th from '/imports/client/test-helpers.js';
-import '/imports/offers/client/offers-client.js';
+import './offers-client.js';
+import * as oth from './offers-test-helpers.js';
 
 th.factoryDefine(OffersConfig, {
     Amount: 0,
@@ -10,10 +10,7 @@ th.factoryDefine(OffersConfig, {
 });
 
 OffersConfig.fakeDoc = function () {
-    return th.factoryCreate(OffersConfig, {    
-        Amount: faker.random.number(100000),
-        Maturity: Date()
-    });
+    return th.factoryCreate(OffersConfig, oth.fakeData());
 }
 
 OffersConfig.extractDataFromHtml = function (html) {
@@ -32,3 +29,4 @@ describe(OffersConfig.collectionName, function () {
     it(th.sayHasH2Text(), function () { th.checksH2Text(config); });
     it(th.sayRendersSomeDocs(config), function () { th.withCollectionList(config); });
 });
+
