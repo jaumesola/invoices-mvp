@@ -11,7 +11,7 @@ th.factoryDefine(AdvancesConfig, {
     InvoiceNumber: 0,
 });
 
-AdvancesConfig.fabricateDocument = function () {
+AdvancesConfig.fakeDoc= function () {
     return th.factoryCreate(AdvancesConfig, {    
         OfferId: faker.random.number(100000),
         CreditorId: faker.random.number(100000),

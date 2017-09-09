@@ -9,7 +9,7 @@ th.factoryDefine(OffersConfig, {
     Maturity: Date()
 });
 
-OffersConfig.fabricateDocument = function () {
+OffersConfig.fakeDoc = function () {
     return th.factoryCreate(OffersConfig, {    
         Amount: faker.random.number(100000),
         Maturity: Date()

@@ -24,11 +24,11 @@ export const withRenderedTemplate = function withRenderedTemplate(template, data
   });
 };
 
-// return data array with n fabricated documents
-function dataArray(n, fabricateDocument) {
+// return data array with n fake documents
+function dataArray(n, fakeDoc) {
     const data = [];
     for(i=0; i<n; i++) {
-        data.push(fabricateDocument());
+        data.push(fakeDoc());
     }
     return data;
 }
@@ -45,7 +45,7 @@ function reduceArray(a, propsInHtml) {
 
 export const withCollectionList = function withCollectionList(config) {
 
-    var fabricatedData = dataArray(config.count, config.fabricateDocument);
+    var fabricatedData = dataArray(config.count, config.fakeDoc);
     //fabricatedData[0][p.propsInHtml[0]] = 'DIFFERS'; // TEST-BREAK: different data
     
     return withRenderedTemplate(config.collectionName, fabricatedData, html => {

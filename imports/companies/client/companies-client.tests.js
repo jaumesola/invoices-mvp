@@ -10,7 +10,7 @@ th.factoryDefine(CompaniesConfig, {
     Rating: 0
 });
 
-CompaniesConfig.fabricateDocument = function () {
+CompaniesConfig.fakeDoc = function () {
     return th.factoryCreate(CompaniesConfig, {    
         TaxId: faker.company.companyName() + ' ' + faker.company.companySuffix(),
         Name: faker.lorem.sentence(),
