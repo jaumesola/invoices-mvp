@@ -1,0 +1,28 @@
+Using Meteor Up for deployment to a staging server on Digital Ocean
+
+based on http://meteortips.com/deployment-tutorial/digitalocean-part-1/
+
+$ npm install -g mup
+
+(eventually generate SSH key)
+
+On Digital Ocean control panel:
+- add SSH key on DO settings - security
+- create droplet. Smallest 512MB RAM is OK in principle. 
+- chosen default Ubuntu 16.04 (latest LTS)
+- select favorite location
+- select SSH key entered before
+- choose a hostname
+- create droplet
+
+now following
+http://meteor-up.com/getting-started.html
+
+$ mkdir .deploy && cd .deploy
+$ mup init
+
+edit mup.js; set at least: host, name, path, env.ROOT_URL (just IP)
+
+$ mup setup
+
+$ mup deploy
