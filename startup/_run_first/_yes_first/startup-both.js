@@ -1,0 +1,1 @@
+console.log('STARTUP WITH ' + Meteor.settings.public.environment + ' SETTINGS');
