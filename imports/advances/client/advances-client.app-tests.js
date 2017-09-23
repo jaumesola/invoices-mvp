@@ -2,16 +2,24 @@ console.log('advances.app-tests');
 
 import { chai } from 'meteor/practicalmeteor:chai';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
-import * as th from '/imports/client/app-test-helpers.js';
+import * as ath from '/imports/client/app-test-helpers.js';
+import './advances-client.js';
 
-describe('/advances', function () {
+var config = AdvancesConfig;
 
+// BOILERPLATE START
+var url = ath.url(config);
+
+describe(url, function () {
+    
     before(function(done) {
-        console.log("Advances -- before");
-        FlowRouter.go('/advances');
+        console.log(url + " before");
+        FlowRouter.go(url);
         setTimeout(done, 300);
     });
     
-    it('shows in H2: ' + h2Text, function () {th.h2Text('advances')});
-    it('shows create button', th.createButton);
+    it(ath.sayShowsCorrectH2(config), function () {ath.h2Text(config)});
+    it(ath.sayShowsCreateButton(), ath.createButton);
+    //it('shows form on create button click', th.showsFomOnCreateClick); 
 });
+// BOILERPLATE END

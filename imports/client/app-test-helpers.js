@@ -5,10 +5,23 @@ export const logResult = function logResult(err, okMessage) {
     else console.log( 'OK ' + okMessage);
 }
 
-export const h2Text = function h2Text(text) {
+export const url = function (config) {
+    return '/' + config.collectionName;
+}
+
+export const sayShowsCorrectH2 = function (config) {
+    return 'shows correct H2: ' +  config.collectionName;
+}
+
+export const h2Text = function h2Text(config) {
+    var text = config.collectionName;
     console.log("--- H2 text: " + text);
-    // console.log( '$$$' + $('body').html() + '$$$');
+    //console.log( '$$$' + $('body').html() + '$$$');
     chai.assert.equal($('h2').html(), text);
+}
+
+export const sayShowsCreateButton = function () {
+    return 'shows create button';
 }
 
 export const createButton = function () {
