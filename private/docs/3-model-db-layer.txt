@@ -19,3 +19,8 @@ dynamic import can also be done with default kadira:flow-router, e.g.
  		});
     }
  ...   
+ 
+ 
+ MIGRATIONS
+ 
+ $ meteor add percolate:migrations
