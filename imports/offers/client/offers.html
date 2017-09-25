@@ -11,6 +11,7 @@
     <form id="dataForm" style="display: none;">
         <br>Amount <input type="number" size="10" name="Amount" id="Amount">
         <br>Maturity <input type="text" name="Maturity" id="Maturity">
+        <br>Status <input type="text" name="Status" id="Status">        
         <br><br><input type="submit" value="Save" id="SaveForm">
     </form>
 </template>
@@ -20,7 +21,8 @@
     {{#each datarow}}
     <div class="w3-row-padding {{selected}} datarow">
         <div class="w3-col m3">{{Amount}}</div>
-        <div class="w3-col m9">{{Maturity}}</div>
+        <div class="w3-col m6">{{Maturity}}</div>
+        <div class="w3-col m3">{{Status}}</div>
 	</div>
     {{/each}}
 <br>

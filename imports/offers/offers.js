@@ -1,3 +1,5 @@
+//export const statusCodes = ["NOT_NOW","OFFER_OK"];
+
 export const config = {
     collectionName: 'offers',
     subscription: 'theOffers', 
@@ -27,7 +29,14 @@ export const config = {
                     return d;
                 }
               }]
-        }
+        },
+        Status: {
+            type: String,
+            validators: [{
+                type: 'choice',
+                param: ["NOT_NOW","OFFER_OK"], // TODO DRY move to single location
+            }]
+        },
     },
-    formFields: ['Amount', 'Maturity']
+    formFields: ['Amount', 'Maturity','Status']
 }

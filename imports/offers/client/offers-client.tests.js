@@ -6,7 +6,8 @@ import * as oth from './offers-test-helpers.js';
 
 th.factoryDefine(OffersConfig, {
     Amount: 0,
-    Maturity: Date()
+    Maturity: Date(),
+    Status: 'NOT_NOW',
 });
 
 OffersConfig.fakeData = oth.fakeData;
@@ -16,7 +17,8 @@ OffersConfig.extractDataFromHtml = function (html) {
     $(html).find('.datarow').each( function () {
         data.push({
             Amount:   $(this).find('div').first().text(),
-            Maturity: $(this).find('div').first().next().text()
+            Maturity: $(this).find('div').first().next().text(),
+            Status:   $(this).find('div').first().next().next().text(),
         });
    });
    return data;
