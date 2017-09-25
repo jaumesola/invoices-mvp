@@ -22,10 +22,27 @@ export const waitCountDataRows = function waitCountDataRows() {
 };
 
 function fillBrowserForm(config) {
+    var fakeData = config.fakeData();
     for (var i = 0; i < config.formFields.length; i++) {
         var field = config.formFields[i];
-        browser.setValue('#'+field, config.fakeData[field]);
+        browser.setValue('#'+field, fakeData[field]);
     }
+}
+
+export function saySelect(config) {
+    return 'Select ' + config.modelName;
+}
+
+export const selectDoc = function selectDoc() {
+    waitAndClickLast('.datarow');
+    browser.waitForExist('.selected');
+    browser.waitForExist('.edit');
+    browser.waitForExist('.remove');
+    assert(true);
+};
+
+export function sayAdd(config) {
+    return 'Add ' + config.modelName;
 }
 
 export const createDoc = function createDoc(config) {
@@ -38,19 +55,20 @@ export const createDoc = function createDoc(config) {
     // TODO: verify also data shown is data entered
 };
 
-export const selectDoc = function selectDoc() {
-    waitAndClickLast('.datarow');
-    browser.waitForExist('.selected');
-    browser.waitForExist('.edit');
-    browser.waitForExist('.remove');
-    assert(true);
-};
+
+export function sayEdit(config) {
+    return 'Edit ' + config.modelName;
+}
 
 export const editDoc = function editDoc(config) {
     waitAndClickFirst('.edit'); // requires doc to be already selected
     fillBrowserForm(config);
     browser.click('#SaveForm');
     assert(true);
+}
+
+export function sayRemove(config) {
+    return 'Remove ' + config.modelName;
 }
 
 export const removeDoc = function removeDoc() {
@@ -72,22 +90,6 @@ export function clickCreate(config)  {
         var field = config.formFields[i];
         chai.assert.equal(browser.getTagName('#'+field), 'input');
     }
-}
-
-export function saySelect(config) {
-    return 'Select a ' + config.modelName;
-}
-
-export function sayAdd(config) {
-    return 'Add a ' + config.modelName;
-}
-
-export function sayEdit(config) {
-    return 'Edit a ' + config.modelName;
-}
-
-export function sayRemove(config) {
-    return 'Remove a ' + config.modelName;
 }
 
 /*

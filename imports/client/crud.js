@@ -45,7 +45,6 @@ export function init(config) {
             //config.submitForm(event);
             event.preventDefault();
             var doc = config.getDoc();
-            console.log(doc);
             config.fillDocFromForm(doc);
             Meteor.call(config.saveMethod, doc);
             hideForm();
@@ -89,7 +88,7 @@ export function init(config) {
     }
     
     config.fillFormFromDoc = function (doc) {
-        for (var i = 0; i < AdvancesConfig.formFields.length; i++) {
+        for (var i = 0; i < config.formFields.length; i++) {
             var field = config.formFields[i];
             document.getElementById(field).value = doc[field];
         }
