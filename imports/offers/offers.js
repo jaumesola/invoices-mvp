@@ -1,5 +1,3 @@
-//export const statusCodes = ["NOT_NOW","OFFER_OK"];
-
 export const config = {
     collectionName: 'offers',
     subscription: 'theOffers', 
@@ -34,7 +32,8 @@ export const config = {
             type: String,
             validators: [{
                 type: 'choice',
-                param: ["NOT_NOW","OFFER_OK"], // TODO DRY move to single location
+                // Note that this array is used by fakeData() in offers-test-helpers.js                
+                param: ["NOT_NOW","OFFER_OK"],
             }]
         },
     },

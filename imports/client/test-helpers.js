@@ -28,7 +28,7 @@ export const withRenderedTemplate = function withRenderedTemplate(template, data
 function fakeDataSet(config) {
     const data = [];
     for(i=0; i<config.randomCount; i++) {
-        data.push( Factory.create(config.collectionName, config.fakeData()) );
+        data.push( Factory.create(config.collectionName, config.fakeData(config)) );
     }
     return data;
 }

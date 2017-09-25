@@ -1,6 +1,6 @@
 import faker from 'faker';
 
-export function fakeData() {
+export function fakeData(config) {
     return {    
         OfferId: faker.random.number(100000),
         CreditorId: faker.random.number(100000),

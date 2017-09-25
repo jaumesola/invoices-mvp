@@ -22,9 +22,10 @@ export const waitCountDataRows = function waitCountDataRows() {
 };
 
 function fillBrowserForm(config) {
-    var fakeData = config.fakeData();
+    var fakeData = config.fakeData(config);
     for (var i = 0; i < config.formFields.length; i++) {
         var field = config.formFields[i];
+        console.log('field: ' + field + ' >>> ' + fakeData[field]);
         browser.setValue('#'+field, fakeData[field]);
     }
 }

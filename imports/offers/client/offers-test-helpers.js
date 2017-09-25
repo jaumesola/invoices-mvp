@@ -1,6 +1,6 @@
 import faker from 'faker';
 
-export function fakeData() {
+export function fakeData(config) {
     
     function fakeMaturity() {
         var d = new Date();
@@ -9,8 +9,8 @@ export function fakeData() {
     }
     
     function fakeStatus() {
-        var statusCodes = ["NOT_NOW","OFFER_OK"]; // TODO DRY move to single location
-        return statusCodes[faker.random.number(statusCodes.length)];
+        var statusCodes = config.modelFields.Status.validators[0].param;
+        return statusCodes[faker.random.number(statusCodes.length-1)];
     }
     
     return {    

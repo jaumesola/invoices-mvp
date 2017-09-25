@@ -1,3 +1,9 @@
+export const statusCodes = ["CLEAR_RISK",
+    "ASK_CRED_DATA","WAIT_CRED_DATA","ASK_CRED_SIGN",
+    "WAIT_CRED_SIGN","ASK_DEBT_SIGN","WAIT_DEBT_SIGN",
+    "SEND_FUNDS_CRED", "SEND_FUNDS_CRED", "WAIT_FUNDS_DEBT",
+    "COMPLETED", "UNPAID", "LATE_PAID"];
+
 export const config = {
     collectionName: 'advances',
     subscription: 'theAdvances', 
