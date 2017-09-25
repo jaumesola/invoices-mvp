@@ -9,6 +9,7 @@ th.factoryDefine(AdvancesConfig, {
     CreditorId: 0,
     DebtorId: 0,
     InvoiceNumber: 0,
+    Status: 'CLEAR_RISK',
 });
 
 AdvancesConfig.fakeData = ath.fakeData;
@@ -21,6 +22,7 @@ AdvancesConfig.extractDataFromHtml = function (html) {
             CreditorId:    $(this).find('div').first().next().text(),
             DebtorId:      $(this).find('div').first().next().next().text(),
             InvoiceNumber: $(this).find('div').first().next().next().next().text(),
+            Status:        $(this).find('div').first().next().next().next().next().text(),            
         });
    });
    return data;

@@ -12,7 +12,8 @@
         <br>OfferId <input type="text" size="30" name="OfferId" id="OfferId">
         <br>CreditorId <input type="text" size="30" name="CreditorId" id="CreditorId">
         <br>DebtorId <input type="text" size="30" name="DebtorId" id="DebtorId">
-        <br>InvoiceNumber <input type="text" size="30" name="InvoiceNumber" id="InvoiceNumber">                
+        <br>InvoiceNumber <input type="text" size="30" name="InvoiceNumber" id="InvoiceNumber">
+        <br>Status <input type="text" size="30" name="Status" id="Status">            
         <br><br><input type="submit" value="Save" id="SaveForm">
     </form>
 </template>
@@ -21,10 +22,11 @@
     <h2>{{h2}}</h2>
     {{#each datarow}}
     <div class="w3-row-padding {{selected}} datarow">
-        <div class="w3-col m3">{{OfferId}}</div>
-        <div class="w3-col m3">{{CreditorId}}</div>
-        <div class="w3-col m3">{{DebtorId}}</div>
-        <div class="w3-col m3">{{InvoiceNumber}}</div>
+        <div class="w3-col m2">{{OfferId}}</div>
+        <div class="w3-col m2">{{CreditorId}}</div>
+        <div class="w3-col m2">{{DebtorId}}</div>
+        <div class="w3-col m2">{{InvoiceNumber}}</div>
+        <div class="w3-col m4">{{Status}}</div>
     </div>
     {{/each}}
 <br>

@@ -1,9 +1,3 @@
-export const statusCodes = ["CLEAR_RISK",
-    "ASK_CRED_DATA","WAIT_CRED_DATA","ASK_CRED_SIGN",
-    "WAIT_CRED_SIGN","ASK_DEBT_SIGN","WAIT_DEBT_SIGN",
-    "SEND_FUNDS_CRED", "SEND_FUNDS_CRED", "WAIT_FUNDS_DEBT",
-    "COMPLETED", "UNPAID", "LATE_PAID"];
-
 export const config = {
     collectionName: 'advances',
     subscription: 'theAdvances', 
@@ -21,6 +15,18 @@ export const config = {
         DebtorId: {
             type: String, // TODO specific ID type? TODO link to Company Id           
         },
+        Status: {
+            type: String,
+            validators: [{
+                type: 'choice',
+                // Note that this array is used by fakeData() in advances-test-helpers.js                
+                param: ["CLEAR_RISK",
+                    "ASK_CRED_DATA","WAIT_CRED_DATA","ASK_CRED_SIGN",
+                    "WAIT_CRED_SIGN","ASK_DEBT_SIGN","WAIT_DEBT_SIGN",
+                    "SEND_FUNDS_CRED", "SEND_FUNDS_CRED", "WAIT_FUNDS_DEBT",
+                    "COMPLETED", "UNPAID", "LATE_PAID"],
+            }]
+        },
         /*
         CreditorData {
             type: Object, // TODO specific object type?
@@ -34,5 +40,5 @@ export const config = {
         */ 
     },
     // part of client side, but convenient to have here for functional tests
-    formFields: ['OfferId','CreditorId','DebtorId','InvoiceNumber']
+    formFields: ['OfferId','CreditorId','DebtorId','InvoiceNumber','Status']
 };

@@ -8,7 +8,7 @@ export function fakeData(config) {
         return d.toString();
     }
     
-    function fakeStatus() {
+    function fakeStatus() { // TODO: DRY, unify with Advances.fakeData()
         var statusCodes = config.modelFields.Status.validators[0].param;
         return statusCodes[faker.random.number(statusCodes.length-1)];
     }
