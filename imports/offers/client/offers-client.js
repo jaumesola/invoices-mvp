@@ -7,3 +7,14 @@ OffersConfig.template = Template.offers;
 OffersConfig.editFormTemplate = Template.editOfferForm;
 
 crud.init(OffersConfig);
+
+OffersConfig.editFormTemplate.helpers({
+    statusoptions() {
+        var r = OffersConfig.modelFields.Status.validators[0].param;
+        r =  r.map(function (element) {
+            return { code: element }; 
+        })
+        //console.log(r);
+        return r;
+    },
+ });

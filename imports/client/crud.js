@@ -27,10 +27,10 @@ export function init(config) {
         'click .edit': function () {
             showForm();
             var doc = config.findSelectedDoc();
-            config.fillFormFromDoc(doc);
+            config.fillFormFromDoc(doc);          
         },
         'click .remove': function () {
-            Meteor.call(config.removeMethod, config.getDoc());
+            Meteor.call(config.removeMethod, config.getDoc(config));
             hideForm();
             hideEditRemoveButtons();
         }
@@ -44,7 +44,7 @@ export function init(config) {
         'submit form': function (event) {
             //config.submitForm(event);
             event.preventDefault();
-            var doc = config.getDoc();
+            var doc = config.getDoc(config);
             config.fillDocFromForm(doc);
             Meteor.call(config.saveMethod, doc);
             hideForm();
@@ -57,12 +57,11 @@ export function init(config) {
     }
     
     //return currently selected document object or if none a newly created one
-    config.getDoc = function () {
-        if (Session.get('selectedDocId') == null) { 
-            return new config.model();
-        } else {
-            return config.findSelectedDoc();
-        }
+    config.getDoc = function (config) {
+        console.log('getDoc');
+        config.lastDoc = (Session.get('selectedDocId') == null)?
+            new config.model() : config.findSelectedDoc(config);
+        return config.lastDoc;
     }
 
     config.iterateFormFields = function (callback) {
