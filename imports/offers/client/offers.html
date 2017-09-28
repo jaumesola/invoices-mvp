@@ -11,12 +11,7 @@
     <form id="dataForm" style="display: none;">
         <br>Amount <input type="number" size="10" name="Amount" id="Amount">
         <br>Maturity <input type="text" name="Maturity" id="Maturity">
-        <br>
-            <select id="Status">
-                {{#each option in statusoptions}}
-                <option value="{{option.code}}">{{option.code}}</option>
-                {{/each}}
-            </select>     
+        <br>{{> offerStatusSelector}}
         <br><br><input type="submit" value="Save" id="SaveForm">
     </form>
 </template>

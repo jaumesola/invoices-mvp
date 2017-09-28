@@ -58,7 +58,6 @@ export function init(config) {
     
     //return currently selected document object or if none a newly created one
     config.getDoc = function (config) {
-        console.log('getDoc');
         config.lastDoc = (Session.get('selectedDocId') == null)?
             new config.model() : config.findSelectedDoc(config);
         return config.lastDoc;
