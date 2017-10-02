@@ -9,12 +9,19 @@
     margin-left: 0px;
 }
     
-.w3-col{
-	border-left-width: 1px;
+.cb-colhead {
+    	border-bottom-width: 1px;
+    border-bottom-style: solid;
+    	border-color: black;
+    	font-weight: bold;
+}
+
+.cb-col {
+    border-left-width: 1px;
     border-left-style: solid;
-    	border-right-width: 1px;
+    border-right-width: 1px;
     border-right-style: solid;
-    	border-width: 1px;
-    	border-style: solid;
-    	border-color: aliceblue;
+    border-width: 1px;
+    border-style: solid;
+    border-color: aliceblue;
 }
