@@ -1,7 +1,10 @@
 Template.genericRow.helpers({
-    'field': function (id) {
-        return this.doc[id];
+    
+    'field': function (ff) {
+        let value = this.doc[ff.id];
+        return ff.format ? ff.format(value) : value;
     },
+    
     'selected': function () {
         if( this.doc._id == Session.get('selectedDocId') ){
             return "selected";

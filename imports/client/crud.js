@@ -87,9 +87,11 @@ export function init(config) {
     }
     
     config.fillFormFromDoc = function (doc) {
-        for (var i = 0; i < config.formFields.length; i++) {
-            var field = config.formFields[i].id;
-            document.getElementById(field).value = doc[field];
+        for (let i = 0; i < config.formFields.length; i++) {
+            let field  = config.formFields[i].id;
+            let format = config.formFields[i].format;
+            let value  = doc[field];
+            document.getElementById(field).value = format ? format(value) : value;
         }
     }
     

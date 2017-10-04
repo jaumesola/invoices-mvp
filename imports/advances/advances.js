@@ -19,7 +19,7 @@ export const config = {
             type: String,
             validators: [{
                 type: 'choice',
-                // Note that this array is used by fakeData() in advances-test-helpers.js                
+                // Note that this array is used by fakeDoc() in advances-test-helpers.js                
                 param: ["CLEAR_RISK",
                     "ASK_CRED_DATA","WAIT_CRED_DATA","ASK_CRED_SIGN",
                     "WAIT_CRED_SIGN","ASK_DEBT_SIGN","WAIT_DEBT_SIGN",

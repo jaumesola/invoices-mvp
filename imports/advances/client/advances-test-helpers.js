@@ -1,8 +1,8 @@
 import faker from 'faker';
 
-export function fakeData(config) {
+export function fakeDoc(config) {
     
-    function fakeStatus() { // TODO: DRY, unify with Offers.fakeData()
+    function fakeStatus() { // TODO: DRY, unify with Offers.fakeDoc()
         var statusCodes = config.modelFields.Status.validators[0].param;
         return statusCodes[faker.random.number(statusCodes.length-1)];
     }

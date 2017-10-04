@@ -32,14 +32,14 @@ export const config = {
             type: String,
             validators: [{
                 type: 'choice',
-                // Note that this array is used by fakeData() in offers-test-helpers.js                
+                // Note that this array is used by fakeDoc() in offers-test-helpers.js                
                 param: ["NOT_NOW","OFFER_OK"],
             }]
         },
     },
     formFields: [
         {id: 'Amount',   label: 'Amount' ,  tag: 'input',  colClass: 'm4'},
-        {id: 'Maturity', label: 'Maturity', tag: 'input',  colClass: 'm4'},
+        {id: 'Maturity', label: 'Maturity', tag: 'input',  colClass: 'm4', type: 'date', format: function(x) {return x.toISOString().split('T')[0];} },
         {id: 'Status',   label: 'Status',   tag: 'select', colClass: 'm4'},
         ],
 }

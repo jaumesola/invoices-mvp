@@ -24,37 +24,43 @@ export const withRenderedTemplate = function withRenderedTemplate(template, data
   });
 };
 
-// return data array with n fake documents
+// return data array with n fake objects
 function fakeDataSet(config) {
     const data = [];
+    let doc = {};
+    let obj = {};
     for(i=0; i<config.randomCount; i++) {
-        data.push( Factory.create(config.collectionName, config.fakeData(config)) );
+        doc = Factory.create(config.collectionName, config.fakeDoc(config));
+        obj = docToStrings(doc, config.formFields);
+        data.push(obj);
     }
     return data;
 }
 
-// reduce array of objects to only the document object properties included in HTML
-// also values converted to string as HTML is all text
-function reduceArray(a, formFields) {
-    return a.map( x => {
-        var y ={};
-        formFields.forEach( field => { y[field.id] = x[field.id].toString() } );
-        return y;
+// convert document to an object including only some properties (formFields)
+// also values converted to properly formatted strings for HTML
+
+function docToStrings(doc, formFields) {  
+    let obj={};
+    formFields.forEach( field => { 
+        let value = doc[field.id];
+        obj[field.id] = field.format ? field.format(value) : value.toString();
     });
+    return obj;
 }
 
 export const withCollectionList = function withCollectionList(config) {
     
     var fakeData = fakeDataSet(config);
-    //fakeData[0][p.propsInHtml[0]] = 'DIFFERS'; // TEST-BREAK: different data
+    //fakeData[0][config.formFields[0].id] = 'DIFFERS'; // TEST-BREAK: different data
     
     return withRenderedTemplate(config.collectionName, fakeData, html => {
-        //alert($(html)[0].outerHTML);
-        var htmlData = config.extractDataFromHtml(html);
-        fakeData = reduceArray(fakeData, config.formFields);
         //htmlData.pop(); // TEST-BREAK: missing doc
-        //alert(JSON.stringify(fakeData) + '\n\n--- vs ---\n\n' + JSON.stringify(htmlData));    
-        console.log(fakeData); console.log(htmlData);        
+        var htmlData = config.extractDataFromHtml(html);  
+        //console.log($(html)[0].outerHTML);       
+        //console.log(JSON.stringify(fakeData) + '\n\n--- vs ---\n\n' + JSON.stringify(htmlData));    
+        //console.log('fake data:'); console.log(fakeData);
+        //console.log('html data:'); console.log(htmlData);
         chai.assert.deepEqual(fakeData, htmlData);
     });
 }

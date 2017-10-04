@@ -22,16 +22,29 @@ export const waitCountDataRows = function waitCountDataRows() {
 };
 
 function fillBrowserForm(config) {
-    let fakeData = config.fakeData(config);
+    let fakeDoc = config.fakeDoc(config);
     for (var i = 0; i < config.formFields.length; i++) {
         let field = config.formFields[i].id;
+        let format = config.formFields[i].format;
         let selector = '#' + field;    
-        let value = fakeData[field];
+        let value = fakeDoc[field];
+        //console.log('raw value'); console.log(value);
+        value = format ? format(value) : value;
         //console.log(selector + ' >>fake>> ' + value);
         if (config.formFields[i].tag == 'select') {
+            // select element from drop-down by its value
             browser.selectByValue(selector,value);
-        } else {
-            browser.setValue(selector, value);            
+        } else { 
+            if ( (config.formFields[i].type == 'date') ) {
+                // hack to set a date value
+                browser.selectorExecute( 
+                    selector,
+                    function(inputs, value) { inputs[0].value = value; }, 
+                    value);
+            } else {
+                // generic non-select non-date case
+                browser.setValue(selector, value);                  
+            }    
         }
     }
 }

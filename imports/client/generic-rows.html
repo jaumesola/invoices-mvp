@@ -17,7 +17,7 @@
 <template name="genericRow">
     <div class="w3-row-padding cb-row {{selected}}">
         {{#each ff in formfields}}
-        <div class="w3-col cb-col {{ff.colClass}}">{{field ff.id}}</div>
+        <div class="w3-col cb-col {{ff.colClass}}">{{field ff}}</div>
         {{/each}}
     </div>
 </template>

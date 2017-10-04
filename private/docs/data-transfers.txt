@@ -6,11 +6,11 @@ Application
 - config.fillDocFromForm -- used when saving to DB to fill doc with data from  form
 
 Tests in general
-- config.fakeData: creates a generic object with fake but valid data
+- config.fakeDoc: creates a generic object with fake but valid data
 
 Unit tests
 
-- config.fakeDoc: creates a document object from config.fakeData
+- config.fakeDoc: creates a document object from config.fakeDoc
 - config.extractDataFromHtml -- returns an array of data rows & columns presented on screen 
      in order to compare with previously entered fake data
      
@@ -21,6 +21,6 @@ Integration tests
        
 Functional tests
 
-- they use config.fakeData to fill the browser form with fake data 
+- they use config.fakeDoc to fill the browser form with fake data 
 
 (currently a verification of data entered is missing, but we already do it in unit tests)

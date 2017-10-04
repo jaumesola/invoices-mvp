@@ -7,7 +7,7 @@ import * as cth from './client/companies-test-helpers.js';
 describe('/companies @watch', function () {
     
     var config = Companies.config;
-    config.fakeData = cth.fakeData;
+    config.fakeDoc = cth.fakeDoc;
     
     before(function () {
         browser.url('http://localhost:3000/companies');

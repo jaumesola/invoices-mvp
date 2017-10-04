@@ -12,7 +12,7 @@ th.factoryDefine(AdvancesConfig, {
     Status: 'CLEAR_RISK',
 });
 
-AdvancesConfig.fakeData = ath.fakeData;
+AdvancesConfig.fakeDoc = ath.fakeDoc;
 
 AdvancesConfig.extractDataFromHtml = function (html) {
     var data =[];

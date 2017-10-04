@@ -7,7 +7,7 @@ import * as ath from './client/advances-test-helpers.js';
 describe('/advances @watch', function() {
     
     var config = Advances.config;
-    config.fakeData = ath.fakeData;
+    config.fakeDoc = ath.fakeDoc;
   
     before(function () {
         browser.url('http://localhost:3000/advances');

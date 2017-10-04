@@ -7,7 +7,7 @@ import * as oth from './client/offers-test-helpers.js';
 describe('/offers @watch', function() {
     
     var config = Offers.config;
-    config.fakeData = oth.fakeData;
+    config.fakeDoc = oth.fakeDoc;
   
     before(function () {
         browser.url('http://localhost:3000/offers');

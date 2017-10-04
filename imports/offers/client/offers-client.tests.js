@@ -10,7 +10,7 @@ th.factoryDefine(OffersConfig, {
     Status: 'NOT_NOW',
 });
 
-OffersConfig.fakeData = oth.fakeData;
+OffersConfig.fakeDoc = oth.fakeDoc;
 
 OffersConfig.extractDataFromHtml = function (html) {
     var data =[];
@@ -29,4 +29,3 @@ describe(OffersConfig.collectionName, function () {
     it(th.sayHasH2Text(), function () { th.checksH2Text(config); });
     it(th.sayRendersSomeDocs(config), function () { th.withCollectionList(config); });
 });
-
