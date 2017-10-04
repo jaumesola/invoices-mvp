@@ -1,20 +1,21 @@
 export function init(config) {
 
     config.template.helpers({
-        'datarow': function () {
+        'formfields': function () {
+            return config.formFields;
+        },
+        'docs': function () {
              return config.collection.find();
          },
-        'selected': function () {
-             if(this._id == Session.get('selectedDocId')){
-                 return "selected";
-             }
-         },
+         'field': function (doc, field) {
+             return doc[field];
+         }, 
          'h2': config.collectionName,
      });
     
     config.template.events({
-        'click .datarow': function () {
-            Session.set('selectedDocId', this._id);
+        'click .cb-row': function () {
+            Session.set('selectedDocId', this.doc._id);
             hideForm();
             showEditRemoveButtons();
         },
@@ -65,7 +66,7 @@ export function init(config) {
 
     config.iterateFormFields = function (callback) {
         for (var i = 0; i < config.formFields.length; i++) {
-            var field = config.formFields[i];
+            var field = config.formFields[i].id;
             callback(field);
         }
     }
@@ -78,7 +79,7 @@ export function init(config) {
     
     config.fillDocFromForm = function (doc) {
         for (var i = 0; i < config.formFields.length; i++) {
-            var field = config.formFields[i];
+            var field = config.formFields[i].id;
             doc.set(field, config.dataForm.elements[field].value, {
                 cast: true // Astronomy will properly transform values from form
             }); 
@@ -87,7 +88,7 @@ export function init(config) {
     
     config.fillFormFromDoc = function (doc) {
         for (var i = 0; i < config.formFields.length; i++) {
-            var field = config.formFields[i];
+            var field = config.formFields[i].id;
             document.getElementById(field).value = doc[field];
         }
     }

@@ -22,5 +22,9 @@ export const config = {
                 { type: 'lte', param: 10 }
         ]}
     },
-    formFields: ['TaxId','Name','Rating']
+    formFields: [
+        { id: 'TaxId',  label: 'Tax Id' , tag: 'input', colClass: 'm4' },
+        { id: 'Name',   label: 'Name',    tag: 'input', colClass: 'm4' },
+        { id: 'Rating', label: 'Rating' , tag: 'input', colClass: 'm4' },
+        ]
 }

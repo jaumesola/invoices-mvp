@@ -40,5 +40,11 @@ export const config = {
         */ 
     },
     // part of client side, but convenient to have here for functional tests
-    formFields: ['OfferId','CreditorId','DebtorId','InvoiceNumber','Status']
+    formFields: [ 
+        {id: 'OfferId',       label: 'Offer Id',    tag: 'input',  colClass: 'm2'}, 
+        {id: 'CreditorId',    label: 'Creditor Id', tag: 'input',  colClass: 'm2'},
+        {id: 'DebtorId',      label: 'Debtor Id',   tag: 'input',  colClass: 'm2'},
+        {id: 'InvoiceNumber', label: 'Invoice #',   tag: 'input',  colClass: 'm2'},
+        {id: 'Status',        label: 'Status',      tag: 'select', colClass: 'm4'}
+        ],
 };

@@ -37,5 +37,9 @@ export const config = {
             }]
         },
     },
-    formFields: ['Amount', 'Maturity','Status']
+    formFields: [
+        {id: 'Amount',   label: 'Amount' ,  tag: 'input',  colClass: 'm4'},
+        {id: 'Maturity', label: 'Maturity', tag: 'input',  colClass: 'm4'},
+        {id: 'Status',   label: 'Status',   tag: 'select', colClass: 'm4'},
+        ],
 }

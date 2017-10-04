@@ -14,7 +14,7 @@ OffersConfig.fakeData = oth.fakeData;
 
 OffersConfig.extractDataFromHtml = function (html) {
     var data =[];
-    $(html).find('.datarow').each( function () {
+    $(html).find('.cb-row').each( function () {
         data.push({
             Amount:   $(this).find('div').first().text(),
             Maturity: $(this).find('div').first().next().text(),

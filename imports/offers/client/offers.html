@@ -17,19 +17,7 @@
 </template>
 
 <template name="offers">
-    <h2>{{h2}}</h2>
-    <div class="w3-row-padding">
-        <div class="w3-col cb-colhead m3">Amount</div>
-        <div class="w3-col cb-colhead m6">Maturity</div>
-        <div class="w3-col cb-colhead m3">Status</div>
-    </div>
-    {{#each datarow}}
-    <div class="w3-row-padding {{selected}} datarow">
-        <div class="w3-col cb-col m3">{{Amount}}</div>
-        <div class="w3-col cb-col m6">{{Maturity}}</div>
-        <div class="w3-col cb-col m3">{{Status}}</div>
-	</div>
-    {{/each}}
+    {{> genericRows h2=h2 docs=docs formfields=formfields}}
 <br>
     {{> crudButtons}}
 </template>

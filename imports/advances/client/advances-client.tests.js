@@ -16,7 +16,7 @@ AdvancesConfig.fakeData = ath.fakeData;
 
 AdvancesConfig.extractDataFromHtml = function (html) {
     var data =[];
-    $(html).find('.datarow').each( function () {
+    $(html).find('.cb-row').each( function () {
         data.push({
             OfferId:       $(this).find('div').first().text(),
             CreditorId:    $(this).find('div').first().next().text(),

@@ -19,23 +19,7 @@
 </template>
 
 <template name="advances">
-    <h2>{{h2}}</h2>
-    <div class="w3-row-padding">
-        <div class="w3-col cb-colhead m2">Offer Id</div>
-        <div class="w3-col cb-colhead m2">Creditor Id</div>
-        <div class="w3-col cb-colhead m2">Debtor Id</div>
-        <div class="w3-col cb-colhead m2">Invoice #</div>
-        <div class="w3-col cb-colhead m4">Status</div>       
-    </div>
-    {{#each datarow}}    
-    <div class="w3-row-padding {{selected}} datarow">
-        <div class="w3-col cb-col m2">{{OfferId}}</div>
-        <div class="w3-col cb-col m2">{{CreditorId}}</div>
-        <div class="w3-col cb-col m2">{{DebtorId}}</div>
-        <div class="w3-col cb-col m2">{{InvoiceNumber}}</div>
-        <div class="w3-col cb-col m4">{{Status}}</div>
-    </div>
-    {{/each}}
+    {{> genericRows h2=h2 docs=docs formfields=formfields}}
 <br>
     {{> crudButtons}}
 </template>

@@ -35,10 +35,10 @@ function fakeDataSet(config) {
 
 // reduce array of objects to only the document object properties included in HTML
 // also values converted to string as HTML is all text
-function reduceArray(a, propsInHtml) {
+function reduceArray(a, formFields) {
     return a.map( x => {
         var y ={};
-        propsInHtml.forEach( prop => { y[prop] = x[prop].toString() } );
+        formFields.forEach( field => { y[field.id] = x[field.id].toString() } );
         return y;
     });
 }
@@ -53,7 +53,8 @@ export const withCollectionList = function withCollectionList(config) {
         var htmlData = config.extractDataFromHtml(html);
         fakeData = reduceArray(fakeData, config.formFields);
         //htmlData.pop(); // TEST-BREAK: missing doc
-        //alert(JSON.stringify(fabricatedData) + '\n\n--- vs ---\n\n' + JSON.stringify(htmlData));        
+        //alert(JSON.stringify(fakeData) + '\n\n--- vs ---\n\n' + JSON.stringify(htmlData));    
+        console.log(fakeData); console.log(htmlData);        
         chai.assert.deepEqual(fakeData, htmlData);
     });
 }

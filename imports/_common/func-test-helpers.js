@@ -2,7 +2,7 @@ console.log('func-tests-helpers');
 
 export const waitAndClickFirst = function waitAndClickFirst(element) {
     browser.waitForExist(element);
-    browser.click(element)
+    browser.click(element);
 }
 
 export const waitAndClickLast = function waitAndClickLast(element) {
@@ -13,20 +13,26 @@ export const waitAndClickLast = function waitAndClickLast(element) {
 }
 
 export const countDataRows = function countDataRows() {
-    return browser.elements('.datarow').value.length;
+    return browser.elements('.cb-row').value.length;
 };
 
 export const waitCountDataRows = function waitCountDataRows() {
-    browser.waitForExist('.datarow');
+    browser.waitForExist('.cb-row');
     return countDataRows();
 };
 
 function fillBrowserForm(config) {
-    var fakeData = config.fakeData(config);
+    let fakeData = config.fakeData(config);
     for (var i = 0; i < config.formFields.length; i++) {
-        var field = config.formFields[i];
-        //console.log('field: ' + field + ' >>fake>> ' + fakeData[field]);
-        browser.setValue('#'+field, fakeData[field]);
+        let field = config.formFields[i].id;
+        let selector = '#' + field;    
+        let value = fakeData[field];
+        //console.log(selector + ' >>fake>> ' + value);
+        if (config.formFields[i].tag == 'select') {
+            browser.selectByValue(selector,value);
+        } else {
+            browser.setValue(selector, value);            
+        }
     }
 }
 
@@ -35,7 +41,7 @@ export function saySelect(config) {
 }
 
 export const selectDoc = function selectDoc() {
-    waitAndClickLast('.datarow');
+    waitAndClickLast('.cb-row');
     browser.waitForExist('.selected');
     browser.waitForExist('.edit');
     browser.waitForExist('.remove');
@@ -75,7 +81,7 @@ export function sayRemove(config) {
 export const removeDoc = function removeDoc() {
     //assert(true); return;
     var countBefore = countDataRows();
-    waitAndClickFirst('.datarow');
+    waitAndClickFirst('.cb-row');
     waitAndClickFirst('.remove');
     var countAfter = waitCountDataRows();
     chai.assert(countAfter = countBefore - 1);
@@ -88,8 +94,9 @@ export function sayClickCreate() {
 export function clickCreate(config)  {
     waitAndClickFirst('.create');        
     for (var i = 0; i < config.formFields.length; i++) {
-        var field = config.formFields[i];
-        chai.assert.equal(browser.getTagName('#'+field), 'input');
+        var field = config.formFields[i].id;
+        var tag = browser.getTagName('#'+field);
+        chai.assert( tag == 'input' || tag == 'select' );
     }
 }
 

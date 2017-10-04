@@ -1,0 +1,23 @@
+<template name="genericRows">
+    <h2>{{h2}}</h2>
+    {{> genericColHead formfields=formfields}}
+    {{#each doc in docs}} 
+        {{> genericRow doc=doc formfields=formfields}}
+    {{/each}}
+</template>
+
+<template name="genericColHead">
+    <div class="w3-row-padding">
+        {{#each ff in formfields}}
+        <div class="w3-col cb-colhead {{ff.colClass}}">{{ff.label}}</div>
+        {{/each}}
+    </div>
+</template>
+
+<template name="genericRow">
+    <div class="w3-row-padding cb-row {{selected}}">
+        {{#each ff in formfields}}
+        <div class="w3-col cb-col {{ff.colClass}}">{{field ff.id}}</div>
+        {{/each}}
+    </div>
+</template>

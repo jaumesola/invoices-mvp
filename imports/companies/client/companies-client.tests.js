@@ -15,10 +15,10 @@ CompaniesConfig.fakeData = cth.fakeData;
 
 CompaniesConfig.extractDataFromHtml = function (html) {
     var data =[];
-    $(html).find('.datarow').each( function () {
+    $(html).find('.cb-row').each( function () {
         data.push({
-            Name:   $(this).find('div').first().text(),
-            TaxId:  $(this).find('div').first().next().text(),
+            TaxId:  $(this).find('div').first().text(),
+            Name:   $(this).find('div').first().next().text(),
             Rating: $(this).find('div').first().next().next().text(),              
         });
    });
