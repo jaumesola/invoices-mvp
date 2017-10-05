@@ -16,9 +16,15 @@ export function fakeDoc(config) {
     let InvoiceAmount   = faker.random.number(100000);
     let InvoiceMaturity = fakeMaturity();
     let Status          = fakeStatus();
-    let discount        = faker.finance.amount({min:0, max:10});
-    let OfferAmount     = (InvoiceAmount * (100 - discount))/100;
-    let OfferDate       = new Date();
+    let discount        = faker.random.number(10);
+    let OfferAmount     = null;
+    let OfferDate       = null;
+    if (Status == 'OFFER_OK') {
+        OfferAmount     = Math.round(InvoiceAmount * (100 - discount) / 100);
+        OfferDate       = new Date();        
+    };
+    
+    console.log('fake offer'); console.log(discount); console.log({ InvoiceAmount, InvoiceMaturity, Status, OfferAmount, OfferDate });
     
     return { InvoiceAmount, InvoiceMaturity, Status, OfferAmount, OfferDate };
 }

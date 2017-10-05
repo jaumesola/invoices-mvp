@@ -6,7 +6,7 @@ export const config = {
         InvoiceAmount: {
             type: Number,
             validators: [
-                { type: 'gte', param: 0 },
+                { type: 'gte', param: 1 },
                 { type: 'lte', param: 100000 }
             ]
         },
@@ -28,16 +28,18 @@ export const config = {
                 }
               }]
         },
-        OfferAmount: { 
+        OfferAmount: {
             type: Number,
-            validators: [ // TODO add check not higher than to InvoiceAmount
-                { type: 'gte', param: 0 },
+            optional: true, // TODO should be not null if Status == 'OFFER_OK'
+            validators: [   // TODO add check not higher than to InvoiceAmount
+                { type: 'gte', param: 1 },
                 { type: 'lte', param: 100000 }
             ]
         },
         OfferDate: {
             type: Date,
-            validators: [] // TODO add check prior to InvoiceMaturity
+            optional: true, // TODO should be not null if Status == 'OFFER_OK'
+            validators: []  // TODO add check prior to InvoiceMaturity
         },
         Status: {
             type: String,
@@ -51,8 +53,8 @@ export const config = {
     formFields: [
         {id: 'InvoiceAmount',   label: 'Invoice amount' ,  tag: 'input',  colClass: 'm2'},
         {id: 'InvoiceMaturity', label: 'Invoice maturity', tag: 'input',  colClass: 'm2', type: 'date', format: function(x) {return x.toISOString().split('T')[0];} },
-        {id: 'Status',          label: 'Status',           tag: 'select', colClass: 'm4'},        
+        {id: 'Status',          label: 'Status',           tag: 'select', colClass: 'm2'},        
         {id: 'OfferAmount',     label: 'Offer amount',     tag: 'input',  colClass: 'm2'},
-        {id: 'OfferDate',       label: 'Offer date',       tag: 'input',  colClass: 'm2', type: 'date', format: function(x) {return x.toISOString().split('T')[0];} }, // TODO Unifiy this formatting into a global function
+        {id: 'OfferDate',       label: 'Offer date',       tag: 'input',  colClass: 'm4', type: 'date', format: function(x) {return x.toISOString().split('T')[0];} }, // TODO Unifiy this formatting into a global function
         ],
 }
