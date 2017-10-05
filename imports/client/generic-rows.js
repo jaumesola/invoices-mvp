@@ -1,9 +1,14 @@
 Template.genericRow.helpers({
     
     'field': function (ff) {
-        //console.log('field helper:'); console.log(ff);
+        //console.log('field helper:'); console.log(ff); console.log(this.doc);
         let value = this.doc[ff.id];
-        return ff.format ? ff.format(value) : value;
+        if (value != null) {
+            if (ff.format) {
+                value = ff.format(value);
+            }
+        }
+        return value;
     },
     
     'selected': function () {

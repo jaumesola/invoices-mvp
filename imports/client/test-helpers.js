@@ -44,7 +44,12 @@ function docToStrings(doc, formFields) {
     let obj={};
     formFields.forEach( field => { 
         let value = doc[field.id];
-        obj[field.id] = field.format ? field.format(value) : value.toString();
+        if (value == null) {
+            value = '';
+        } else {
+            value = field.format ? field.format(value) : value.toString();
+        }
+        obj[field.id] = value;
     });
     return obj;
 }

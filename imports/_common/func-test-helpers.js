@@ -29,7 +29,13 @@ function fillBrowserForm(config) {
         let selector = '#' + field;    
         let value = fakeDoc[field];
         //console.log('raw value'); console.log(value);
-        value = format ? format(value) : value;
+        if (value == null ) {
+            continue;
+        } else {
+            if (format) {
+                value = format(value);
+            }
+        }
         //console.log(selector + ' >>fake>> ' + value);
         if (config.formFields[i].tag == 'select') {
             // select element from drop-down by its value
