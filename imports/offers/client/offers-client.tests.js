@@ -16,9 +16,11 @@ OffersConfig.extractDataFromHtml = function (html) {
     var data =[];
     $(html).find('.cb-row').each( function () {
         data.push({
-            Amount:   $(this).find('div').first().text(),
-            Maturity: $(this).find('div').first().next().text(),
-            Status:   $(this).find('div').first().next().next().text(),
+            InvoiceAmount:   $(this).find('div').first().text(),
+            InvoiceMaturity: $(this).find('div').first().next().text(),
+            Status:          $(this).find('div').first().next().next().text(),
+            OfferAmount:     $(this).find('div').first().next().next().next().text(),
+            OfferDate:       $(this).find('div').first().next().next().next().next().text(),
         });
    });
    return data;

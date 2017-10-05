@@ -9,9 +9,12 @@
 
 <template name="editOfferForm">
     <form id="dataForm" style="display: none;">
-        <br>Amount <input type="number" size="10" name="Amount" id="Amount">
-        <br>Maturity <input type="date" name="Maturity" id="Maturity">
-        <br>{{> offerStatusSelector}}
+        <!--  TODO build from config data -->
+        <br>Invoice Amount <input type="number" size="10" name="InvoiceAmount" id="InvoiceAmount">
+        <br>Invoice Maturity <input type="date" name="InvoiceMaturity" id="InvoiceMaturity">
+        <br>Status {{> offerStatusSelector}}        
+        <br>Offer Amount <input type="number" size="10" name="OfferAmount" id="OfferAmount">
+        <br>Offer Date <input type="date" name="OfferDate" id="OfferDate">
         <br><br><input type="submit" value="Save" id="SaveForm">
     </form>
 </template>

@@ -3,14 +3,14 @@ export const config = {
     subscription: 'theOffers', 
     modelName: 'Offer',
     modelFields: {
-        Amount: {
+        InvoiceAmount: {
             type: Number,
             validators: [
                 { type: 'gte', param: 0 },
                 { type: 'lte', param: 100000 }
             ]
         },
-        Maturity: {
+        InvoiceMaturity: {
             type: Date,
             validators: [{
                 type: 'gte',
@@ -28,6 +28,17 @@ export const config = {
                 }
               }]
         },
+        OfferAmount: { 
+            type: Number,
+            validators: [ // TODO add check not higher than to InvoiceAmount
+                { type: 'gte', param: 0 },
+                { type: 'lte', param: 100000 }
+            ]
+        },
+        OfferDate: {
+            type: Date,
+            validators: [] // TODO add check prior to InvoiceMaturity
+        },
         Status: {
             type: String,
             validators: [{
@@ -38,8 +49,10 @@ export const config = {
         },
     },
     formFields: [
-        {id: 'Amount',   label: 'Amount' ,  tag: 'input',  colClass: 'm4'},
-        {id: 'Maturity', label: 'Maturity', tag: 'input',  colClass: 'm4', type: 'date', format: function(x) {return x.toISOString().split('T')[0];} },
-        {id: 'Status',   label: 'Status',   tag: 'select', colClass: 'm4'},
+        {id: 'InvoiceAmount',   label: 'Invoice amount' ,  tag: 'input',  colClass: 'm2'},
+        {id: 'InvoiceMaturity', label: 'Invoice maturity', tag: 'input',  colClass: 'm2', type: 'date', format: function(x) {return x.toISOString().split('T')[0];} },
+        {id: 'Status',          label: 'Status',           tag: 'select', colClass: 'm4'},        
+        {id: 'OfferAmount',     label: 'Offer amount',     tag: 'input',  colClass: 'm2'},
+        {id: 'OfferDate',       label: 'Offer date',       tag: 'input',  colClass: 'm2', type: 'date', format: function(x) {return x.toISOString().split('T')[0];} }, // TODO Unifiy this formatting into a global function
         ],
 }
