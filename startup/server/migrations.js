@@ -33,3 +33,25 @@ Migrations.add({
         statuses.remove({});
     }
 });
+
+Migrations.add({
+    version: 2,
+    name: 'Add settings.',
+    up: function() {
+        //code to migrate up to version 1}
+        var settings = new Mongo.Collection('settings');
+        settings.insert({
+            _id: 'development',
+            field1: 'value1',
+            field2: 'value2',
+            field3: 'value3',
+        });        
+    },
+    down: function() {
+        //code to migrate down to version 0}
+        var settings = new Mongo.Collection('settings');
+        settings.remove({_id: 'development'});
+    }
+});
+
+Migrations.add({ version: 3, name: 'dummy', up: function() {}, down: function() {}, });
