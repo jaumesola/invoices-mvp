@@ -1,0 +1,35 @@
+<template name="settingsBody">
+    	{{#if currentUser}}
+        <p></p>
+        {{> settings}}
+        <p></p>
+        {{> editSettingsForm}}
+    {{/if}}
+</template>
+
+<template name="editSettingsForm">
+    <form id="dataForm" style="display: none;">
+        <br>Environment <input type="string" size="60" name="environment" id="environment">
+        <br>Creditor <textarea type="text" name="creditor"  id="creditor"   rows="8" cols="50"></textarea>
+        <br><br>Invoice  <textarea type="text" name="invoice"   id="invoice"    rows="6" cols="50"></textarea>
+        <br><br>Factor<textarea type="text" name="factor" id="factor" rows="4" cols="50"></textarea>
+        <br><br><input type="submit" value="Save" id="SaveForm">
+    </form>
+</template>
+
+<template name="settings2">
+    <h2>{{h2}}</h2>
+    {{#each doc in docs}}
+    <div class="w3-row-padding cb-row {{selected}}">
+        <div class="w3-col cb-col m12">*** click here ***</div>
+    </div>
+    {{/each}}
+<br>
+    {{> crudButtons}}
+</template>
+
+<template name="settings">
+    {{> genericRows h2=h2 docs=docs formfields=formfields}}
+<br>
+    {{> crudButtons}}
+</template>

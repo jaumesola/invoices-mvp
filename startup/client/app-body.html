@@ -1,28 +1,29 @@
 <template name="App_body">
 <!-- BEGIN App_body  -->
- 		
- <div id="container" >
+
+<div id="container" >
     {{#if currentUser}}
-	<section id="menu">
-    	<div class="list-todos">
-			<a href="/companies" title="Companies" class="list-todo">Companies</a>
+    <section id="menu">
+        <div class="list-todos">
+            <a href="/settings" title="Settings" class="list-todo">Settings</a>
+            <a href="/companies" title="Companies" class="list-todo">Companies</a>
             <a href="/offers" title="Offers" class="list-todo">Offers</a>
-            <a href="/advances" title="Advances" class="list-todo">Advances</a>       
-    		</div>
+            <a href="/advances" title="Advances" class="list-todo">Advances</a>
+        </div>
     </section>
     {{/if}}
-	<div id="content-container">
+    <div id="content-container">
     	{{#if currentUser}}
-		{{> Template.dynamic template=content_container}}    	
+        {{> Template.dynamic template=content_container}}
     {{else}}
-    		<div class="wrapper-message">
-			<div class="title-message">You must be logged-in to see this content.</div>
-		</div>
+        <div class="wrapper-message">
+            <div class="title-message">You must be logged-in to see this content.</div>
+        </div>
     {{/if}}
-	</div>
+    </div>
     <div class="login-widget">
-    		{{> loginButtons}}
-    </div>   	
+        {{> loginButtons}}
+    </div>
 </div>
 <!-- END App_body  -->
 </template>

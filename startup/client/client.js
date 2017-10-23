@@ -7,6 +7,16 @@ FlowRouter.route('/', {
     },
 });
 
+FlowRouter.route('/settings', {
+    name: 'settings_url',
+    waitOn() {
+        return import('/imports/settings/client/settings-client.js');
+    },
+    action() {
+        BlazeLayout.render('App_body', { content_container: 'settingsBody' });
+    }
+});
+
 FlowRouter.route('/companies', {
     name: 'companies_url',
     waitOn() {
