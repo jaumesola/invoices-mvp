@@ -91,9 +91,9 @@ export function init(config) {
             let field  = config.formFields[i].id;
             let format = config.formFields[i].format;
             let value  = doc[field];
-            if (typeof value == "object") {
-            		value = JSON.stringify(value, null, 2);
-            }          
+            if (typeof value == "object" || typeof value == "array") {
+                value = JSON.stringify(value, null, 2);
+            }
             document.getElementById(field).value = format ? format(value) : value;
         }
     }
