@@ -26,11 +26,11 @@ export const config = {
         },
     },
     formFields: [
-        { id: 'Environment', label: 'Environment', tag: 'input', colClass: 'm2' },
-        { id: 'Creditor', label: 'Creditor', tag: 'input', colClass: 'm2' },
-        { id: 'Invoice',  label: 'Invoice',  tag: 'input', colClass: 'm2' },
-        { id: 'Factor',   label: 'Factor',   tag: 'input', colClass: 'm2' },
-        { id: 'WhiteList',   label: 'White list',   tag: 'input', colClass: 'm2' },
-        { id: 'BlackList',   label: 'Black list',   tag: 'input', colClass: 'm2' },
+        { id: 'Environment', label: 'Environment', tag: 'input', colClass: 'm12' },
+        { id: 'Creditor',  },
+        { id: 'Invoice',   },
+        { id: 'Factor',    },
+        { id: 'WhiteList', },
+        { id: 'BlackList', },
     ]
 }

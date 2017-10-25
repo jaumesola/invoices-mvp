@@ -1,14 +1,14 @@
 <template name="genericRows">
     <h2>{{h2}}</h2>
-    {{> genericColHead formfields=formfields}}
+    {{> genericColHead colfields=colfields}}
     {{#each doc in docs}} 
-        {{> genericRow doc=doc formfields=formfields}}
+        {{> genericRow doc=doc colfields=colfields}}
     {{/each}}
 </template>
 
 <template name="genericColHead">
     <div class="w3-row-padding">
-        {{#each ff in formfields}}
+        {{#each ff in colfields}}
         <div class="w3-col cb-colhead {{ff.colClass}}">{{ff.label}}</div>
         {{/each}}
     </div>
@@ -16,7 +16,7 @@
 
 <template name="genericRow">
     <div class="w3-row-padding cb-row {{selected}}">
-        {{#each ff in formfields}}
+        {{#each ff in colfields}}
         <div class="w3-col cb-col {{ff.colClass}}">{{field ff}}</div>
         {{/each}}
     </div>

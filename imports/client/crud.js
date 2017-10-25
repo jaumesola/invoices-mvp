@@ -1,8 +1,9 @@
 export function init(config) {
 
     config.template.helpers({
-        'formfields': function () {
-            return config.formFields;
+
+        'colfields': function () {
+            return config.colFields;
         },
         'docs': function () {
              return config.collection.find();
