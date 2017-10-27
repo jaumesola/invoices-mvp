@@ -2,7 +2,8 @@ export const config = {
     collectionName: 'offers',
     subscription: 'theOffers', 
     modelName: 'Offer',
-    modelFields: {
+    
+    modelFields: { // TODO DRY - duplication with advances
         InvoiceAmount: {
             type: Number,
             validators: [
@@ -52,9 +53,9 @@ export const config = {
     },
     formFields: [
         {id: 'InvoiceAmount',   label: 'Invoice amount' ,  tag: 'input',  colClass: 'm2'},
-        {id: 'InvoiceMaturity', label: 'Invoice maturity', tag: 'input',  colClass: 'm2', type: 'date', format: function(x) {return x.toISOString().split('T')[0];} },
+        {id: 'InvoiceMaturity', label: 'Invoice maturity', tag: 'input',  colClass: 'm2', type: 'date', format: globalFormatDate },
         {id: 'Status',          label: 'Status',           tag: 'select', colClass: 'm2'},        
         {id: 'OfferAmount',     label: 'Offer amount',     tag: 'input',  colClass: 'm2'},
-        {id: 'OfferDate',       label: 'Offer date',       tag: 'input',  colClass: 'm4', type: 'date', format: function(x) {return x.toISOString().split('T')[0];} }, // TODO Unifiy this formatting into a global function
+        {id: 'OfferDate',       label: 'Offer date',       tag: 'input',  colClass: 'm4', type: 'date', format: globalFormatDate },
         ],
 }
