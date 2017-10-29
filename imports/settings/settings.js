@@ -4,6 +4,10 @@ export const config = {
     modelName: 'Settings',
     modelFields: {
         Environment: { type: String, },
+        Local: {
+            type: Object,
+            cast(value) { return JSON.parse(value); },
+        },
         Creditor: {
             type: Object,
             cast(value) { return JSON.parse(value); },
@@ -27,6 +31,7 @@ export const config = {
     },
     formFields: [
         { id: 'Environment', label: 'Environment', tag: 'input', colClass: 'm12' },
+        { id: 'Local',  },
         { id: 'Creditor',  },
         { id: 'Invoice',   },
         { id: 'Factor',    },
