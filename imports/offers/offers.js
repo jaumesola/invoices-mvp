@@ -54,7 +54,7 @@ export const config = {
     formFields: [
         {id: 'InvoiceAmount',   label: 'Invoice amount' ,  tag: 'input',  colClass: 'm2'},
         {id: 'InvoiceMaturity', label: 'Invoice maturity', tag: 'input',  colClass: 'm2', type: 'date', format: globalFormatDate },
-        {id: 'Status',          label: 'Status',           tag: 'select', colClass: 'm2'},        
+        {id: 'Status',          label: "Offer Status", tag: 'select', colClass: 'm2'},        
         {id: 'OfferAmount',     label: 'Offer amount',     tag: 'input',  colClass: 'm2'},
         {id: 'OfferDate',       label: 'Offer date',       tag: 'input',  colClass: 'm4', type: 'date', format: globalFormatDate },
         ],

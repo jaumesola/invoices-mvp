@@ -22,7 +22,6 @@ export function init(config) {
         result = [];
         for (var i = 0; i < config.formFields.length; i++) {
             if (config.formFields[i].colClass) {
-                console.log(config.formFields[i].id);
                 result[i] = config.formFields[i];
             }
         }

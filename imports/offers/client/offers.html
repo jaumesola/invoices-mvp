@@ -10,10 +10,10 @@
 <template name="editOfferForm">
     <form id="dataForm" style="display: none;">
         <!--  TODO build from config data -->
-        <br>Invoice Amount <input type="number" size="10" name="InvoiceAmount" id="InvoiceAmount">
+        <br>Invoice Amount <input type="number" size="10" step="0.01" name="InvoiceAmount" id="InvoiceAmount">
         <br>Invoice Maturity <input type="date" name="InvoiceMaturity" id="InvoiceMaturity">
         <br>Status {{> offerStatusSelector}}        
-        <br>Offer Amount <input type="number" size="10" name="OfferAmount" id="OfferAmount">
+        <br>Offer Amount <input type="number" size="10" step="0.01" name="OfferAmount" id="OfferAmount">
         <br>Offer Date <input type="date" name="OfferDate" id="OfferDate">
         <br><br><input type="submit" value="Save" id="SaveForm">
     </form>

@@ -11,12 +11,12 @@
     <form id="dataForm" style="display: none;">
         <br>Offer Id <input type="text" size="30" name="OfferId" id="OfferId">
         <br><br>Advance Date <input type="date" name="AdvanceDate" id="AdvanceDate">
-        <br><br>Advance Amount <input type="number" size="10" name="AdvanceAmount" id="AdvanceAmount">
+        <br><br>Advance Amount <input type="number" size="10" step="0.01" name="AdvanceAmount" id="AdvanceAmount">
         <br><br>Creditor Tax Id <input type="text" size="30" name="CreditorTaxId" id="CreditorTaxId">
         <br><br>Creditor Name <input type="text" size="60" name="CreditorName" id="CreditorName">
         <br><br>Debtor Tax Id <input type="text" size="30" name="DebtorTaxId" id="DebtorTaxId">
         <br><br>Debtor Name <input type="text" size="60" name="DebtorName" id="DebtorName">
-        <br><br>Invoice Amount <input type="number" size="10" name="InvoiceAmount" id="InvoiceAmount">
+        <br><br>Invoice Amount <input type="number" size="10" step="0.01" name="InvoiceAmount" id="InvoiceAmount">
         <br><br>Invoice Maturity <input type="date" name="InvoiceMaturity" id="InvoiceMaturity">
         <br>{{> advanceStatusSelector}}
         <br><br>Creditor Data <textarea type="text" name="CreditorData" id="CreditorData" rows="2" cols="50"></textarea>

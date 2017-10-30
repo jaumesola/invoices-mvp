@@ -10,10 +10,10 @@
 }
     
 .cb-colhead {
-    	border-bottom-width: 1px;
-    border-bottom-style: solid;
     	border-color: black;
     	font-weight: bold;
+    	    border-style: solid;
+    border-color: aliceblue;
 }
 
 .cb-col {
