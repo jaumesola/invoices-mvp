@@ -23,17 +23,20 @@ export const config = {
             ]
         },
         CreditorTaxId: {
-            type: String, // TODO specific type? TODO link to Company Tax Id           
+            type: String, // TODO specific type? TODO link to Creditor Tax Id           
         }, 
         CreditorName: {
             type: String,        
         },        
         DebtorTaxId: {
-            type: String, // TODO specific type? TODO link to Company Tax Id           
+            type: String, // TODO specific type? TODO link to Debtor Tax Id           
         },
         DebtorName: {
             type: String,      
         },  
+        InvoiceNumber: {
+            type: String,        
+        }, 
         InvoiceAmount: {
             type: Number,
             validators: [
@@ -71,6 +74,19 @@ export const config = {
                     "COMPLETED", "UNPAID", "LATE_PAID"],
             }]
         },
+        StatusMessage: {
+            type: String,        
+        }, 
+        PaymentMethodId: {
+            type: Number,        
+        }, 
+        PaymentMethodName: {
+            type: String,        
+        }, 
+        CollectionData: {
+            type: Object,
+            cast(value) { return JSON.parse(value); },
+        },        
         CreditorData: {
             type: Object,
             cast(value) { return JSON.parse(value); },
@@ -93,9 +109,14 @@ export const config = {
         { id: 'CreditorName',                             tag: 'input',  colClass: 'm2'},        
         { id: 'DebtorTaxId',     label: 'Debtor',         tag: 'input',  colClass: 'm1'},
         { id: 'DebtorName',                               tag: 'input',  colClass: 'm2'},
-        { id: 'InvoiceAmount',   label: 'Invoice amount', tag: 'input',  colClass: 'm1'},        
+        { id: 'InvoiceNumber',   label: 'Invoice number', tag: 'input',  colClass: 'm1'},       
+        { id: 'InvoiceAmount',   label: 'Invoice amount', tag: 'input',  colClass: 'm1'},
         { id: 'InvoiceMaturity', label: 'Maturity',       tag: 'input',  colClass: 'm1', type: 'date', format: globalFormatDate },      
-        { id: 'Status',          label: 'Status',         tag: 'select', colClass: 'm2'},
+        { id: 'Status',          label: 'Status',         tag: 'select', colClass: 'm1'},   
+        { id: 'StatusMessage', },
+        { id: 'PaymentMethodId', },
+        { id: 'PaymentMethodName', },    
+        { id: 'CollectionData', },
         { id: 'CreditorData', },
         { id: 'DebtorData', },
         { id: 'InvoiceData', },

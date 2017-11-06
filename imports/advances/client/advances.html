@@ -16,12 +16,17 @@
         <br><br>Creditor Name <input type="text" size="60" name="CreditorName" id="CreditorName">
         <br><br>Debtor Tax Id <input type="text" size="30" name="DebtorTaxId" id="DebtorTaxId">
         <br><br>Debtor Name <input type="text" size="60" name="DebtorName" id="DebtorName">
+        <br><br>Invoice Number <input type="text" name="InvoiceNumber" id="InvoiceNumber">
         <br><br>Invoice Amount <input type="number" size="10" step="0.01" name="InvoiceAmount" id="InvoiceAmount">
         <br><br>Invoice Maturity <input type="date" name="InvoiceMaturity" id="InvoiceMaturity">
         <br>{{> advanceStatusSelector}}
+        <br><br>Status Message <input type="text" size="60" name="StatusMessage" id="StatusMessage">
+        <br><br>Payment Method Id <input type="number" name="PaymentMethodId" id="PaymentMethodId">  
+        <br><br>Payment Method Name <input type="text" name="PaymentMethodName" id="PaymentMethodName">        
+        <br><br>Collection Data <textarea type="text" name="CollectionData" id="CollectionData" rows="5" cols="50"></textarea>
+        <br><br>Invoice Data <textarea type="text" name="InvoiceData" id="InvoiceData" rows="2" cols="50"></textarea>        
         <br><br>Creditor Data <textarea type="text" name="CreditorData" id="CreditorData" rows="2" cols="50"></textarea>
         <br><br>Debtor Data <textarea type="text" name="DebtorData" id="DebtorData" rows="2" cols="50"></textarea>
-        <br><br>Invoice Data <textarea type="text" name="InvoiceData" id="InvoiceData" rows="2" cols="50"></textarea>
         <br><br><input type="submit" value="Save" id="SaveForm">       
     </form>
 </template>
