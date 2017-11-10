@@ -87,15 +87,19 @@ export const config = {
             type: Object,
             cast(value) { return JSON.parse(value); },
         },        
+        InvoiceData: {
+            type: Object,
+            cast(value) { return JSON.parse(value); },
+        },
+        UserData: {
+            type: Object,
+            cast(value) { return JSON.parse(value); },
+        },
         CreditorData: {
             type: Object,
             cast(value) { return JSON.parse(value); },
         },
         DebtorData: {
-            type: Object,
-            cast(value) { return JSON.parse(value); },
-        },
-        InvoiceData: {
             type: Object,
             cast(value) { return JSON.parse(value); },
         },
@@ -117,8 +121,9 @@ export const config = {
         { id: 'PaymentMethodId', },
         { id: 'PaymentMethodName', },    
         { id: 'CollectionData', },
+        { id: 'InvoiceData', },
+        { id: 'UserData', },
         { id: 'CreditorData', },
         { id: 'DebtorData', },
-        { id: 'InvoiceData', },
         ],
 };
