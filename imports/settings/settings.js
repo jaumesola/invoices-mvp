@@ -8,6 +8,10 @@ export const config = {
             type: Object,
             cast(value) { return JSON.parse(value); },
         },
+        Timeouts: {
+            type: Object,
+            cast(value) { return JSON.parse(value); },
+        },
         Creditor: {
             type: Object,
             cast(value) { return JSON.parse(value); },
@@ -32,6 +36,7 @@ export const config = {
     formFields: [
         { id: 'Environment', label: 'Environment', tag: 'input', colClass: 'm12' },
         { id: 'Local',  },
+        { id: 'Timeouts',  },        
         { id: 'Creditor',  },
         { id: 'Invoice',   },
         { id: 'Factor',    },
